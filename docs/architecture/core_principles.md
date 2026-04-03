@@ -120,3 +120,54 @@ If something fails:
 - lights must still work
 - switches must still work
 - system must remain usable
+
+---
+
+## 13. Logical user control should be unified
+
+When multiple technical control layers exist for the same real-world function, users should normally see one logical control in Home Assistant.
+
+Examples:
+- one room light with both Shelly and IKEA Tradfri involvement
+- grouped lights that should behave as one user-facing light
+
+The system should avoid making users think in terms of internal technical layers during normal daily use.
+
+---
+
+## 14. Critical devices must be excluded from bulk actions
+
+Critical infrastructure must never be affected by generic actions such as:
+- turn off all sockets
+- away mode shutdown
+- nightly shutdown routines
+
+Examples:
+- FTTH / network core power
+- any future infrastructure-critical relays
+
+---
+
+## 15. Hardware truth and user abstraction must be separate
+
+Keep separate:
+- hardware entities for real electrical control
+- logical entities for daily use
+
+This is especially important for Shelly + Tradfri combined lighting.
+
+The system should preserve access to real hardware state while still presenting a simple user-facing control model.
+
+---
+
+## 16. Native integrations first
+
+Prefer native/local integrations over Matter or cloud abstractions whenever possible.
+
+Reason:
+- more capability
+- better reliability
+- easier debugging
+- better offline behavior
+
+Matter and cloud integrations may still be used as secondary compatibility layers, but not as the architectural foundation.
