@@ -25,7 +25,7 @@ def prompt_subnet():
 
 def safe_get(url, attempts=RETRIES):
     last_error = ""
-    for attempt in range(attempts):
+    for _ in range(attempts):
         try:
             response = requests.get(url, timeout=(CONNECT_TIMEOUT, REQUEST_TIMEOUT))
             return response, last_error
@@ -40,6 +40,23 @@ def try_resolve_hostname(ip):
         return socket.gethostbyaddr(ip)[0]
     except Exception:
         return ""
+
+
+def get_shelly_config_name(base_url):
+    response, _ = safe_get(urljoin(base_url, "rpc/Sys.GetConfig"))
+
+    if response is None or response.status_code != 200:
+        return ""
+
+    try:
+        config = response.json()
+    except Exception:
+        return ""
+
+    if not isinstance(config, dict):
+        return ""
+
+    return str(config.get("sys", {}).get("device", {}).get("name", "")).strip()
 
 
 def detect_shelly(ip):
@@ -89,11 +106,13 @@ def detect_shelly(ip):
 
         if endpoint == "rpc/Shelly.GetDeviceInfo" and isinstance(data, dict):
             if data.get("app") or data.get("gen") or data.get("id"):
+                proper_name = get_shelly_config_name(base_url)
+
                 result["is_shelly"] = True
                 result["generation"] = f"Gen{data.get('gen', '')}" if data.get("gen") else "Gen4"
                 result["device_type"] = str(data.get("app", ""))
                 result["model"] = str(data.get("model", ""))
-                result["name"] = str(data.get("name") or data.get("id") or "")
+                result["name"] = proper_name or str(data.get("name") or data.get("id") or "")
                 result["mac"] = str(data.get("mac", ""))
                 result["firmware"] = str(data.get("ver", ""))
                 result["detected_by"] = label
