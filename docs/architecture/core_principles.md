@@ -1,3 +1,4 @@
+
 # Core Principles
 
 This document defines the fundamental design principles of the home automation system.
@@ -22,9 +23,11 @@ The house must behave like a normal house first.
 Shelly devices are installed behind switches and form the foundation of the system.
 
 They:
-- control power
-- maintain smart control
-- preserve normal switch behavior
+- provide electrical control
+- detect physical switch input
+- enable local automation
+
+Shelly should be considered the hardware truth layer.
 
 ---
 
@@ -32,8 +35,8 @@ They:
 
 IKEA Tradfri is used for:
 - multi-bulb setups
-- partial lighting
 - dimming and ambiance
+- grouped lighting
 
 It must not break normal switch usability.
 
@@ -42,12 +45,13 @@ It must not break normal switch usability.
 ## 4. Control layers must not conflict
 
 Two layers exist:
-- Shelly (power / switch)
+- Shelly (power / switch / input)
 - IKEA (bulb logic)
 
 The system must avoid:
 - loss of power to smart bulbs unintentionally
 - inconsistent states between systems
+- duplicate or confusing device representations
 
 ---
 
@@ -125,49 +129,108 @@ If something fails:
 
 ## 13. Logical user control should be unified
 
-When multiple technical control layers exist for the same real-world function, users should normally see one logical control in Home Assistant.
+When multiple technical control layers exist for the same real-world function, users should normally see one logical control.
 
 Examples:
 - one room light with both Shelly and IKEA Tradfri involvement
-- grouped lights that should behave as one user-facing light
+- grouped lights behaving as one
 
-The system should avoid making users think in terms of internal technical layers during normal daily use.
+Users must not need to understand technical layers.
 
 ---
 
 ## 14. Critical devices must be excluded from bulk actions
 
-Critical infrastructure must never be affected by generic actions such as:
-- turn off all sockets
-- away mode shutdown
-- nightly shutdown routines
+Critical infrastructure must never be affected by:
+- turn off all
+- away mode
+- shutdown routines
 
 Examples:
-- FTTH / network core power
-- any future infrastructure-critical relays
+- FTTH / network core
+- infrastructure relays
 
 ---
 
 ## 15. Hardware truth and user abstraction must be separate
 
 Keep separate:
-- hardware entities for real electrical control
-- logical entities for daily use
+- hardware entities (real electrical control)
+- logical entities (user-facing)
 
-This is especially important for Shelly + Tradfri combined lighting.
-
-The system should preserve access to real hardware state while still presenting a simple user-facing control model.
+This is critical for Shelly + Tradfri combined setups.
 
 ---
 
 ## 16. Native integrations first
 
-Prefer native/local integrations over Matter or cloud abstractions whenever possible.
+Prefer native/local integrations over Matter or cloud.
 
 Reason:
-- more capability
 - better reliability
-- easier debugging
-- better offline behavior
+- better debugging
+- full feature support
+- offline capability
 
-Matter and cloud integrations may still be used as secondary compatibility layers, but not as the architectural foundation.
+Matter/cloud = secondary layer only.
+
+---
+
+## 17. Smart bulbs and wall switches
+
+Rule: Smart bulbs must not lose power due to wall switches.
+
+Background:
+- Smart bulbs (e.g. IKEA TRÅDFRI) go offline if power is cut
+- This creates duplicates, delays, and unreliable control
+
+Design rule:
+- Smart bulbs must always have constant power
+
+Implementation:
+- Shelly relay must remain ON for smart-bulb circuits
+- Wall switch must be used as input only (detached mode)
+- Home Assistant handles actual light control
+
+Behavior:
+1. user presses wall switch
+2. Shelly detects input
+3. Home Assistant toggles light
+
+---
+
+## 18. Mixed circuits must be explicitly classified
+
+Each lighting circuit must be classified as one of:
+
+- relay_only
+- smart_bulb_only
+- shelly_plus_smart_bulb
+- critical_power
+- socket
+
+This classification defines how the system behaves.
+
+---
+
+## 19. No hidden behavior
+
+All automations must be:
+- predictable
+- documented
+- traceable
+
+Avoid:
+- silent overrides
+- conflicting automations
+
+---
+
+## 20. System must be debuggable
+
+At any time, it must be possible to determine:
+- what controls a device
+- where power comes from
+- what triggered a change
+
+Logs and structure must support troubleshooting.
