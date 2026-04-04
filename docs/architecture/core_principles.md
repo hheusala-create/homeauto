@@ -1,4 +1,3 @@
-
 # Core Principles
 
 This document defines the fundamental design principles of the home automation system.
@@ -31,12 +30,13 @@ Shelly should be considered the hardware truth layer.
 
 ---
 
-## 3. IKEA Tradfri is a secondary layer
+## 3. IKEA TRÅDFRI is a secondary layer
 
-IKEA Tradfri is used for:
+IKEA TRÅDFRI is used for:
 - multi-bulb setups
 - dimming and ambiance
 - grouped lighting
+- selected sockets and leak sensors
 
 It must not break normal switch usability.
 
@@ -78,6 +78,7 @@ Format:
 Examples:
 - kitchen_ceiling_light
 - bedroom_socket_left
+- hall_front_door_lock
 
 Rules:
 - English only
@@ -132,7 +133,7 @@ If something fails:
 When multiple technical control layers exist for the same real-world function, users should normally see one logical control.
 
 Examples:
-- one room light with both Shelly and IKEA Tradfri involvement
+- one room light with both Shelly and IKEA TRÅDFRI involvement
 - grouped lights behaving as one
 
 Users must not need to understand technical layers.
@@ -158,7 +159,7 @@ Keep separate:
 - hardware entities (real electrical control)
 - logical entities (user-facing)
 
-This is critical for Shelly + Tradfri combined setups.
+This is critical for Shelly + TRÅDFRI combined setups.
 
 ---
 
@@ -181,7 +182,7 @@ Matter/cloud = secondary layer only.
 Rule: Smart bulbs must not lose power due to wall switches.
 
 Background:
-- Smart bulbs (e.g. IKEA TRÅDFRI) go offline if power is cut
+- Smart bulbs (for example IKEA TRÅDFRI) go offline if power is cut
 - This creates duplicates, delays, and unreliable control
 
 Design rule:
@@ -234,3 +235,56 @@ At any time, it must be possible to determine:
 - what triggered a change
 
 Logs and structure must support troubleshooting.
+
+---
+
+## 21. Security-critical devices are a separate domain
+
+Locks, door-state entities, leak alarms, and similar security or safety devices must be documented and managed separately from normal convenience devices.
+
+Examples:
+- Yale front door lock
+- leak sensors
+- door-related entities
+
+Rules:
+- do not expose unlock actions casually
+- prefer status, notifications, and controlled manual actions first
+- require extra care before adding automatic unlock behavior
+
+---
+
+## 22. Cloud-dependent systems must be documented explicitly
+
+For each cloud-dependent device family, documentation must state:
+- what vendor app or cloud it depends on
+- whether a local alternative exists
+- whether unusual network dependencies exist, such as an Ethernet-to-extender path
+- whether Home Assistant has a native integration
+- what the fallback behavior is if internet fails
+
+This especially applies to:
+- Yale
+- SmartThings / Samsung
+- Home Connect / Siemens
+- Electrolux
+- Deltaco
+- Ecovacs
+- Dreame
+
+---
+
+## 23. Network placement must be intentional
+
+Wi-Fi band, SSID, extender usage, and local reachability must be documented for devices that depend on them.
+
+Examples:
+- Yale lock on 2.4 GHz `koti`
+- Parmair ventilation unit on `koti-ext`
+- higher-band client devices on `koti56`
+
+Network placement is part of the architecture, not an implementation afterthought.
+
+- cloud versus local dependency
+
+SSID names and Wi-Fi bands are implementation details unless they affect reachability, reliability, or troubleshooting.
