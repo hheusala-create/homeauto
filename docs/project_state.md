@@ -40,13 +40,13 @@ Current infrastructure status:
 3. MQTT integration is connected
 4. Home Assistant server IP for current setup is `10.107.1.101`
 5. Current Shelly / Google Home / IKEA names remain in use as migration anchors for now
-6. Target HA naming layer remains defined by the repo and will be applied later at the HA layer, not during first transport migration steps
+6. Target HA naming layer is applied immediately for new MQTT entities in Home Assistant (entity IDs follow mapping and naming standards)
 
 Current implementation priorities:
 1. Stabilize and document the confirmed Shelly MQTT pattern
 2. Migrate additional Shelly pilot devices using the same YAML-managed pattern
 3. Keep current live naming as anchors until enough devices are migrated safely
-4. Apply target HA naming layer only after migration patterns are stable
+4. Apply target HA naming layer immediately for new MQTT entities while keeping current live names as migration anchors in other systems
 5. Continue device integrations and logic migration
 6. Refine UI / dashboard / voice later
 
@@ -78,6 +78,18 @@ Confirmed working pattern for Shelly Gen4:
 Confirmed practical rollout rule:
 - Do not use manually added MQTT devices in the Home Assistant UI for Shelly rollout
 - Use YAML-managed MQTT entities for Shelly rollout so entities remain editable and repo-manageable
+
+### Naming approach (confirmed after pilot)
+
+- Shelly device names are NOT changed during migration
+- MQTT device IDs remain unchanged
+- Home Assistant entity IDs are created using final mapping-based names immediately
+- Entity renaming is done in Home Assistant UI after YAML creation
+
+Rationale:
+- preserves current Google Home behavior
+- enables clean HA abstraction layer immediately
+- avoids later bulk renaming step
 
 ## Locked process rule for future sessions
 

@@ -133,3 +133,15 @@ Future target architecture may move selected smart-bulb circuits toward always-p
 - Keep current Shelly / Google Home names as migration anchors
 - Apply final naming later in HA layer
 
+
+---
+
+## Naming policy during migration
+
+- Shelly device names are NOT changed during MQTT rollout
+- Home Assistant entity names MUST follow entity_name_mapping.md
+- Final naming is applied at the HA layer only
+- Google Home and IKEA naming remain unchanged during migration
+
+This ensures stable operation while transitioning control to Home Assistant.
+
