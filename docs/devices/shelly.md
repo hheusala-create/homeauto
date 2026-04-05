@@ -98,3 +98,38 @@ Current reality in some rooms:
 - automations must respect real electrical state, not only logical state
 
 Future target architecture may move selected smart-bulb circuits toward always-powered smart-bulb design where practical.
+
+---
+
+## Confirmed Shelly Gen4 MQTT rollout pattern
+
+### Working pilot
+- Device: Harrastushuone valo
+- IP: 10.107.1.21
+- Shelly device ID / MQTT prefix: shelly1g4-ccba97c89350
+- HA server IP: 10.107.1.101
+
+### Shelly MQTT settings
+- Enable: on
+- Connection type: No TLS
+- Enable MQTT Control: on
+- Enable RPC over MQTT: on
+- RPC status notifications over MQTT: on
+- Generic status update over MQTT: on
+- Server: 10.107.1.101:1883
+- Username/password: Mosquitto user
+- MQTT prefix: keep device prefix as-is during migration
+
+### Home Assistant YAML pattern
+- command_topic: <device_id>/rpc
+- state_topic: <device_id>/status/switch:0
+- availability_topic: <device_id>/online
+- command via Switch.Set RPC
+- state from value_json.output
+
+### Important rules
+- Do NOT use manually created MQTT devices in HA UI for Shelly rollout
+- Use YAML-managed MQTT entities
+- Keep current Shelly / Google Home names as migration anchors
+- Apply final naming later in HA layer
+
