@@ -187,6 +187,10 @@ Current known devices:
 - Ecovacs robot vacuum
 - Dreame robot lawn mower
 
+Rules:
+- treat these as a separate service domain
+- expose status, start, stop, dock, and maintenance states logically
+
 ### 6.7 Entertainment and media
 Current known devices:
 - LG C2 TV via LG ThinQ
@@ -203,10 +207,6 @@ Current known devices:
 Rules:
 - sauna control remains its own safety-conscious domain
 - do not mix sauna safety logic with general convenience automations
-
-Rules:
-- treat these as a separate service domain
-- expose status, start, stop, dock, and maintenance states logically
 
 
 ---
