@@ -16,8 +16,8 @@ It builds on the project core principles:
 - security-critical devices must be modeled separately
 - cloud dependencies must be made explicit
 
-See also: `core_principles_updated.md`
-See also: `layers_updated.md`
+See also: `core_principles.md`
+See also: `layers.md`
 
 ---
 

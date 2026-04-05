@@ -7,3 +7,11 @@ venv/
 .env
 .DS_Store
 Thumbs.db
+
+# Home automation secrets and VPN material
+secrets/
+*.secret
+*.secrets
+wg0.conf
+wg-*.conf
+wireguard/
