@@ -14,6 +14,17 @@ The main goals are:
 
 ## Current decision
 
+Chosen main user clients:
+- Home Assistant Android app
+- Home Assistant web UI
+
+Client access model:
+- at home, the Home Assistant app and web UI connect directly to Home Assistant over the local network
+- away from home / abroad, the Home Assistant app and web UI connect to Home Assistant through the WireGuard VPN tunnel
+
+Reason:
+The Home Assistant app and web UI are required parts of the practical remote access design because users need working daily-use access to lights and other controls both locally and remotely.
+
 Chosen remote admin path:
 - WireGuard
 
@@ -35,6 +46,17 @@ WireGuard fits the project principles well:
 DuckDNS provides a stable hostname even if the home public IP changes.
 
 ## Phase 1 implementation
+
+Client behavior in Phase 1:
+- Home Assistant Android app used on household phones
+- Home Assistant web UI used on admin and user devices as needed
+- direct local access when connected to the home network
+- WireGuard used when remote access is needed outside the home network
+
+Practical requirement:
+Remote access is not considered complete unless the main user clients work both:
+- locally at home without VPN friction
+- remotely through WireGuard when away from home
 
 Initial implementation target:
 - Home Assistant OS
@@ -103,3 +125,4 @@ Recommended order for project implementation:
 - confirm final WireGuard peer naming convention
 - confirm final router port-forward details
 - decide later whether VPN should stay on Home Assistant or move to the network edge
+- verify Home Assistant app and web UI local and WireGuard remote behavior during rollout

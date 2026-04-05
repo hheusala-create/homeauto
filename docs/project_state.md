@@ -1,6 +1,6 @@
 # Project State
 
-Last reviewed: 2026-04-05
+Last reviewed: 2026-04-06
 
 ## Purpose
 
@@ -32,14 +32,23 @@ If an assistant does not have the current repo contents available, it must ask f
 
 ## Current phase
 
-Architecture and inventory phase, with foundation setup in progress.
+Foundation complete enough to begin controlled device migration.
 
-Current infrastructure priorities:
-1. Secure remote admin access
-2. MQTT foundation
-3. Naming cleanup and entity normalization
-4. Device integrations and logic migration
-5. UI / dashboard / voice refinement
+Current infrastructure status:
+1. WireGuard remote access is working
+2. Mosquitto broker is installed and running in Home Assistant
+3. MQTT integration is connected
+4. Home Assistant server IP for current setup is `10.107.1.101`
+5. Current Shelly / Google Home / IKEA names remain in use as migration anchors for now
+6. Target HA naming layer remains defined by the repo and will be applied later at the HA layer, not during first transport migration steps
+
+Current implementation priorities:
+1. Stabilize and document the confirmed Shelly MQTT pattern
+2. Migrate additional Shelly pilot devices using the same YAML-managed pattern
+3. Keep current live naming as anchors until enough devices are migrated safely
+4. Apply target HA naming layer only after migration patterns are stable
+5. Continue device integrations and logic migration
+6. Refine UI / dashboard / voice later
 
 ## Current remote access decision
 
@@ -48,6 +57,27 @@ Current infrastructure priorities:
 - Home Assistant web UI should not be exposed directly to the internet
 - Initial implementation may run on Home Assistant OS add-on
 - Later migration of VPN to router/firewall/dedicated host remains possible
+
+## Current Shelly migration status
+
+First Shelly MQTT YAML pilot is working.
+
+Pilot device:
+- `Harrastushuone valo`
+- Shelly 1 Gen4
+- Connected to Mosquitto through Home Assistant at `10.107.1.101`
+
+Confirmed working pattern for Shelly Gen4:
+- command topic: `<device_id>/rpc`
+- state topic: `<device_id>/status/switch:0`
+- availability topic: `<device_id>/online`
+- command method: `Switch.Set`
+- state derived from `value_json.output`
+- availability derived from retained online topic
+
+Confirmed practical rollout rule:
+- Do not use manually added MQTT devices in the Home Assistant UI for Shelly rollout
+- Use YAML-managed MQTT entities for Shelly rollout so entities remain editable and repo-manageable
 
 ## Locked process rule for future sessions
 
@@ -69,3 +99,4 @@ Start with these when re-entering the project:
 Secrets such as tokens, private keys, WireGuard client configs, and exported QR/config material must not be committed to git.
 DuckDNS hostname may be documented.
 DuckDNS token must be stored outside the repo.
+Home Assistant backups should be taken before further Shelly migration steps.
