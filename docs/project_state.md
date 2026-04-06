@@ -122,4 +122,3 @@ The GitHub repository is the canonical source of truth for this project.
 - Changes are not authoritative until they are committed and pushed to GitHub.
 - If any copy conflicts with GitHub, GitHub wins.
 
-TEST_SYNC_W11_2026-04-06
