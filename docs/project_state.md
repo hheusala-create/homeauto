@@ -112,3 +112,14 @@ Secrets such as tokens, private keys, WireGuard client configs, and exported QR/
 DuckDNS hostname may be documented.
 DuckDNS token must be stored outside the repo.
 Home Assistant backups should be taken before further Shelly migration steps.
+
+## Source of truth
+
+The GitHub repository is the canonical source of truth for this project.
+
+- Windows, WSL, Termux, and other local repositories are working copies only.
+- Google Drive and exported files are mirror or access copies only.
+- Changes are not authoritative until they are committed and pushed to GitHub.
+- If any copy conflicts with GitHub, GitHub wins.
+
+TEST_SYNC_W11_2026-04-06
