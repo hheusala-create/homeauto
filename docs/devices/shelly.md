@@ -133,6 +133,30 @@ Future target architecture may move selected smart-bulb circuits toward always-p
 - Keep current Shelly / Google Home names as migration anchors
 - Apply final naming later in HA layer
 
+### Confirmed smart-bulb wall-switch pattern for normal 2-position wall switches
+
+For Shelly + smart bulb circuits with a normal wall switch:
+
+- input mode must be set to `Switch`
+- relay mode must be set to `Detached`
+- relay power-on default should keep the relay ON so the smart bulb remains powered
+- Home Assistant should react to switch state/input, not assume button-style events unless the Shelly configuration has been verified
+
+Do **not** use `Button` input mode for normal 2-position wall switches.
+
+Reason:
+- `Button` mode can produce button-style events such as `btn_down`, `btn_up`, and `long_push`
+- this can misrepresent the real physical behavior of a normal wall switch
+- a wrong assumption here can lead to wrong architectural conclusions for the broader rollout
+
+Confirmed pilot result for `Harrastushuone valo`:
+- misleading intermediate test setting: `Button` + `Detached`
+- correct working model for a normal wall switch: `Switch` + `Detached`
+
+Verification rule before rollout decisions:
+- before making broader Shelly design decisions from a pilot, first verify the exact device-side Shelly settings
+- especially confirm input mode (`Button` vs `Switch`)
+- do not generalize MQTT/event behavior until the physical Shelly settings have been checked on the device
 
 ---
 

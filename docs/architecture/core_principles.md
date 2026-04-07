@@ -237,6 +237,21 @@ At any time, it must be possible to determine:
 Logs and structure must support troubleshooting.
 
 ---
+## 20b. Device-side configuration must be verified before generalizing behavior
+
+Architecture or rollout decisions must not be based only on observed integration behavior if the underlying device configuration has not been verified.
+
+This is especially important for Shelly devices, where input mode and relay behavior can materially change system behavior.
+
+Examples of settings that must be verified before generalizing:
+- `Button` vs `Switch`
+- `Detached` vs direct relay control
+- relay power-on behavior
+
+Rule:
+- check the actual device-side settings first
+- then interpret MQTT, HA, or other integration behavior
+- only after that generalize the result into project-wide design decisions
 
 ## 21. Security-critical devices are a separate domain
 

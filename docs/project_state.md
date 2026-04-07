@@ -83,6 +83,26 @@ Confirmed practical rollout rule:
 - Do not use manually added MQTT devices in the Home Assistant UI for Shelly rollout
 - Use YAML-managed MQTT entities for Shelly rollout so entities remain editable and repo-manageable
 
+### Important pilot lesson: verify Shelly settings before architecture conclusions
+
+A near-mistake was identified during the hobby room Shelly pilot:
+
+- initial behavior was interpreted through MQTT/event output alone
+- this almost led to broader rollout conclusions
+- the root cause was that the Shelly input mode had been set to `Button` instead of `Switch`
+
+For normal 2-position wall switches, the confirmed correct pattern is:
+
+- input mode: `Switch`
+- relay mode: `Detached`
+- smart bulb circuits should keep relay power available to the bulb
+- Home Assistant logic must be based on the verified Shelly configuration, not on guessed interpretation of MQTT events alone
+
+Locked reminder for future work:
+- before making large rollout or architecture decisions from Shelly pilot behavior, always verify the exact Shelly device settings first
+- especially check `Button` vs `Switch`, detached behavior, and relay default behavior
+- do not generalize from MQTT logs alone if device-side configuration has not been verified
+
 ### Naming approach (confirmed after pilot)
 
 - Shelly device names are NOT changed during migration
