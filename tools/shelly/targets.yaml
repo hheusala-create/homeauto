@@ -1,0 +1,327 @@
+version: 1
+
+source_of_truth:
+  rooms: docs/architecture/system_architecture.md
+  shelly_inventory: docs/devices/shelly.md
+  tradfri_inventory: docs/devices/tradfri_inventory.md
+  light_control_mapping: docs/mapping/light_control_mapping.md
+
+canonical_rooms:
+  - attic
+  - backyard
+  - bathroom
+  - bedroom
+  - closet
+  - corridor
+  - dining_room
+  - front_yard
+  - hall
+  - hobby_room
+  - kitchen
+  - laundry_room
+  - living_room
+  - office
+  - sauna
+  - technical_room
+  - warehouse
+  - wc
+
+room_labels:
+  attic: "Attic"
+  backyard: "Backyard"
+  bathroom: "Bathroom"
+  bedroom: "Bedroom"
+  closet: "Closet"
+  corridor: "Corridor"
+  dining_room: "Dining Room"
+  front_yard: "Front Yard"
+  hall: "Hall"
+  hobby_room: "Hobby Room"
+  kitchen: "Kitchen"
+  laundry_room: "Laundry room"
+  living_room: "Living Room"
+  office: "Office"
+  sauna: "Sauna"
+  technical_room: "Technical room"
+  warehouse: "Warehouse"
+  wc: "WC"
+
+room_aliases:
+  "Attic": attic
+  "Ullakkovalot": attic
+  "Back yard": backyard
+  "Back Yard": backyard
+  "Backyard": backyard
+  "Bathroom": bathroom
+  "Bedroom": bedroom
+  "Closet": closet
+  "Walkin closet": closet
+  "Bedroom closet": closet
+  "Corridor": corridor
+  "Hall / Corridor": corridor
+  "Dining Room": dining_room
+  "Front Yard": front_yard
+  "Hall": hall
+  "Hobby Room": hobby_room
+  "Hobby room": hobby_room
+  "Kitchen": kitchen
+  "Laundry room": laundry_room
+  "Living Room": living_room
+  "Office": office
+  "Sauna": sauna
+  "Technical room": technical_room
+  "Technical Room": technical_room
+  "Warehouse": warehouse
+  "Storage": warehouse
+  "WC": wc
+  "Wc": wc
+
+profiles:
+  smart_bulb_wall_switch:
+    applies_to_control_model:
+      - shelly_plus_smart_bulb
+    shelly_settings:
+      input_mode: switch
+      relay_mode: detached
+      power_on_default: on
+      mqtt:
+        enabled: true
+        server: "10.107.1.101:1883"
+        rpc_over_mqtt: true
+        status_notifications: true
+        generic_status_update: true
+
+  relay_only_light:
+    applies_to_control_model:
+      - relay_only
+    shelly_settings:
+      mqtt:
+        enabled: true
+        server: "10.107.1.101:1883"
+        rpc_over_mqtt: true
+        status_notifications: true
+        generic_status_update: true
+
+  critical_power:
+    applies_to_control_model:
+      - critical_power
+    shelly_settings:
+      mqtt:
+        enabled: true
+        server: "10.107.1.101:1883"
+        rpc_over_mqtt: true
+        status_notifications: true
+        generic_status_update: true
+    safeguards:
+      exclude_from_bulk_off: true
+      require_explicit_targeting: true
+
+devices:
+  - room: technical_room
+    area_label: "Technical room"
+    current_user_facing_light: "Technical room"
+    shelly_device: "Technical room light"
+    shelly_ip: "10.107.1.43"
+    tradfri_or_google_light: "Technical room"
+    control_model: "shelly_plus_smart_bulb"
+    planned_ha_entity: "light.technical_room"
+    profile: "smart_bulb_wall_switch"
+    notes: "One Shelly + one IKEA bulb on same light"
+
+  - room: hall
+    area_label: "Hall"
+    current_user_facing_light: "Hall ceiling light"
+    shelly_device: "Hall ceiling light"
+    shelly_ip: "10.107.1.124"
+    tradfri_or_google_light: "Hall Light"
+    control_model: "shelly_plus_smart_bulb"
+    planned_ha_entity: "light.hall"
+    profile: "smart_bulb_wall_switch"
+    notes: ""
+
+  - room: laundry_room
+    area_label: "Laundry room"
+    current_user_facing_light: "Laundry room light"
+    shelly_device: "Laundry room light"
+    shelly_ip: "10.107.1.138"
+    tradfri_or_google_light: "Laundry room"
+    control_model: "shelly_plus_smart_bulb"
+    planned_ha_entity: "light.laundry_room"
+    profile: "smart_bulb_wall_switch"
+    notes: ""
+
+  - room: bathroom
+    area_label: "Bathroom"
+    current_user_facing_light: "Bathroom ceiling lights"
+    shelly_device: "Bathroom ceiling lights"
+    shelly_ip: "10.107.1.203"
+    tradfri_or_google_light: "Bathroom Ceiling Lights"
+    control_model: "shelly_plus_smart_bulb"
+    planned_ha_entity: "light.bathroom_ceiling"
+    profile: "smart_bulb_wall_switch"
+    notes: ""
+
+  - room: bathroom
+    area_label: "Bathroom"
+    current_user_facing_light: "Bathroom mirror light"
+    shelly_device: "Bathroom mirror light"
+    shelly_ip: "10.107.1.140"
+    tradfri_or_google_light: "Bathroom Mirror Light"
+    control_model: "shelly_plus_smart_bulb"
+    planned_ha_entity: "light.bathroom_mirror"
+    profile: "smart_bulb_wall_switch"
+    notes: ""
+
+  - room: living_room
+    area_label: "Living Room"
+    current_user_facing_light: "Living room ceiling light"
+    shelly_device: "Living room ceiling light"
+    shelly_ip: "10.107.1.86"
+    tradfri_or_google_light: "Living Room Ceiling Light"
+    control_model: "shelly_plus_smart_bulb"
+    planned_ha_entity: "light.living_room_ceiling"
+    profile: "smart_bulb_wall_switch"
+    notes: ""
+
+  - room: living_room
+    area_label: "Living Room"
+    current_user_facing_light: "Living room ceiling spotlight"
+    shelly_device: "Living room ceiling spotlight"
+    shelly_ip: "10.107.1.33"
+    tradfri_or_google_light: "Living Room Ceiling Spotlight"
+    control_model: "shelly_plus_smart_bulb"
+    planned_ha_entity: "light.living_room_spotlight"
+    profile: "smart_bulb_wall_switch"
+    notes: ""
+
+  - room: living_room
+    area_label: "Living Room"
+    current_user_facing_light: "Living room window light"
+    shelly_device: "Living room window light"
+    shelly_ip: "10.107.1.56"
+    tradfri_or_google_light: "Living Room Window Light"
+    control_model: "relay_only"
+    planned_ha_entity: "light.living_room_window"
+    profile: "relay_only_light"
+    notes: "Confirm if no Tradfri behind this"
+
+  - room: hobby_room
+    area_label: "Hobby Room"
+    current_user_facing_light: "Hobby room light"
+    shelly_device: "Hobby room light"
+    shelly_ip: "10.107.1.21"
+    tradfri_or_google_light: "Hobby room light"
+    control_model: "shelly_plus_smart_bulb"
+    planned_ha_entity: "light.hobby_room"
+    profile: "smart_bulb_wall_switch"
+    notes: ""
+
+  - room: kitchen
+    area_label: "Kitchen"
+    current_user_facing_light: "Kitchen ceiling lights"
+    shelly_device: "Kitchen ceiling lights"
+    shelly_ip: "10.107.1.231"
+    tradfri_or_google_light: "Kitchen Ceiling Light"
+    control_model: "shelly_plus_smart_bulb"
+    planned_ha_entity: "light.kitchen_ceiling"
+    profile: "smart_bulb_wall_switch"
+    notes: ""
+
+  - room: kitchen
+    area_label: "Kitchen"
+    current_user_facing_light: "Kitchen desk lights"
+    shelly_device: "Kitchen desk lights"
+    shelly_ip: "10.107.1.24"
+    tradfri_or_google_light: "Kitchen desk lights"
+    control_model: "relay_only"
+    planned_ha_entity: "light.kitchen_desk"
+    profile: "relay_only_light"
+    notes: "Confirm if no Tradfri behind this"
+
+  - room: sauna
+    area_label: "Sauna"
+    current_user_facing_light: "Sauna wall light"
+    shelly_device: "Sauna wall light"
+    shelly_ip: "10.107.1.130"
+    tradfri_or_google_light: "Sauna Wall Light"
+    control_model: "shelly_plus_smart_bulb"
+    planned_ha_entity: "light.sauna_wall"
+    profile: "smart_bulb_wall_switch"
+    notes: ""
+
+  - room: sauna
+    area_label: "Sauna"
+    current_user_facing_light: "Sauna bench lights"
+    shelly_device: "Sauna bench lights"
+    shelly_ip: "10.107.1.196"
+    tradfri_or_google_light: "Sauna Bench Lights"
+    control_model: "shelly_plus_smart_bulb"
+    planned_ha_entity: "light.sauna_bench"
+    profile: "smart_bulb_wall_switch"
+    notes: ""
+
+  - room: bedroom
+    area_label: "Bedroom"
+    current_user_facing_light: "Bedroom ceiling lights"
+    shelly_device: "Bedroom ceiling lights"
+    shelly_ip: "10.107.1.77"
+    tradfri_or_google_light: "Bedroom Lights"
+    control_model: "shelly_plus_smart_bulb"
+    planned_ha_entity: "light.bedroom_ceiling"
+    profile: "smart_bulb_wall_switch"
+    notes: ""
+
+  - room: wc
+    area_label: "WC"
+    current_user_facing_light: "WC ceiling light"
+    shelly_device: "WC ceiling light"
+    shelly_ip: "10.107.1.184"
+    tradfri_or_google_light: "Wc Ceiling Light"
+    control_model: "shelly_plus_smart_bulb"
+    planned_ha_entity: "light.wc"
+    profile: "smart_bulb_wall_switch"
+    notes: ""
+
+  - room: front_yard
+    area_label: "Front Yard"
+    current_user_facing_light: "Front yard lights"
+    shelly_device: "Front yard lights"
+    shelly_ip: "10.107.1.78"
+    tradfri_or_google_light: "Front yard lights"
+    control_model: "shelly_plus_smart_bulb"
+    planned_ha_entity: "light.front_yard"
+    profile: "smart_bulb_wall_switch"
+    notes: ""
+
+  - room: backyard
+    area_label: "Backyard"
+    current_user_facing_light: "Back yard left light"
+    shelly_device: "Back yard left light"
+    shelly_ip: "10.107.1.90"
+    tradfri_or_google_light: "Back Yard Lights"
+    control_model: "shelly_plus_smart_bulb"
+    planned_ha_entity: "light.back_yard"
+    profile: "smart_bulb_wall_switch"
+    notes: "Needs grouping confirmation"
+
+  - room: attic
+    area_label: "Attic"
+    current_user_facing_light: "Attic lights"
+    shelly_device: "Attic lights"
+    shelly_ip: "10.107.1.190"
+    tradfri_or_google_light: "Attic"
+    control_model: "shelly_plus_smart_bulb"
+    planned_ha_entity: "light.attic"
+    profile: "smart_bulb_wall_switch"
+    notes: ""
+
+  - room: technical_room
+    area_label: "FTTH"
+    current_user_facing_light: "FTTH"
+    shelly_device: "Network core power"
+    shelly_ip: "10.107.1.221"
+    tradfri_or_google_light: "-"
+    control_model: "critical_power"
+    planned_ha_entity: "switch.network_core_power"
+    profile: "critical_power"
+    notes: "Must never be in bulk off automations"
