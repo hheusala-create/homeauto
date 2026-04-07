@@ -288,3 +288,12 @@ Network placement is part of the architecture, not an implementation afterthough
 - cloud versus local dependency
 
 SSID names and Wi-Fi bands are implementation details unless they affect reachability, reliability, or troubleshooting.
+
+## GitHub is the canonical project source of truth
+
+The GitHub repository is the canonical source of truth for this project.
+
+- Windows, WSL, Termux, and other local repositories are working copies only.
+- Google Drive and exported files are mirror or access copies only.
+- Changes are not authoritative until they are committed and pushed to GitHub.
+- If any copy conflicts with GitHub, GitHub wins.

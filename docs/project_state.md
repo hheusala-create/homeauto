@@ -1,6 +1,6 @@
 # Project State
 
-Last reviewed: 2026-04-06
+Last reviewed: 2026-04-07
 
 ## Purpose
 
@@ -49,6 +49,10 @@ Current implementation priorities:
 4. Apply target HA naming layer immediately for new MQTT entities while keeping current live names as migration anchors in other systems
 5. Continue device integrations and logic migration
 6. Refine UI / dashboard / voice later
+7. Target host architecture defined:
+   - future dedicated hardware will run a minimal Linux host (Debian preferred)
+   - Home Assistant OS will run as a virtual machine on that host
+   - current laptop setup remains valid for development and migration staging
 
 ## Current remote access decision
 
@@ -122,3 +126,27 @@ The GitHub repository is the canonical source of truth for this project.
 - Changes are not authoritative until they are committed and pushed to GitHub.
 - If any copy conflicts with GitHub, GitHub wins.
 
+TEST_SYNC_W11_2026-04-06
+
+## IKEA / Dirigera Matter status
+
+- IKEA DIRIGERA added successfully to Home Assistant via Matter.
+- Existing setup already had DIRIGERA connected to Google Home.
+- Home Assistant "already in use" flow led to a Google Home sharing loop and did not provide a place to enter the Matter code.
+- Home Assistant "already in use" flow led to a Google Home sharing loop and did not provide a place to enter the Matter code in this setup.
+- Working workaround in the current setup: add DIRIGERA through the Matter integration using the "No. It's new" path, then enter the pairing code generated from the IKEA Home smart app.
+- Result: DIRIGERA is now visible in Home Assistant and IKEA devices are exposed there.
+- Initial integration is working, but control quality and architectural fit are still under evaluation.
+
+### Current architectural interpretation
+- IKEA lighting currently remains under DIRIGERA for Zigbee network management.
+- Home Assistant consumes IKEA through Matter bridge.
+- This is accepted as the current practical path because it is local, quick to deploy, and low-risk.
+- Direct Zigbee from Home Assistant remains a future option if Matter bridge limitations appear in brightness, color temperature, transitions, grouping, or reliability.
+
+### Next validation tasks
+- Test brightness control reliability in HA
+- Test color temperature / color control reliability in HA
+- Test room/group synchronization
+- Test interaction with Shelly-based always-powered lighting model
+- Decide later whether IKEA stays on DIRIGERA Matter bridge or moves to direct Zigbee in HA

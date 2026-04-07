@@ -73,6 +73,51 @@ This means:
 
 ---
 
+## 2.1 Central host architecture
+
+The Home Assistant system runs on dedicated local hardware.
+
+The recommended host architecture is:
+
+- a minimal Linux server as the base system
+- Home Assistant OS running inside a virtual machine on that host
+
+Preferred base distribution:
+- Debian (stable)
+
+Rationale:
+- allows Home Assistant OS to remain a clean, supported environment with Supervisor and add-ons
+- enables running additional services (scripts, automation tools, backups, monitoring) on the host system
+- keeps the system flexible and migration-friendly
+- avoids coupling all infrastructure to Home Assistant OS
+
+Host responsibilities:
+- virtualization platform for Home Assistant OS
+- system-level services (e.g. SSH, backups, scripts, monitoring)
+- optional additional services (Docker containers, automation scripts, cron/systemd jobs)
+
+Home Assistant OS responsibilities:
+- Home Assistant core
+- add-ons (e.g. MQTT broker, integrations)
+- home automation logic
+
+Important constraints:
+- Home Assistant OS must be treated as an isolated appliance-like environment
+- host-level services must not interfere with Home Assistant networking or device access
+- architecture must remain portable so that Home Assistant OS can be moved to new hardware if needed
+
+Non-recommended approaches:
+- running Home Assistant OS directly on bare metal if additional server functionality is required
+- using desktop-oriented distributions for the host system
+- using deprecated installation types (Home Assistant Core or Supervised)
+
+This model aligns with:
+- portability requirements
+- separation of concerns
+- long-term maintainability
+
+---
+
 ## 3. Device-local fallback model
 
 Local device-side logic is not the default place for normal automations.
@@ -134,6 +179,22 @@ Secondary device layer:
 Rules:
 - physical switch behavior must remain reliable
 - mixed Shelly + smart-bulb circuits must be documented explicitly
+
+### IKEA lighting integration
+
+Current implementation:
+- IKEA smart bulbs and related IKEA Zigbee devices are managed by the IKEA DIRIGERA hub.
+- DIRIGERA is connected to Home Assistant via Matter bridge.
+- Google Home may also remain connected in parallel.
+
+Current data path:
+- Home Assistant -> Matter -> DIRIGERA -> Zigbee -> IKEA devices
+
+Architectural note:
+- IKEA lighting is currently not joined directly to a Home Assistant-owned Zigbee network.
+- This is the current accepted first integration step to achieve local control with minimal migration effort while keeping future options open.
+- A direct Zigbee migration path remains open for the future if Home Assistant-side control fidelity or flexibility is insufficient.
+- Thread capability in DIRIGERA does not change the current IKEA bulb data path; current IKEA lighting still reaches Home Assistant through DIRIGERA as a Matter bridge and Zigbee device network.
 
 ### 6.2 Sockets and smart power
 Current known socket/control families:
