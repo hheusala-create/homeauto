@@ -62,6 +62,34 @@ Current implementation priorities:
 - Initial implementation may run on Home Assistant OS add-on
 - Later migration of VPN to router/firewall/dedicated host remains possible
 
+## Important recent Shelly pilot lesson
+
+A critical lesson was confirmed during the Hobby Room Shelly pilot:
+
+- early interpretation from MQTT logs alone was misleading
+- a wrong conclusion was almost generalized toward the wider house rollout
+- the real cause was a device-side Shelly setting mismatch
+
+Confirmed lesson:
+- before making any larger Shelly rollout, architecture, or automation conclusions, always verify the actual Shelly device settings first
+- especially verify:
+  - input mode (`Switch` vs `Button`)
+  - relay/input relationship (`Detached` vs direct relay control)
+  - relay power-on behavior
+  - MQTT-related device settings
+
+Confirmed correct pattern for normal 2-position wall switches in `shelly_plus_smart_bulb` circuits:
+- input mode: `Switch`
+- relay mode: `Detached`
+- relay should remain ON so the smart bulb keeps constant power
+- Home Assistant should react based on the verified device behavior, not guessed interpretation of MQTT event output
+
+Operational reminder:
+- do not generalize from pilot MQTT/event behavior until the exact Shelly settings have been checked on the device
+- device-side verification comes before broader rollout decisions
+
+This rule should be treated as locked process guidance for future Shelly rollout work.
+
 ## Current Shelly migration status
 
 First Shelly MQTT YAML pilot is working.
