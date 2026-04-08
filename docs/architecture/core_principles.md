@@ -312,3 +312,23 @@ The GitHub repository is the canonical source of truth for this project.
 - Google Drive and exported files are mirror or access copies only.
 - Changes are not authoritative until they are committed and pushed to GitHub.
 - If any copy conflicts with GitHub, GitHub wins.
+
+---
+
+## 24. Migration cutover must be explicit
+
+When Home Assistant is moved to new hardware, the migration cutover must be treated as a clear boundary.
+
+Rules:
+- after the final migration backup is taken, the old HA instance becomes a source-only system
+- ongoing development must continue only on the target HA instance after cutover
+- only one HA instance should be active on the same LAN during restore/cutover unless there is a deliberate isolated test setup
+- the migration package must preserve:
+  - the backup file
+  - the Backup Emergency Kit / encryption key
+  - the old HA login credentials required after restore
+
+Reason:
+- avoids duplicate discovery, conflicting states, and operator confusion during migration
+- keeps recovery predictable
+- makes backup-and-restore the primary migration path instead of parallel drift between old and new systems

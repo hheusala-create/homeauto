@@ -1,6 +1,6 @@
 # Project State
 
-Last reviewed: 2026-04-07
+Last reviewed: 2026-04-09
 
 ## Purpose
 
@@ -32,27 +32,58 @@ If an assistant does not have the current repo contents available, it must ask f
 
 ## Current phase
 
-Foundation complete enough to begin controlled device migration.
+Infrastructure migration and production cutover phase.
 
-Current infrastructure status:
-1. WireGuard remote access is working
-2. Mosquitto broker is installed and running in Home Assistant
-3. MQTT integration is connected
-4. Home Assistant server IP for current setup is `10.107.1.101`
-5. Current Shelly / Google Home / IKEA names remain in use as migration anchors for now
-6. Target HA naming layer is applied immediately for new MQTT entities in Home Assistant (entity IDs follow mapping and naming standards)
+## Current infrastructure status
 
-Current implementation priorities:
-1. Stabilize and document the confirmed Shelly MQTT pattern
-2. Migrate additional Shelly pilot devices using the same YAML-managed pattern
-3. Keep current live naming as anchors until enough devices are migrated safely
-4. Apply target HA naming layer immediately for new MQTT entities while keeping current live names as migration anchors in other systems
-5. Continue device integrations and logic migration
-6. Refine UI / dashboard / voice later
-7. Target host architecture defined:
-   - future dedicated hardware will run a minimal Linux host (Debian preferred)
-   - Home Assistant OS will run as a virtual machine on that host
-   - current laptop setup remains valid for development and migration staging
+1. The new primary Home Assistant server now runs on a dedicated Debian minimal host with KVM/libvirt.
+2. Current host details:
+   - host OS: Debian minimal
+   - virtualization: KVM/libvirt
+   - bridge: `br0`
+   - host IP: `10.107.1.219`
+3. Current Home Assistant VM details:
+   - VM name: `homeassistant`
+   - VM MAC: `52:54:00:49:06:80`
+   - reserved LAN IP: `10.107.1.101`
+4. Home Assistant UI opens at:
+   - `http://10.107.1.101:8123`
+5. The old laptop-hosted Home Assistant is no longer an active development target.
+6. The old laptop-hosted Home Assistant was used only as the source for migration material:
+   - backup file
+   - Backup Emergency Kit / encryption key
+   - existing HA login credentials
+7. Current restore prerequisites are ready:
+   - actual backup file from the old HA
+   - Backup Emergency Kit / encryption key
+   - old HA username and password for post-restore login
+
+## Current implementation priorities
+
+1. Restore the backup to the new Home Assistant VM at `10.107.1.101`
+2. Log in using the old Home Assistant credentials after restore
+3. Confirm the restored system on the new dedicated host
+4. Continue all future HA work only on the new server
+5. Keep the old laptop HA powered off during restore/cutover so it does not interfere on the LAN
+6. Resume Shelly, IKEA, MQTT, naming, and integration work only after the restore baseline is confirmed
+
+## Current restore path for cutover
+
+Locked current path for this migration:
+
+1. Ensure the old laptop-hosted HA is powered off and not active on the network
+2. Open the new HA UI at `http://10.107.1.101:8123`
+3. If the new HA is still in onboarding/welcome state, choose `Upload backup`
+4. Select the backup file taken from the old HA
+5. Enter the Backup Emergency Kit encryption key
+6. Restore the full backup
+7. Wait for restore completion
+8. Log in using the old HA account credentials
+
+Operational note:
+- the laptop-hosted HA is not to be further developed
+- the laptop existed only to extract the backup and emergency kit
+- the new Debian KVM/libvirt host is now the intended HA runtime platform
 
 ## Current remote access decision
 
@@ -61,6 +92,15 @@ Current implementation priorities:
 - Home Assistant web UI should not be exposed directly to the internet
 - Initial implementation may run on Home Assistant OS add-on
 - Later migration of VPN to router/firewall/dedicated host remains possible
+
+## Important migration rule
+
+When moving Home Assistant to new hardware:
+
+- the old instance becomes a source-only system after the final migration backup is taken
+- active development must continue only on the target system after cutover
+- only one HA instance should be active on the same LAN during restore/cutover unless there is a deliberate isolated test setup
+- backup file, Backup Emergency Kit, and old login credentials must be preserved before cutover
 
 ## Important recent Shelly pilot lesson
 
@@ -111,26 +151,6 @@ Confirmed practical rollout rule:
 - Do not use manually added MQTT devices in the Home Assistant UI for Shelly rollout
 - Use YAML-managed MQTT entities for Shelly rollout so entities remain editable and repo-manageable
 
-### Important pilot lesson: verify Shelly settings before architecture conclusions
-
-A near-mistake was identified during the hobby room Shelly pilot:
-
-- initial behavior was interpreted through MQTT/event output alone
-- this almost led to broader rollout conclusions
-- the root cause was that the Shelly input mode had been set to `Button` instead of `Switch`
-
-For normal 2-position wall switches, the confirmed correct pattern is:
-
-- input mode: `Switch`
-- relay mode: `Detached`
-- smart bulb circuits should keep relay power available to the bulb
-- Home Assistant logic must be based on the verified Shelly configuration, not on guessed interpretation of MQTT events alone
-
-Locked reminder for future work:
-- before making large rollout or architecture decisions from Shelly pilot behavior, always verify the exact Shelly device settings first
-- especially check `Button` vs `Switch`, detached behavior, and relay default behavior
-- do not generalize from MQTT logs alone if device-side configuration has not been verified
-
 ### Naming approach (confirmed after pilot)
 
 - Shelly device names are NOT changed during migration
@@ -142,6 +162,30 @@ Rationale:
 - preserves current Google Home behavior
 - enables clean HA abstraction layer immediately
 - avoids later bulk renaming step
+
+## IKEA / Dirigera Matter status
+
+- IKEA DIRIGERA added successfully to Home Assistant via Matter.
+- Existing setup already had DIRIGERA connected to Google Home.
+- Home Assistant `already in use` flow led to a Google Home sharing loop and did not provide a place to enter the Matter code in this setup.
+- Working workaround in the current setup: add DIRIGERA through the Matter integration using the `No. It's new` path, then enter the pairing code generated from the IKEA Home smart app.
+- Result: DIRIGERA is now visible in Home Assistant and IKEA devices are exposed there.
+- Initial integration is working, but control quality and architectural fit are still under evaluation.
+
+### Current architectural interpretation
+
+- IKEA lighting currently remains under DIRIGERA for Zigbee network management.
+- Home Assistant consumes IKEA through Matter bridge.
+- This is accepted as the current practical path because it is local, quick to deploy, and low-risk.
+- Direct Zigbee from Home Assistant remains a future option if Matter bridge limitations appear in brightness, color temperature, transitions, grouping, or reliability.
+
+### Next validation tasks
+
+- Test brightness control reliability in HA
+- Test color temperature / color control reliability in HA
+- Test room/group synchronization
+- Test interaction with Shelly-based always-powered lighting model
+- Decide later whether IKEA stays on DIRIGERA Matter bridge or moves to direct Zigbee in HA
 
 ## Locked process rule for future sessions
 
@@ -160,41 +204,12 @@ Start with these when re-entering the project:
 
 ## Notes
 
-Secrets such as tokens, private keys, WireGuard client configs, and exported QR/config material must not be committed to git.
-DuckDNS hostname may be documented.
-DuckDNS token must be stored outside the repo.
-Home Assistant backups should be taken before further Shelly migration steps.
-
-## Source of truth
-
-The GitHub repository is the canonical source of truth for this project.
-
+- Secrets such as tokens, private keys, WireGuard client configs, and exported QR/config material must not be committed to git.
+- DuckDNS hostname may be documented.
+- DuckDNS token must be stored outside the repo.
+- Home Assistant backups should be taken before further Shelly migration steps.
+- The GitHub repository is the canonical source of truth for this project.
 - Windows, WSL, Termux, and other local repositories are working copies only.
 - Google Drive and exported files are mirror or access copies only.
 - Changes are not authoritative until they are committed and pushed to GitHub.
 - If any copy conflicts with GitHub, GitHub wins.
-
-TEST_SYNC_W11_2026-04-06
-
-## IKEA / Dirigera Matter status
-
-- IKEA DIRIGERA added successfully to Home Assistant via Matter.
-- Existing setup already had DIRIGERA connected to Google Home.
-- Home Assistant "already in use" flow led to a Google Home sharing loop and did not provide a place to enter the Matter code.
-- Home Assistant "already in use" flow led to a Google Home sharing loop and did not provide a place to enter the Matter code in this setup.
-- Working workaround in the current setup: add DIRIGERA through the Matter integration using the "No. It's new" path, then enter the pairing code generated from the IKEA Home smart app.
-- Result: DIRIGERA is now visible in Home Assistant and IKEA devices are exposed there.
-- Initial integration is working, but control quality and architectural fit are still under evaluation.
-
-### Current architectural interpretation
-- IKEA lighting currently remains under DIRIGERA for Zigbee network management.
-- Home Assistant consumes IKEA through Matter bridge.
-- This is accepted as the current practical path because it is local, quick to deploy, and low-risk.
-- Direct Zigbee from Home Assistant remains a future option if Matter bridge limitations appear in brightness, color temperature, transitions, grouping, or reliability.
-
-### Next validation tasks
-- Test brightness control reliability in HA
-- Test color temperature / color control reliability in HA
-- Test room/group synchronization
-- Test interaction with Shelly-based always-powered lighting model
-- Decide later whether IKEA stays on DIRIGERA Matter bridge or moves to direct Zigbee in HA
