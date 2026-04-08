@@ -29,6 +29,7 @@ Control models:
 | Sauna | Sauna wall light | Sauna wall light | 10.107.1.130 | Sauna Wall Light | shelly_plus_smart_bulb | light.sauna_wall | |
 | Sauna | Sauna bench lights | Sauna bench lights | 10.107.1.196 | Sauna Bench Lights | shelly_plus_smart_bulb | light.sauna_bench | |
 | Bedroom | Bedroom ceiling lights | Bedroom ceiling lights | 10.107.1.77 | Bedroom Lights | shelly_plus_smart_bulb | light.bedroom_ceiling | |
+| Closet | Walk-in closet light | Walk-in closet light | 10.107.1.192 | Walkin closet | shelly_plus_smart_bulb | light.walk_in_closet | One Shelly + one IKEA bulb in closet |
 | WC | WC ceiling light | WC ceiling light | 10.107.1.184 | Wc Ceiling Light | shelly_plus_smart_bulb | light.wc | |
 | Front yard | Front yard lights | Front yard lights | 10.107.1.78 | Front yard lights | shelly_plus_smart_bulb | light.front_yard | |
 | Back yard | Back yard left light | Back yard left light | 10.107.1.90 | Back Yard Lights | shelly_plus_smart_bulb | light.back_yard | Needs grouping confirmation |

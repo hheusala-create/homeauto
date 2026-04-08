@@ -52,7 +52,7 @@ Naming rules:
 | 10.107.1.184 | WC ceiling light | Wc kattovalo | WC Ceiling Light | light.wc_ceiling_light | shelly_switch_light | |
 | 10.107.1.190 | Attic lights | Ullakkovalot | Attic lights | light.attic_lights | shelly_switch_light | |
 | 10.107.1.191 | Bedroom door socket | Makuuhuone Ovi pistorasia | Bedroom door socket | switch.bedroom_door_socket | shelly_socket | |
-| 10.107.1.192 | Walk-in closet socket | Walkin closet | Walkin closet | switch.walk_in_closet_socket | shelly_socket | |
+| 10.107.1.192 | Walk-in closet light | Walkin closet | Walkin closet | light.walk_in_closet | shelly_switch_light | Confirmed Shelly + one IKEA bulb in closet |
 | 10.107.1.195 | Laundry room backyard door socket | Kodinhoitohuone ulko-oven pistorasia | Laundry room backyard door socket | switch.laundry_room_backyard_door_socket | shelly_socket | Socket next to backyard/outside door |
 | 10.107.1.196 | Sauna bench lights | Sauna laudevalot | Sauna Bench Lights | light.sauna_bench_lights | shelly_switch_light | |
 | 10.107.1.203 | Bathroom ceiling lights | Kylpyhuone kattovalo | Bathroom Ceiling Lights | light.bathroom_ceiling_lights | shelly_switch_light | |

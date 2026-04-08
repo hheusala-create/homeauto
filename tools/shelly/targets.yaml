@@ -270,7 +270,18 @@ devices:
     planned_ha_entity: "light.bedroom_ceiling"
     profile: "smart_bulb_wall_switch"
     notes: ""
-
+    
+  - room: closet
+    area_label: "Closet"
+    current_user_facing_light: "Walk-in closet light"
+    shelly_device: "Walk-in closet light"
+    shelly_ip: "10.107.1.192"
+    tradfri_or_google_light: "Walkin closet"
+    control_model: "shelly_plus_smart_bulb"
+    planned_ha_entity: "light.walk_in_closet"
+    profile: "smart_bulb_wall_switch"
+    notes: "One Shelly + one IKEA bulb in closet"
+    
   - room: wc
     area_label: "WC"
     current_user_facing_light: "WC ceiling light"
