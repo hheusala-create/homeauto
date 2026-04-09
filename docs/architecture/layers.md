@@ -154,7 +154,7 @@ Rules:
 - cloud-backed devices must be marked in documentation
 - dangerous actions should not appear in ordinary entity naming or default dashboards
 
-Current room list observed from Google Home screenshots:
+Current room list in the Home Assistant area baseline:
 - Attic
 - Backyard
 - Bathroom
@@ -166,13 +166,18 @@ Current room list observed from Google Home screenshots:
 - Hall
 - Hobby Room
 - Kitchen
-- Laundry room
+- Laundry Room
 - Living Room
 - Office
 - Sauna
-- Technical room
+- Technical Room
 - Warehouse
 - WC
+
+Representation rule:
+- repo / YAML room keys use lowercase snake_case
+- Home Assistant UI Areas use Title Case
+- legacy names are preserved through mappings and aliases rather than by keeping inconsistent area labels
 
 Examples:
 - `hall_front_door_lock`

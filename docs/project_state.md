@@ -282,3 +282,38 @@ Start with these when re-entering the project:
 - Google Drive and exported files are mirror or access copies only.
 - Changes are not authoritative until they are committed and pushed to GitHub.
 - If any copy conflicts with GitHub, GitHub wins.
+
+## Current Home Assistant area baseline
+
+Home Assistant Areas have now been created manually in the UI as the current room baseline.
+
+Current HA Areas:
+- Attic
+- Backyard
+- Bathroom
+- Bedroom
+- Closet
+- Corridor
+- Dining Room
+- Front Yard
+- Hall
+- Hobby Room
+- Kitchen
+- Laundry Room
+- Living Room
+- Office
+- Sauna
+- Technical Room
+- Warehouse
+- WC
+
+Locked naming rule for room representation:
+- canonical room key in repo / YAML = lowercase snake_case
+- visible Home Assistant Area name = Title Case
+- room aliases in tooling preserve older display variants and legacy names
+
+Important mapping rule:
+- creating or normalizing Home Assistant Areas does not rename Shelly devices
+- does not rename IKEA / Google Home names
+- does not replace existing mapping tables
+- old names remain preserved through mapping documents and aliases until any later controlled cleanup

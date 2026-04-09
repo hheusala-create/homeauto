@@ -117,6 +117,39 @@ This model aligns with:
 - long-term maintainability
 
 ---
+## 2.2 Current production deployment
+
+The current intended Home Assistant runtime is now on dedicated local server hardware.
+
+Current host deployment:
+- host OS: Debian minimal
+- virtualization: KVM/libvirt
+- bridge: `br0`
+- host IP: `10.107.1.219`
+
+Current Home Assistant guest:
+- VM name: `homeassistant`
+- VM MAC: `52:54:00:49:06:80`
+- reserved LAN IP: `10.107.1.101`
+- HA UI: `http://10.107.1.101:8123`
+
+Operational meaning:
+- this Debian KVM/libvirt host is now the primary Home Assistant host
+- the earlier laptop-hosted HA instance is no longer the active development/runtime platform
+- the laptop-hosted HA was retained only long enough to extract migration materials:
+  - backup file
+  - Backup Emergency Kit / encryption key
+  - existing HA login credentials
+
+Migration rule for the current cutover:
+- the laptop-hosted HA should remain powered off during restore/cutover so it does not interfere on the LAN
+- after cutover, all continuing HA work should happen on the dedicated Debian host
+
+This deployment is aligned with the long-term architecture target:
+- minimal Linux host
+- HA OS isolated in a VM
+- portable guest image and backup-driven recovery
+- separation between host responsibilities and HA responsibilities
 
 ## 3. Device-local fallback model
 
@@ -329,7 +362,8 @@ Current critical or sensitive examples:
 
 Google Home room structure remains the source of truth for naming and user-facing grouping.
 
-Rooms visible in the provided screenshots and suitable as the current architecture room set:
+Rooms visible in the current Home Assistant area model:
+
 - Attic
 - Backyard
 - Bathroom
@@ -341,13 +375,18 @@ Rooms visible in the provided screenshots and suitable as the current architectu
 - Hall
 - Hobby Room
 - Kitchen
-- Laundry room
+- Laundry Room
 - Living Room
 - Office
 - Sauna
-- Technical room
+- Technical Room
 - Warehouse
 - WC
+
+Naming representation rule:
+- canonical room keys in repo and YAML use lowercase snake_case
+- Home Assistant Areas use Title Case visible names
+- alias mappings preserve legacy room-name variants where needed
 
 Observed entity examples that support this room model include:
 - Hall: front door lock and hall lights
@@ -389,6 +428,22 @@ Backups must eventually include:
 - integration configuration notes
 - device inventory and room mapping
 - credentials and secrets handling instructions kept separately and securely
+
+For encrypted Home Assistant backups, the recovery package must also preserve:
+- the backup file itself
+- the Backup Emergency Kit / encryption key
+- the old HA login credentials needed after restore
+
+Current confirmed migration pattern:
+- old HA instance acts as the source for the final backup package
+- new HA instance is restored from that package on the target hardware
+- old HA must not remain actively running on the same LAN during restore/cutover unless explicitly isolated for testing
+
+This model supports:
+- hardware migration
+- controlled cutover
+- rollback readiness
+- disaster recovery on replacement hardware
 
 ---
 

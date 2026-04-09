@@ -38,41 +38,59 @@ room_labels:
   hall: "Hall"
   hobby_room: "Hobby Room"
   kitchen: "Kitchen"
-  laundry_room: "Laundry room"
+  laundry_room: "Laundry Room"
   living_room: "Living Room"
   office: "Office"
   sauna: "Sauna"
-  technical_room: "Technical room"
+  technical_room: "Technical Room"
   warehouse: "Warehouse"
   wc: "WC"
 
 room_aliases:
   "Attic": attic
   "Ullakkovalot": attic
+
   "Back yard": backyard
   "Back Yard": backyard
   "Backyard": backyard
+
   "Bathroom": bathroom
   "Bedroom": bedroom
+
   "Closet": closet
   "Walkin closet": closet
   "Bedroom closet": closet
+
   "Corridor": corridor
   "Hall / Corridor": corridor
+
   "Dining Room": dining_room
+
+  "Front yard": front_yard
   "Front Yard": front_yard
+
   "Hall": hall
-  "Hobby Room": hobby_room
+
   "Hobby room": hobby_room
+  "Hobby Room": hobby_room
+
   "Kitchen": kitchen
+
   "Laundry room": laundry_room
+  "Laundry Room": laundry_room
+
+  "Living room": living_room
   "Living Room": living_room
+
   "Office": office
   "Sauna": sauna
+
   "Technical room": technical_room
   "Technical Room": technical_room
+
   "Warehouse": warehouse
   "Storage": warehouse
+
   "WC": wc
   "Wc": wc
 
