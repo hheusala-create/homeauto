@@ -24,8 +24,9 @@ Control models:
 | Living room | Living room ceiling spotlight | Living room ceiling spotlight | 10.107.1.33 | Living Room Ceiling Spotlight | shelly_plus_smart_bulb | light.living_room_spotlight | |
 | Living room | Living room window light | Living room window light | 10.107.1.56 | Living Room Window Light | relay_only | light.living_room_window | Confirm if no Tradfri behind this |
 | Hobby room | Hobby room light | Hobby room light | 10.107.1.21 | Hobby room light | shelly_plus_smart_bulb | light.hobby_room | |
-| Kitchen | Kitchen ceiling lights | Kitchen ceiling lights | 10.107.1.231 | Kitchen Ceiling Light | shelly_plus_smart_bulb | light.kitchen_ceiling | |
-| Kitchen | Kitchen desk lights | Kitchen desk lights | 10.107.1.24 | Kitchen desk lights | relay_only | light.kitchen_desk | Confirm if no Tradfri behind this |
+| Kitchen | Kitchen ceiling lights | Kitchen ceiling lights | 10.107.1.231 | Kitchen Ceiling Light | shelly_plus_smart_bulb | light.kitchen_ceiling | 4 individual TRÅDFRI ceiling bulbs controlled together through HA group |
+| Kitchen | Kitchen desk lights | Kitchen desk lights | 10.107.1.24 | Kitchen led | relay_only | light.kitchen_led | Dedicated socket-fed kitchen LED lighting circuit; Shelly 1PM Gen4; no wall-switch input automation |
+| Kitchen | Breakfast Cabin Light | Kitchen breakfast cabinet socket | 10.107.1.75 | Breakfast Cabin Light | relay_only | light.breakfast_cabin | Dedicated socket-fed breakfast cabinet light circuit; no wall-switch input automation |
 | Sauna | Sauna wall light | Sauna wall light | 10.107.1.130 | Sauna Wall Light | shelly_plus_smart_bulb | light.sauna_wall | |
 | Sauna | Sauna bench lights | Sauna bench lights | 10.107.1.196 | Sauna Bench Lights | shelly_plus_smart_bulb | light.sauna_bench | |
 | Bedroom | Bedroom ceiling lights | Bedroom ceiling lights | 10.107.1.77 | Bedroom Lights | shelly_plus_smart_bulb | light.bedroom_ceiling | |

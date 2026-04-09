@@ -243,18 +243,29 @@ devices:
     control_model: "shelly_plus_smart_bulb"
     planned_ha_entity: "light.kitchen_ceiling"
     profile: "smart_bulb_wall_switch"
-    notes: ""
+    notes: "4 individual TRÅDFRI ceiling bulbs controlled together through HA group"
 
   - room: kitchen
     area_label: "Kitchen"
     current_user_facing_light: "Kitchen desk lights"
     shelly_device: "Kitchen desk lights"
     shelly_ip: "10.107.1.24"
-    tradfri_or_google_light: "Kitchen desk lights"
+    tradfri_or_google_light: "Kitchen led"
     control_model: "relay_only"
-    planned_ha_entity: "light.kitchen_desk"
+    planned_ha_entity: "light.kitchen_led"
     profile: "relay_only_light"
-    notes: "Confirm if no Tradfri behind this"
+    notes: "Dedicated socket-fed kitchen LED lighting circuit; Shelly 1PM Gen4; no wall-switch input automation"
+
+  - room: kitchen
+    area_label: "Kitchen"
+    current_user_facing_light: "Breakfast Cabin Light"
+    shelly_device: "Kitchen breakfast cabinet socket"
+    shelly_ip: "10.107.1.75"
+    tradfri_or_google_light: "Breakfast Cabin Light"
+    control_model: "relay_only"
+    planned_ha_entity: "light.breakfast_cabin"
+    profile: "relay_only_light"
+    notes: "Dedicated socket-fed breakfast cabinet light circuit; no wall-switch input automation"
 
   - room: sauna
     area_label: "Sauna"

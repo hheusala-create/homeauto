@@ -23,7 +23,7 @@ Naming rules:
 |---|---|---|---|---|---|---|---|
 | 10.107.1.21 | shelly1g4-ccba97c89350 | Hobby room light | Harrastushuone valo | Hobby room light | light.hobby_room_light | shelly_switch_light | Shelly-controlled light circuit |
 | 10.107.1.23 |  | Corridor vacuum socket | Käytävä pistorasia imuri | Corridor vacuum socket | switch.corridor_vacuum_socket | shelly_socket | Vacuum socket in corridor |
-| 10.107.1.24 |  | Kitchen desk lights | Kitchen desk lights | Kitchen desk lights | light.kitchen_desk_lights | shelly_switch_light | English Shelly name already used |
+| 10.107.1.24 | shelly1pmg4-a085e3bcfb14 | Kitchen desk lights | Kitchen desk lights | Kitchen desk lights | light.kitchen_desk_lights | shelly_switch_light | Dedicated socket-fed kitchen LED lighting circuit; Shelly 1PM Gen4; not used as a normal socket |
 | 10.107.1.33 |  | Living room ceiling spotlight | Olohuone kattovalo spotti | Living Room Ceiling Spotlight | light.living_room_ceiling_spotlight | shelly_switch_light | |
 | 10.107.1.35 |  | Laundry room wall socket | Kodinhoitohuone seinäpistoke | Laundry room wall socket | switch.laundry_room_wall_socket | shelly_socket | |
 | 10.107.1.43 |  | Technical room light | Technical room | Technical room | light.technical_room_light | shelly_switch_light | Shelly controls technical room light; one IKEA bulb and one Shelly control same light |
@@ -32,7 +32,7 @@ Naming rules:
 | 10.107.1.56 |  | Living room window light | Olohuone ikkunavalo | Living Room Window Light | light.living_room_window_light | shelly_switch_light | |
 | 10.107.1.70 |  | Living room sockets | Olohuone pistorasia | Living room sockets | switch.living_room_sockets | shelly_socket | |
 | 10.107.1.72 |  | TV electronics | Televisio jne | Television etc | switch.tv_electronics | shelly_socket | TV / electronics power |
-| 10.107.1.75 |  | Kitchen breakfast cabinet socket | Aamiaiskaappi | Breakfast cabinet | switch.kitchen_breakfast_cabinet_socket | shelly_socket | Cabinet/small-appliance power point |
+| 10.107.1.75 | shelly1g4-ccba97c89b84 | Kitchen breakfast cabinet socket | Aamiaiskaappi | Breakfast cabinet | switch.kitchen_breakfast_cabinet_socket | shelly_socket | Dedicated socket-fed breakfast cabinet light circuit; not used as a normal socket |
 | 10.107.1.77 | shelly1g4-ccba97c888c8 | Bedroom ceiling lights | Makuuhuone kattovalot | Bedroom Lights | light.bedroom_ceiling_lights | shelly_switch_light | |
 | 10.107.1.78 |  | Front yard lights | Etupiha valot | Front yard lights | light.front_yard_lights | shelly_switch_light | |
 | 10.107.1.86 |  | Living room ceiling light | Olohuone kattovalo | Living Room Ceiling Light | light.living_room_ceiling_light | shelly_switch_light | |
