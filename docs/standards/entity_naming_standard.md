@@ -339,3 +339,26 @@ Use this document as the source of truth when updating:
 Suggested follow-up docs:
 - spoken/friendly naming standard
 - mapping table from current names to target HA technical names
+
+## Visible MQTT switch name rule
+
+For MQTT switches in `configuration.yaml`, the visible `name` field must follow the same functional naming logic as the technical entity name.
+
+Use:
+- `<Room> light <fixture> power` for lighting circuits
+- `<Room> socket <fixture> power` for socket circuits
+
+Examples:
+- `Hall light ceiling power`
+- `Kitchen light ceiling power`
+- `Closet light ceiling power`
+- `Kitchen socket counter power`
+
+Do not use:
+- generic names like `relay`
+- mixed temporary legacy wording when the final target naming is already known
+- old room wording that is no longer part of the target architecture
+
+Reason:
+- this keeps light circuits visually distinct from socket circuits in Home Assistant UI
+- and keeps the visible name aligned with the technical naming standard

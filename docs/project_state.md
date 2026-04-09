@@ -110,6 +110,16 @@ Before giving or applying new Home Assistant snippets:
 3. For `configuration.yaml`, format snippets using the repository-specific indentation style.
 4. When an entity name changes, update both configuration and automations together.
 
+## Naming enforcement reminder
+
+Home Assistant entity naming must follow `docs/standards/entity_naming_standard.md` exactly.
+
+Operational rule:
+- check the repo naming standard before suggesting any new entity names
+- use final naming immediately instead of temporary relay-style names
+- update `configuration.yaml` and `automations.yaml` together when entity names change
+- for MQTT switches, the visible `name` field must also preserve the light/socket distinction, not only `unique_id`
+
 
 ## ChatGPT code snippet formatting rule for repo guidance
 
