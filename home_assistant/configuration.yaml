@@ -11,7 +11,7 @@ scene: !include scenes.yaml
 
 mqtt:
   switch:
-    - name: "Hobby room ceiling power"
+    - name: "Hobby room ceiling light power"
       unique_id: "switch_hobby_room_light_ceiling_power"
       command_topic: "shelly1g4-ccba97c89350/rpc"
       command_template: >-
@@ -27,8 +27,8 @@ mqtt:
       payload_not_available: "false"
       qos: 0
 
-    - name: "Walk-in closet light relay"
-      unique_id: "switch_walk_in_closet_light_relay"
+    - name: "Closet light ceiling power"
+      unique_id: "switch_closet_light_ceiling_power"
       command_topic: "shelly1g4-ccba97c8a17c/rpc"
       command_template: >-
         {% if value == 'ON' %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":true}}{% else %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":false}}{% endif %}
@@ -43,8 +43,8 @@ mqtt:
       payload_not_available: "false"
       qos: 0
 
-    - name: "Bedroom ceiling light relay"
-      unique_id: "switch_bedroom_light_ceiling_relay"
+    - name: "Bedroom light ceiling power"
+      unique_id: "switch_bedroom_light_ceiling_power"
       command_topic: "shelly1g4-ccba97c888c8/rpc"
       command_template: >-
         {% if value == 'ON' %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":true}}{% else %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":false}}{% endif %}
@@ -59,8 +59,8 @@ mqtt:
       payload_not_available: "false"
       qos: 0
 
-    - name: "Kitchen ceiling light relay"
-      unique_id: "switch_kitchen_ceiling_light_relay"
+    - name: "Kitchen light ceiling power"
+      unique_id: "switch_kitchen_light_ceiling_power"
       command_topic: "shelly1g4-a085e3bd891c/rpc"
       command_template: >-
         {% if value == 'ON' %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":true}}{% else %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":false}}{% endif %}
@@ -75,8 +75,8 @@ mqtt:
       payload_not_available: "false"
       qos: 0
 
-    - name: "Kitchen desk light relay"
-      unique_id: "switch_kitchen_desk_light_relay"
+    - name: "Kitchen light desk power"
+      unique_id: "switch_kitchen_light_desk_power"
       command_topic: "shelly1pmg4-a085e3bcfb14/rpc"
       command_template: >-
         {% if value == 'ON' %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":true}}{% else %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":false}}{% endif %}
@@ -91,8 +91,8 @@ mqtt:
       payload_not_available: "false"
       qos: 0
 
-    - name: "Kitchen breakfast cabin power"
-      unique_id: "switch_kitchen_breakfast_cabin_power"
+    - name: "Kitchen light breakfast cabinet power"
+      unique_id: "switch_kitchen_light_breakfast_cabinet_power"
       command_topic: "shelly1g4-ccba97c89b84/rpc"
       command_template: >-
         {% if value == 'ON' %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":true}}{% else %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":false}}{% endif %}
@@ -155,8 +155,8 @@ mqtt:
       payload_not_available: "false"
       qos: 0
 
-    - name: "Corridor light relay"
-      unique_id: "switch_corridor_light_relay"
+    - name: "Corridor light group power"
+      unique_id: "switch_corridor_light_group_power"
       command_topic: "shelly1pmg4-a085e3bc7c48/rpc"
       command_template: >-
         {% if value == 'ON' %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":true}}{% else %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":false}}{% endif %}
