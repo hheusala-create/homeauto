@@ -158,7 +158,57 @@ Verification rule before rollout decisions:
 - especially confirm input mode (`Button` vs `Switch`)
 - do not generalize MQTT/event behavior until the physical Shelly settings have been checked on the device
 
+### Confirmed default rollout model for Shelly + smart bulb circuits
+
+The Hobby room implementation is the reference model for this rollout.
+
+Default model:
+- one YAML-managed Shelly relay entity in HA
+- no separate wall-switch `binary_sensor` by default
+- one HA automation listening directly to:
+  - `<device_id>/status/input:0`
+- one target light entity representing the actual smart bulb / logical light
+
+Reason:
+- keeps the HA entity model cleaner during wider rollout
+- avoids unnecessary extra entities for all Shelly devices
+- still provides full required control for `shelly_plus_smart_bulb` circuits
+
+A separate wall-switch `binary_sensor` is optional and may still be used in selected cases for:
+- debugging
+- visibility
+- more advanced logic
+
+It is not the default rollout requirement.
+
+### Confirmed switch-direction normalization rule
+
+For normal 2-position wall switches in lighting circuits, the target behavior is:
+
+- up = light on
+- down = light off
+
+Important implementation note:
+
+- in the current Shelly + smart bulb model, this direction is effectively decided in the Home Assistant automation YAML
+- the automation mapping determines whether:
+  - `trigger.payload_json.state == true` turns the light on or off
+  - `trigger.payload_json.state == false` turns the light on or off
+
+Confirmed lesson from pilot comparison:
+- Hobby room and Walk-in closet had matching Shelly-side settings
+- despite that, their initial physical switch directions differed
+- this indicates that physical wiring or switch orientation can cause opposite behavior even when device settings match
+
+Therefore:
+- switch-direction consistency must be validated room by room
+- when needed, normalize direction in HA automation logic
+- the required user-facing result is always:
+  - up = light on
+  - down = light off
+
 ---
+
 
 ## Naming policy during migration
 

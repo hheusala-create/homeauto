@@ -198,6 +198,29 @@ Behavior:
 2. Shelly detects input
 3. Home Assistant toggles light
 
+## 17b. Normal 2-position wall switches must follow one house-wide direction
+
+For normal 2-position light switches, the house-wide user rule is:
+
+- up = light on
+- down = light off
+
+This rule applies even when:
+- the circuit uses Shelly input handling
+- the relay is in detached mode
+- the actual light is controlled through Home Assistant and a smart bulb layer
+
+Implementation rule:
+
+- if identical Shelly settings still produce opposite physical switch behavior between rooms, normalize the behavior in Home Assistant automation logic
+- do not assume Shelly settings alone define the final user-facing switch direction
+- physical wiring or switch orientation may cause opposite raw input meaning between otherwise similar installations
+
+Operational rule:
+
+- user-facing switch direction consistency is more important than preserving raw `true/false` meaning across all rooms
+- Home Assistant may invert the input-state mapping per circuit when needed so the house remains consistent
+
 ---
 
 ## 18. Mixed circuits must be explicitly classified

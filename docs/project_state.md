@@ -151,6 +151,75 @@ Confirmed practical rollout rule:
 - Do not use manually added MQTT devices in the Home Assistant UI for Shelly rollout
 - Use YAML-managed MQTT entities for Shelly rollout so entities remain editable and repo-manageable
 
+## Confirmed Shelly + smart bulb wall-switch operating model
+
+Confirmed from the Hobby room and Walk-in closet pilot comparison:
+
+- the reference implementation model is the Hobby room model
+- for this rollout pattern, Home Assistant automation listens directly to the Shelly MQTT input topic
+- a separate HA `binary_sensor` entity for the wall switch is optional and not part of the default model
+- the default model should stay minimal:
+  - one YAML-managed Shelly relay entity in HA
+  - one HA automation reacting to the Shelly input MQTT topic
+  - one target light entity for the actual smart bulb/light control
+
+Important confirmed lesson:
+
+- the effective wall-switch direction for `shelly_plus_smart_bulb` circuits is defined in the Home Assistant automation logic
+- in practice, the automation YAML decides whether `true` means light on or light off
+- this means switch-direction normalization is handled in HA automation logic, not primarily in Shelly settings
+
+Observed pilot outcome:
+
+- Hobby room and Walk-in closet had the same Shelly-side settings
+- with the same automation structure, the two rooms still initially behaved with opposite physical switch directions
+- the most likely reason is physical switch orientation / wiring differences, not a meaningful Shelly settings difference
+- after adjusting the HA automation mapping, both rooms now follow the intended house rule
+
+Locked operating rule for normal 2-position light switches:
+
+- up = light on
+- down = light off
+
+Rollout implication:
+
+- all normal 2-position wall switches in lighting circuits must be normalized to the above rule through Home Assistant automation logic where needed
+- do not assume that identical Shelly settings alone guarantee identical physical switch direction across rooms
+
+### Open design question: switch behavior model (toggle vs state-based)
+
+Current implementation uses state-based control:
+- switch position defines light state (up = on, down = off)
+
+However, there is an open design question for the full-house rollout:
+
+- should all wall switches behave as toggle switches instead?
+
+Toggle model:
+- every switch action toggles the light
+- physical position of the switch does not strictly define light state
+
+State-based model:
+- switch position directly defines light state
+- up = on, down = off (current target rule)
+
+Current status:
+- not yet decided
+- both models are technically possible with Shelly + Home Assistant
+
+Important consideration:
+- toggle model may feel more natural in mixed smart-bulb scenarios
+- state-based model provides consistent physical predictability
+
+Decision required before large-scale rollout (44 devices):
+- confirm whether:
+  - A) state-based (current approach)
+  - B) toggle-based (alternative approach)
+
+Until decision:
+- do not lock the behavior as final architecture
+- treat current implementation as a working reference, not final standard
+
 ### Naming approach (confirmed after pilot)
 
 - Shelly device names are NOT changed during migration
