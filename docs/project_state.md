@@ -67,6 +67,71 @@ Infrastructure migration and production cutover phase.
 5. Keep the old laptop HA powered off during restore/cutover so it does not interfere on the LAN
 6. Resume Shelly, IKEA, MQTT, naming, and integration work only after the restore baseline is confirmed
 
+## Shelly relay naming rule in Home Assistant
+
+When a Shelly relay is exposed in `configuration.yaml`, its entity naming must always follow the repository naming standard.
+
+Rule:
+- Do not use generic names such as `relay` in the final entity naming.
+- Use the standard power suffix pattern:
+
+`switch.<room>_light_<fixture>_power`
+
+Examples:
+- `switch.hall_light_ceiling_power`
+- `switch.corridor_light_ceiling_power`
+
+Related light entity rule:
+- The matching smart light entity should follow:
+
+`light.<room>_light_<fixture>`
+
+Examples:
+- `light.hall_light_ceiling`
+- `light.corridor_light_ceiling`
+
+Automation alignment rule:
+- If a Shelly relay or light entity name is changed in `configuration.yaml`, all matching references in `automations.yaml` must be updated immediately to the same naming-standard-compliant entity name.
+- Configuration and automations must never be left using different names for the same circuit.
+
+Operational rule:
+- New Shelly entities must be named correctly at creation time to avoid later cleanup work.
+- Avoid temporary names like `*_relay` when the standard target name is already known.
+
+These are defined at and need to be respected always: 
+https://github.com/hheusala-create/homeauto/blob/main/docs/standards/entity_name_mapping.md
+https://github.com/hheusala-create/homeauto/blob/main/docs/standards/entity_naming_standard.md
+
+## Practical reminder
+
+Before giving or applying new Home Assistant snippets:
+1. Check the repository naming standard first.
+2. Use naming-standard-compliant entity names already in the first version.
+3. For `configuration.yaml`, format snippets using the repository-specific indentation style.
+4. When an entity name changes, update both configuration and automations together.
+
+
+## ChatGPT code snippet formatting rule for repo guidance
+
+Home automation repo guidance must always provide code blocks so they are easy to copy-paste directly from chat.
+
+General rule:
+- All code blocks must start visually from the far left in chat.
+- Do not wrap snippets inside extra parent keys when the user is adding content into an existing block.
+- Give only the lines that should be inserted or replaced, unless a full block replacement is explicitly needed.
+
+Special rule for `home_assistant/configuration.yaml`:
+- When adding entries into the existing structure, do not include parent keys such as `mqtt:` or `switch:` in the snippet.
+- Snippets must be formatted for this repository so that:
+  - `- name` lines start with 4 leading spaces
+  - child lines under that entry start with 6 leading spaces
+- This rule is specific to `configuration.yaml`.
+
+Other files:
+- Code blocks must still start from the far left in chat for easy copy-paste.
+- Indentation rules may differ by file.
+- `automations.yaml` and other files should be given in the indentation style that matches that file, not forced to follow the `configuration.yaml` indentation rule.
+
 ## Current restore path for cutover
 
 Locked current path for this migration:

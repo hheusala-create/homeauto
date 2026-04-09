@@ -6,6 +6,16 @@ Purpose: define stable technical naming rules before any friendly/spoken naming 
 
 ---
 
+## Practical reminder
+
+Before giving or applying new Home Assistant snippets:
+1. Check the repository naming standard first.
+2. Use naming-standard-compliant entity names already in the first version.
+3. For `configuration.yaml`, format snippets using the repository-specific indentation style.
+4. When an entity name changes, update both configuration and automations together.
+
+---
+
 ## Core principle
 
 Technical names are for:
@@ -113,6 +123,39 @@ Examples:
 - `switch.kitchen_socket_counter_power`
 - `switch.office_socket_right_power`
 - `switch.corridor_socket_vacuum_power`
+
+---
+
+## Shelly relay naming rule in Home Assistant
+
+When a Shelly relay is exposed in `configuration.yaml`, its entity naming must always follow the repository naming standard.
+
+Rule:
+- Do not use generic names such as `relay` in the final entity naming.
+- Use the standard power suffix pattern:
+
+`switch.<room>_light_<fixture>_power`
+
+Examples:
+- `switch.hall_light_ceiling_power`
+- `switch.corridor_light_ceiling_power`
+
+Related light entity rule:
+- The matching smart light entity should follow:
+
+`light.<room>_light_<fixture>`
+
+Examples:
+- `light.hall_light_ceiling`
+- `light.corridor_light_ceiling`
+
+Automation alignment rule:
+- If a Shelly relay or light entity name is changed in `configuration.yaml`, all matching references in `automations.yaml` must be updated immediately to the same naming-standard-compliant entity name.
+- Configuration and automations must never be left using different names for the same circuit.
+
+Operational rule:
+- New Shelly entities must be named correctly at creation time to avoid later cleanup work.
+- Avoid temporary names like `*_relay` when the standard target name is already known.
 
 ---
 
