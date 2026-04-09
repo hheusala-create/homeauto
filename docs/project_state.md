@@ -220,6 +220,111 @@ Until decision:
 - do not lock the behavior as final architecture
 - treat current implementation as a working reference, not final standard
 
+## Current YAML implementation rules (locked)
+
+The current working Home Assistant YAML pattern is now locked more explicitly.
+
+### MQTT switch state mapping rule
+
+For YAML-managed `mqtt.switch` entities, use the working `ON/OFF` mapping pattern.
+
+Use:
+- `value_template` that maps `value_json.output` to `ON` / `OFF`
+- `payload_on: "ON"`
+- `payload_off: "OFF"`
+- `state_on: "ON"`
+- `state_off: "OFF"`
+
+Do not introduce a separate `true/false` state mapping model for `mqtt.switch` entities in this rollout.
+
+Reason:
+- the `ON/OFF` pattern is the currently verified working pattern in this setup
+- mixing two different MQTT switch state-mapping styles creates avoidable confusion and regression risk
+
+### Where `true/false` is still used
+
+`true/false` remains valid in Home Assistant automations that react to Shelly input state topics.
+
+Example pattern:
+- trigger topic: `<device_id>/status/input:0`
+- automation conditions/actions interpret:
+  - `trigger.payload_json.state == true`
+  - `trigger.payload_json.state == false`
+
+So the locked rule is:
+
+- MQTT relay/switch entity state mapping = `ON/OFF`
+- Shelly input automation logic = `true/false`
+
+These must not be mixed conceptually.
+
+## Current living room lighting status
+
+Living room lighting has now been clarified into active lights and waiting Shelly circuits.
+
+### Active now
+
+- `light.living_room_spotlight`
+  - control model: `shelly_plus_smart_bulb`
+  - Shelly device ID: `shelly1g4-a085e3bcdf24`
+  - Shelly is configured for detached smart-bulb wall-switch use
+  - wall switch controls the spotlight through Home Assistant automation
+  - target user rule: up = on, down = off
+
+- `light.living_room_wall`
+  - control model: `smart_bulb_only`
+  - no Shelly behind this light
+  - no wall switch
+  - this is a TRÅDFRI bulb in a socket
+  - remains separately controllable
+  - may still belong to the logical living room light grouping later
+
+### Present in MQTT and prepared for later use
+
+- living room window light
+  - Shelly device ID: `shelly1g4-a085e3c16eec`
+  - current model: `relay_only`
+  - no lamp decision finalized yet
+
+- living room ceiling light
+  - Shelly device ID: `shelly1g4-ccba97c89790`
+  - current model: `relay_only`
+  - no lamp decision finalized yet
+
+Operational rule for the two waiting living room circuits:
+- MQTT enabled
+- no detached mode yet
+- no smart-bulb automation yet
+- normal relay behavior retained for now
+
+## Current kitchen YAML recovery notes
+
+Two kitchen YAML-managed Shelly relay entities were restored into active Home Assistant configuration:
+
+- kitchen desk light relay
+- kitchen breakfast cabin power
+
+Confirmed lesson:
+- if a Shelly is online and working but the HA entity appears unavailable, the cause may be:
+  - the YAML entity missing from `configuration.yaml`
+  - or an old duplicate/offline entity still remaining in Home Assistant
+
+This was confirmed specifically with the breakfast cabin relay, where an old duplicate offline entity existed in Home Assistant and caused confusion.
+
+## Repo tracking decision for active HA YAML
+
+The project now treats active Home Assistant YAML files as repo-worthy technical source material.
+
+Files to keep in the repository:
+- `home_assistant/configuration.yaml`
+- `home_assistant/automations.yaml`
+
+Reason:
+- they now contain real production logic
+- they help future sessions re-ground quickly
+- backup files alone are not a sufficient substitute for readable version-controlled logic
+- this supports the project rule that GitHub is the canonical source of truth
+
 ### Naming approach (confirmed after pilot)
 
 - Shelly device names are NOT changed during migration

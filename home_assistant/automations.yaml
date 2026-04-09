@@ -1,0 +1,124 @@
+- id: "1775595766007"
+  alias: Hobby room wall switch -> hobby room light
+  description: Control Hobby room light from Shelly wall switch input state
+  triggers:
+    - topic: shelly1g4-ccba97c89350/status/input:0
+      trigger: mqtt
+  conditions: []
+  actions:
+    - choose:
+        - conditions:
+            - condition: template
+              value_template: "{{ trigger.payload_json.state == true }}"
+          sequence:
+            - target:
+                entity_id: light.hobby_room_ceiling
+              action: light.turn_on
+        - conditions:
+            - condition: template
+              value_template: "{{ trigger.payload_json.state == false }}"
+          sequence:
+            - target:
+                entity_id: light.hobby_room_ceiling
+              action: light.turn_off
+  mode: restart
+
+- id: "1775687797974"
+  alias: Bedroom closet wall switch -> bedroom closet light
+  description: Control bedroom closet light from Shelly wall switch input state
+  triggers:
+    - topic: shelly1g4-ccba97c8a17c/status/input:0
+      trigger: mqtt
+  conditions: []
+  actions:
+    - choose:
+        - conditions:
+            - condition: template
+              value_template: "{{ trigger.payload_json.state == true }}"
+          sequence:
+            - target:
+                entity_id: light.bedroom_closet
+              action: light.turn_off
+        - conditions:
+            - condition: template
+              value_template: "{{ trigger.payload_json.state == false }}"
+          sequence:
+            - target:
+                entity_id: light.bedroom_closet
+              action: light.turn_on
+  mode: restart
+
+- id: "1775738182218"
+  alias: Bedroom wall switch -> Bedroom Ceiling
+  description: Control Bedroom Ceiling light group from Shelly wall switch input state
+  triggers:
+    - topic: shelly1g4-ccba97c888c8/status/input:0
+      trigger: mqtt
+  conditions: []
+  actions:
+    - choose:
+        - conditions:
+            - condition: template
+              value_template: "{{ trigger.payload_json.state == true }}"
+          sequence:
+            - target:
+                entity_id: light.bedroom_ceiling
+              action: light.turn_on
+        - conditions:
+            - condition: template
+              value_template: "{{ trigger.payload_json.state == false }}"
+          sequence:
+            - target:
+                entity_id: light.bedroom_ceiling
+              action: light.turn_off
+  mode: restart
+
+- id: "1775740822511"
+  alias: Kitchen wall switch -> Kitchen Ceiling
+  description: Control Kitchen Ceiling light group from Shelly wall switch input state
+  triggers:
+    - topic: shelly1g4-a085e3bd891c/status/input:0
+      trigger: mqtt
+  conditions: []
+  actions:
+    - choose:
+        - conditions:
+            - condition: template
+              value_template: "{{ trigger.payload_json.state == true }}"
+          sequence:
+            - target:
+                entity_id: light.kitchen_ceiling
+              action: light.turn_on
+        - conditions:
+            - condition: template
+              value_template: "{{ trigger.payload_json.state == false }}"
+          sequence:
+            - target:
+                entity_id: light.kitchen_ceiling
+              action: light.turn_off
+  mode: restart
+
+- id: "living_room_spotlight_wall_switch"
+  alias: Living room wall switch -> Living room spotlight
+  description: Control Living room spotlight from Shelly wall switch input state
+  triggers:
+    - topic: shelly1g4-a085e3bcdf24/status/input:0
+      trigger: mqtt
+  conditions: []
+  actions:
+    - choose:
+        - conditions:
+            - condition: template
+              value_template: "{{ trigger.payload_json.state == true }}"
+          sequence:
+            - target:
+                entity_id: light.living_room_spotlight
+              action: light.turn_on
+        - conditions:
+            - condition: template
+              value_template: "{{ trigger.payload_json.state == false }}"
+          sequence:
+            - target:
+                entity_id: light.living_room_spotlight
+              action: light.turn_off
+  mode: restart

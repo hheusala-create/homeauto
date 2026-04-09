@@ -1,0 +1,156 @@
+# Loads default set of integrations. Do not remove.
+default_config:
+
+# Load frontend themes from the themes folder
+frontend:
+  themes: !include_dir_merge_named themes
+
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
+
+mqtt:
+  switch:
+    - name: "Hobby room ceiling power"
+      unique_id: "switch_hobby_room_light_ceiling_power"
+      command_topic: "shelly1g4-ccba97c89350/rpc"
+      command_template: >-
+        {% if value == 'ON' %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":true}}{% else %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":false}}{% endif %}
+      state_topic: "shelly1g4-ccba97c89350/status/switch:0"
+      value_template: "{{ 'ON' if value_json.output == true else 'OFF' if value_json.output == false else '' }}"
+      payload_on: "ON"
+      payload_off: "OFF"
+      state_on: "ON"
+      state_off: "OFF"
+      availability_topic: "shelly1g4-ccba97c89350/online"
+      payload_available: "true"
+      payload_not_available: "false"
+      qos: 0
+
+    - name: "Walk-in closet light relay"
+      unique_id: "switch_walk_in_closet_light_relay"
+      command_topic: "shelly1g4-ccba97c8a17c/rpc"
+      command_template: >-
+        {% if value == 'ON' %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":true}}{% else %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":false}}{% endif %}
+      state_topic: "shelly1g4-ccba97c8a17c/status/switch:0"
+      value_template: "{{ 'ON' if value_json.output == true else 'OFF' if value_json.output == false else '' }}"
+      payload_on: "ON"
+      payload_off: "OFF"
+      state_on: "ON"
+      state_off: "OFF"
+      availability_topic: "shelly1g4-ccba97c8a17c/online"
+      payload_available: "true"
+      payload_not_available: "false"
+      qos: 0
+
+    - name: "Bedroom ceiling light relay"
+      unique_id: "switch_bedroom_light_ceiling_relay"
+      command_topic: "shelly1g4-ccba97c888c8/rpc"
+      command_template: >-
+        {% if value == 'ON' %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":true}}{% else %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":false}}{% endif %}
+      state_topic: "shelly1g4-ccba97c888c8/status/switch:0"
+      value_template: "{{ 'ON' if value_json.output == true else 'OFF' if value_json.output == false else '' }}"
+      payload_on: "ON"
+      payload_off: "OFF"
+      state_on: "ON"
+      state_off: "OFF"
+      availability_topic: "shelly1g4-ccba97c888c8/online"
+      payload_available: "true"
+      payload_not_available: "false"
+      qos: 0
+
+    - name: "Kitchen ceiling light relay"
+      unique_id: "switch_kitchen_ceiling_light_relay"
+      command_topic: "shelly1g4-a085e3bd891c/rpc"
+      command_template: >-
+        {% if value == 'ON' %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":true}}{% else %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":false}}{% endif %}
+      state_topic: "shelly1g4-a085e3bd891c/status/switch:0"
+      value_template: "{{ 'ON' if value_json.output == true else 'OFF' if value_json.output == false else '' }}"
+      payload_on: "ON"
+      payload_off: "OFF"
+      state_on: "ON"
+      state_off: "OFF"
+      availability_topic: "shelly1g4-a085e3bd891c/online"
+      payload_available: "true"
+      payload_not_available: "false"
+      qos: 0
+
+    - name: "Kitchen desk light relay"
+      unique_id: "switch_kitchen_desk_light_relay"
+      command_topic: "shelly1pmg4-a085e3bcfb14/rpc"
+      command_template: >-
+        {% if value == 'ON' %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":true}}{% else %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":false}}{% endif %}
+      state_topic: "shelly1pmg4-a085e3bcfb14/status/switch:0"
+      value_template: "{{ 'ON' if value_json.output == true else 'OFF' if value_json.output == false else '' }}"
+      payload_on: "ON"
+      payload_off: "OFF"
+      state_on: "ON"
+      state_off: "OFF"
+      availability_topic: "shelly1pmg4-a085e3bcfb14/online"
+      payload_available: "true"
+      payload_not_available: "false"
+      qos: 0
+
+    - name: "Kitchen breakfast cabin power"
+      unique_id: "switch_kitchen_breakfast_cabin_power"
+      command_topic: "shelly1g4-ccba97c89b84/rpc"
+      command_template: >-
+        {% if value == 'ON' %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":true}}{% else %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":false}}{% endif %}
+      state_topic: "shelly1g4-ccba97c89b84/status/switch:0"
+      value_template: "{{ 'ON' if value_json.output == true else 'OFF' if value_json.output == false else '' }}"
+      payload_on: "ON"
+      payload_off: "OFF"
+      state_on: "ON"
+      state_off: "OFF"
+      availability_topic: "shelly1g4-ccba97c89b84/online"
+      payload_available: "true"
+      payload_not_available: "false"
+      qos: 0
+
+    - name: "Living room spotlight power"
+      unique_id: "switch_living_room_light_spotlight_power"
+      command_topic: "shelly1g4-a085e3bcdf24/rpc"
+      command_template: >-
+        {% if value == 'ON' %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":true}}{% else %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":false}}{% endif %}
+      state_topic: "shelly1g4-a085e3bcdf24/status/switch:0"
+      value_template: "{{ 'ON' if value_json.output == true else 'OFF' if value_json.output == false else '' }}"
+      payload_on: "ON"
+      payload_off: "OFF"
+      state_on: "ON"
+      state_off: "OFF"
+      availability_topic: "shelly1g4-a085e3bcdf24/online"
+      payload_available: "true"
+      payload_not_available: "false"
+      qos: 0
+
+    - name: "Living room window light power"
+      unique_id: "switch_living_room_light_window_power"
+      command_topic: "shelly1g4-a085e3c16eec/rpc"
+      command_template: >-
+        {% if value == 'ON' %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":true}}{% else %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":false}}{% endif %}
+      state_topic: "shelly1g4-a085e3c16eec/status/switch:0"
+      value_template: "{{ 'ON' if value_json.output == true else 'OFF' if value_json.output == false else '' }}"
+      payload_on: "ON"
+      payload_off: "OFF"
+      state_on: "ON"
+      state_off: "OFF"
+      availability_topic: "shelly1g4-a085e3c16eec/online"
+      payload_available: "true"
+      payload_not_available: "false"
+      qos: 0
+
+    - name: "Living room ceiling light power"
+      unique_id: "switch_living_room_light_ceiling_power"
+      command_topic: "shelly1g4-ccba97c89790/rpc"
+      command_template: >-
+        {% if value == 'ON' %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":true}}{% else %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":false}}{% endif %}
+      state_topic: "shelly1g4-ccba97c89790/status/switch:0"
+      value_template: "{{ 'ON' if value_json.output == true else 'OFF' if value_json.output == false else '' }}"
+      payload_on: "ON"
+      payload_off: "OFF"
+      state_on: "ON"
+      state_off: "OFF"
+      availability_topic: "shelly1g4-ccba97c89790/online"
+      payload_available: "true"
+      payload_not_available: "false"
+      qos: 0

@@ -133,6 +133,14 @@ profiles:
     safeguards:
       exclude_from_bulk_off: true
       require_explicit_targeting: true
+      
+  smart_bulb_only:
+    applies_to_control_model:
+      - smart_bulb_only
+    notes:
+      - no_shelly
+      - no_wall_switch
+      - smart_bulb_control_only
 
 devices:
   - room: technical_room
@@ -194,34 +202,45 @@ devices:
     area_label: "Living Room"
     current_user_facing_light: "Living room ceiling light"
     shelly_device: "Living room ceiling light"
-    shelly_ip: "10.107.1.86"
+    shelly_ip: "shelly1g4-ccba97c89790"
     tradfri_or_google_light: "Living Room Ceiling Light"
-    control_model: "shelly_plus_smart_bulb"
+    control_model: "relay_only"
     planned_ha_entity: "light.living_room_ceiling"
-    profile: "smart_bulb_wall_switch"
-    notes: ""
+    profile: "relay_only_light"
+    notes: "Shelly present in MQTT; no lamp installed yet; keep as normal relay-only circuit for now"
 
   - room: living_room
     area_label: "Living Room"
-    current_user_facing_light: "Living room ceiling spotlight"
-    shelly_device: "Living room ceiling spotlight"
-    shelly_ip: "10.107.1.33"
+    current_user_facing_light: "Living room spotlight"
+    shelly_device: "Living room spotlight"
+    shelly_ip: "shelly1g4-a085e3bcdf24"
     tradfri_or_google_light: "Living Room Ceiling Spotlight"
     control_model: "shelly_plus_smart_bulb"
     planned_ha_entity: "light.living_room_spotlight"
     profile: "smart_bulb_wall_switch"
-    notes: ""
+    notes: "Active Shelly + smart bulb circuit; detached mode; wall switch controls light through HA automation"
+
+  - room: living_room
+    area_label: "Living Room"
+    current_user_facing_light: "Living room wall light"
+    shelly_device: "-"
+    shelly_ip: "-"
+    tradfri_or_google_light: "Living room wall light"
+    control_model: "smart_bulb_only"
+    planned_ha_entity: "light.living_room_wall"
+    profile: "smart_bulb_only"
+    notes: "Active TRÅDFRI bulb in socket; no Shelly and no wall switch"
 
   - room: living_room
     area_label: "Living Room"
     current_user_facing_light: "Living room window light"
     shelly_device: "Living room window light"
-    shelly_ip: "10.107.1.56"
+    shelly_ip: "shelly1g4-a085e3c16eec"
     tradfri_or_google_light: "Living Room Window Light"
     control_model: "relay_only"
     planned_ha_entity: "light.living_room_window"
     profile: "relay_only_light"
-    notes: "Confirm if no Tradfri behind this"
+    notes: "Shelly present in MQTT; no lamp installed yet; keep as normal relay-only circuit for now"
 
   - room: hobby_room
     area_label: "Hobby Room"
@@ -265,7 +284,7 @@ devices:
     control_model: "relay_only"
     planned_ha_entity: "light.breakfast_cabin"
     profile: "relay_only_light"
-    notes: "Dedicated socket-fed breakfast cabinet light circuit; no wall-switch input automation"
+    notes: "Dedicated socket-fed breakfast cabinet LED lighting circuit; YAML-managed MQTT relay active"
 
   - room: sauna
     area_label: "Sauna"

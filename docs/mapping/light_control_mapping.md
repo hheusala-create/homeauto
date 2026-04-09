@@ -8,6 +8,7 @@ Control models:
 - `shelly_plus_smart_bulb`
 - `critical_power`
 - `socket`
+- `smart_bulb_only`
 
 ---
 
@@ -20,9 +21,10 @@ Control models:
 | Laundry room | Laundry room light | Laundry room light | 10.107.1.138 | Laundry room | shelly_plus_smart_bulb | light.laundry_room | |
 | Bathroom | Bathroom ceiling lights | Bathroom ceiling lights | 10.107.1.203 | Bathroom Ceiling Lights | shelly_plus_smart_bulb | light.bathroom_ceiling | |
 | Bathroom | Bathroom mirror light | Bathroom mirror light | 10.107.1.140 | Bathroom Mirror Light | shelly_plus_smart_bulb | light.bathroom_mirror | |
-| Living room | Living room ceiling light | Living room ceiling light | 10.107.1.86 | Living Room Ceiling Light | shelly_plus_smart_bulb | light.living_room_ceiling | |
-| Living room | Living room ceiling spotlight | Living room ceiling spotlight | 10.107.1.33 | Living Room Ceiling Spotlight | shelly_plus_smart_bulb | light.living_room_spotlight | |
-| Living room | Living room window light | Living room window light | 10.107.1.56 | Living Room Window Light | relay_only | light.living_room_window | Confirm if no Tradfri behind this |
+| Living room | Living room ceiling light | Living room ceiling light | shelly1g4-ccba97c89790 | Living Room Ceiling Light | relay_only | light.living_room_ceiling | Shelly present in MQTT; no lamp installed yet; keep as normal relay-only circuit for now |
+| Living room | Living room spotlight | Living room spotlight | shelly1g4-a085e3bcdf24 | Living Room Ceiling Spotlight | shelly_plus_smart_bulb | light.living_room_spotlight | Active Shelly + smart bulb circuit; detached mode; wall switch controls light through HA automation |
+| Living room | Living room window light | Living room window light | shelly1g4-a085e3c16eec | Living Room Window Light | relay_only | light.living_room_window | Shelly present in MQTT; no lamp installed yet; keep as normal relay-only circuit for now |
+| Living room | Living room wall light | - | - | Living room wall light | smart_bulb_only | light.living_room_wall | Active TRÅDFRI bulb in socket; no Shelly and no wall switch |
 | Hobby room | Hobby room light | Hobby room light | 10.107.1.21 | Hobby room light | shelly_plus_smart_bulb | light.hobby_room | |
 | Kitchen | Kitchen ceiling lights | Kitchen ceiling lights | 10.107.1.231 | Kitchen Ceiling Light | shelly_plus_smart_bulb | light.kitchen_ceiling | 4 individual TRÅDFRI ceiling bulbs controlled together through HA group |
 | Kitchen | Kitchen desk lights | Kitchen desk lights | 10.107.1.24 | Kitchen led | relay_only | light.kitchen_led | Dedicated socket-fed kitchen LED lighting circuit; Shelly 1PM Gen4; no wall-switch input automation |
@@ -36,3 +38,4 @@ Control models:
 | Back yard | Back yard left light | Back yard left light | 10.107.1.90 | Back Yard Lights | shelly_plus_smart_bulb | light.back_yard | Needs grouping confirmation |
 | Attic | Attic lights | Attic lights | 10.107.1.190 | Attic | shelly_plus_smart_bulb | light.attic | |
 | FTTH | FTTH | Network core power | 10.107.1.221 | - | critical_power | switch.network_core_power | Must never be in bulk off automations |
+
