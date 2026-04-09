@@ -154,3 +154,35 @@ mqtt:
       payload_available: "true"
       payload_not_available: "false"
       qos: 0
+
+    - name: "Corridor light relay"
+      unique_id: "switch_corridor_light_relay"
+      command_topic: "shelly1pmg4-a085e3bc7c48/rpc"
+      command_template: >-
+        {% if value == 'ON' %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":true}}{% else %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":false}}{% endif %}
+      state_topic: "shelly1pmg4-a085e3bc7c48/status/switch:0"
+      value_template: "{{ 'ON' if value_json.output == true else 'OFF' if value_json.output == false else '' }}"
+      payload_on: "ON"
+      payload_off: "OFF"
+      state_on: "ON"
+      state_off: "OFF"
+      availability_topic: "shelly1pmg4-a085e3bc7c48/online"
+      payload_available: "true"
+      payload_not_available: "false"
+      qos: 0
+
+    - name: "Hall light ceiling power"
+      unique_id: "switch_hall_light_ceiling_power"
+      command_topic: "shelly1pmg4-a085e3bd0210/rpc"
+      command_template: >-
+        {% if value == 'ON' %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":true}}{% else %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":false}}{% endif %}
+      state_topic: "shelly1pmg4-a085e3bd0210/status/switch:0"
+      value_template: "{{ 'ON' if value_json.output == true else 'OFF' if value_json.output == false else '' }}"
+      payload_on: "ON"
+      payload_off: "OFF"
+      state_on: "ON"
+      state_off: "OFF"
+      availability_topic: "shelly1pmg4-a085e3bd0210/online"
+      payload_available: "true"
+      payload_not_available: "false"
+      qos: 0

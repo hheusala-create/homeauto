@@ -122,3 +122,19 @@
                 entity_id: light.living_room_spotlight
               action: light.turn_off
   mode: restart
+
+- id: "corridor_wall_switch_toggle"
+  alias: Corridor wall switch -> Corridor lights toggle
+  description: Toggle corridor lights from Shelly wall switch state change
+  triggers:
+    - topic: shelly1pmg4-a085e3bc7c48/status/input:0
+      trigger: mqtt
+  conditions: []
+  actions:
+    - target:
+        entity_id:
+          - light.corridor_spotlight
+          - light.corridor_light_2
+          - light.corridor_light_3
+      action: light.toggle
+  mode: restart
