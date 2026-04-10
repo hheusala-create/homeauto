@@ -133,3 +133,172 @@
       - light.corridor_light_3
     action: light.toggle
   mode: restart
+- id: hall_wall_switch_to_hall_light
+  alias: Hall wall switch -> Hall ceiling light
+  description: Control Hall ceiling light from Shelly wall switch input state
+  triggers:
+  - topic: shelly1pmg4-a085e3bd0210/status/input:0
+    trigger: mqtt
+  conditions: []
+  actions:
+  - choose:
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.payload_json.state == true }}'
+      sequence:
+      - target:
+          entity_id: light.hall_light_ceiling
+        action: light.turn_on
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.payload_json.state == false }}'
+      sequence:
+      - target:
+          entity_id: light.hall_light_ceiling
+        action: light.turn_off
+  mode: restart
+- id: front_yard_wall_switch_to_front_yard_lights
+  alias: Front yard wall switch -> Front yard lights
+  description: Control Front yard lights from Shelly wall switch input state
+  triggers:
+  - topic: shelly1pmg4-a085e3bbd280/status/input:0
+    trigger: mqtt
+  conditions: []
+  actions:
+  - choose:
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.payload_json.state == true }}'
+      sequence:
+      - target:
+          entity_id: light.front_yard_lights
+        action: light.turn_on
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.payload_json.state == false }}'
+      sequence:
+      - target:
+          entity_id: light.front_yard_lights
+        action: light.turn_off
+  mode: restart
+- id: wc_wall_switch_to_wc_lights
+  alias: WC wall switch -> WC lights
+  description: Control WC lights from Shelly wall switch input state
+  triggers:
+  - topic: shelly1g4-a085e3bd81e4/status/input:0
+    trigger: mqtt
+  conditions: []
+  actions:
+  - choose:
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.payload_json.state == true }}'
+      sequence:
+      - target:
+          entity_id: light.wc_light_ceiling
+        action: light.turn_on
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.payload_json.state == false }}'
+      sequence:
+      - target:
+          entity_id: light.wc_light_ceiling
+        action: light.turn_off
+  mode: restart
+- id: office_wall_switch_to_office_light_ceiling
+  alias: Office wall switch -> Office ceiling light
+  description: Control Office ceiling light from Shelly wall switch input state
+  triggers:
+  - topic: shelly1g4-ccba97c8968c/status/input:0
+    trigger: mqtt
+  conditions: []
+  actions:
+  - choose:
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.payload_json.state == true }}'
+      sequence:
+      - target:
+          entity_id: light.office_light_ceiling
+        action: light.turn_on
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.payload_json.state == false }}'
+      sequence:
+      - target:
+          entity_id: light.office_light_ceiling
+        action: light.turn_off
+  mode: restart
+- id: laundry_room_wall_switch_to_laundry_room_light_ceiling
+  alias: Laundry room wall switch -> Laundry room ceiling light
+  description: Control Laundry room ceiling light from Shelly wall switch input state
+  triggers:
+  - topic: shelly1g4-a085e3bd8af0/status/input:0
+    trigger: mqtt
+  conditions: []
+  actions:
+  - choose:
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.payload_json.state == true }}'
+      sequence:
+      - target:
+          entity_id: light.laundry_room_light_ceiling
+        action: light.turn_on
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.payload_json.state == false }}'
+      sequence:
+      - target:
+          entity_id: light.laundry_room_light_ceiling
+        action: light.turn_off
+  mode: restart
+- id: back_yard_lights_laundry_room_wall_switch_to_back_yard_lights
+  alias: Back yard lights laundry room wall switch -> Back yard lights
+  description: Control Back yard lights from Shelly wall switch input state
+  triggers:
+  - topic: shelly1g4-a085e3c16c94/status/input:0
+    trigger: mqtt
+  conditions: []
+  actions:
+  - choose:
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.payload_json.state == true }}'
+      sequence:
+      - target:
+          entity_id: light.backyard_light_3
+        action: light.turn_on
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.payload_json.state == false }}'
+      sequence:
+      - target:
+          entity_id: light.backyard_light_3
+        action: light.turn_off
+  mode: restart
+- id: technical_room_wall_switch_to_technical_room_light_ceiling
+  alias: Technical room wall switch -> Technical room ceiling light
+  description: Control Technical room ceiling light from Shelly wall switch input
+    state
+  triggers:
+  - topic: shelly1g4-a085e3bd87d0/status/input:0
+    trigger: mqtt
+  conditions: []
+  actions:
+  - choose:
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.payload_json.state == true }}'
+      sequence:
+      - target:
+          entity_id: light.technical_room_light_ceiling
+        action: light.turn_on
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.payload_json.state == false }}'
+      sequence:
+      - target:
+          entity_id: light.technical_room_light_ceiling
+        action: light.turn_off
+  mode: restart

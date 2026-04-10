@@ -186,3 +186,211 @@ mqtt:
       payload_available: "true"
       payload_not_available: "false"
       qos: 0
+
+    - name: "Front yard light power"
+      unique_id: "switch_front_yard_light_power"
+      command_topic: "shelly1pmg4-a085e3bbd280/rpc"
+      command_template: >-
+        {% if value == 'ON' %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":true}}{% else %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":false}}{% endif %}
+      state_topic: "shelly1pmg4-a085e3bbd280/status/switch:0"
+      value_template: "{{ 'ON' if value_json.output == true else 'OFF' if value_json.output == false else '' }}"
+      payload_on: "ON"
+      payload_off: "OFF"
+      state_on: "ON"
+      state_off: "OFF"
+      availability_topic: "shelly1pmg4-a085e3bbd280/online"
+      payload_available: "true"
+      payload_not_available: "false"
+      qos: 0
+
+    - name: "WC light ceiling power"
+      unique_id: "switch_wc_light_ceiling_power"
+      command_topic: "shelly1g4-a085e3bd81e4/rpc"
+      command_template: >-
+        {% if value == 'ON' %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":true}}{% else %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":false}}{% endif %}
+      state_topic: "shelly1g4-a085e3bd81e4/status/switch:0"
+      value_template: "{{ 'ON' if value_json.output == true else 'OFF' if value_json.output == false else '' }}"
+      payload_on: "ON"
+      payload_off: "OFF"
+      state_on: "ON"
+      state_off: "OFF"
+      availability_topic: "shelly1g4-a085e3bd81e4/online"
+      payload_available: "true"
+      payload_not_available: "false"
+      qos: 0
+
+    - name: "Office light ceiling power"
+      unique_id: "switch_office_light_ceiling_power"
+      command_topic: "shelly1g4-ccba97c8968c/rpc"
+      command_template: >-
+        {% if value == 'ON' %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":true}}{% else %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":false}}{% endif %}
+      state_topic: "shelly1g4-ccba97c8968c/status/switch:0"
+      value_template: "{{ 'ON' if value_json.output == true else 'OFF' if value_json.output == false else '' }}"
+      payload_on: "ON"
+      payload_off: "OFF"
+      state_on: "ON"
+      state_off: "OFF"
+      availability_topic: "shelly1g4-ccba97c8968c/online"
+      payload_available: "true"
+      payload_not_available: "false"
+      qos: 0
+
+    - name: "Laundry room light ceiling power"
+      unique_id: "switch_laundry_room_light_ceiling_power"
+      command_topic: "shelly1g4-a085e3bd8af0/rpc"
+      command_template: >-
+        {% if value == 'ON' %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":true}}{% else %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":false}}{% endif %}
+      state_topic: "shelly1g4-a085e3bd8af0/status/switch:0"
+      value_template: "{{ 'ON' if value_json.output == true else 'OFF' if value_json.output == false else '' }}"
+      payload_on: "ON"
+      payload_off: "OFF"
+      state_on: "ON"
+      state_off: "OFF"
+      availability_topic: "shelly1g4-a085e3bd8af0/online"
+      payload_available: "true"
+      payload_not_available: "false"
+      qos: 0
+
+    - name: "Bathroom ceiling light"
+      unique_id: "switch_bathroom_light_ceiling_power"
+      command_topic: "shelly1g4-ccba97c8cbf8/rpc"
+      command_template: >-
+        {% if value == 'ON' %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":true}}{% else %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":false}}{% endif %}
+      state_topic: "shelly1g4-ccba97c8cbf8/status/switch:0"
+      value_template: "{{ 'ON' if value_json.output == true else 'OFF' if value_json.output == false else '' }}"
+      payload_on: "ON"
+      payload_off: "OFF"
+      state_on: "ON"
+      state_off: "OFF"
+      availability_topic: "shelly1g4-ccba97c8cbf8/online"
+      payload_available: "true"
+      payload_not_available: "false"
+      qos: 0
+
+    - name: "Bathroom mirror light"
+      unique_id: "switch_bathroom_light_mirror_power"
+      command_topic: "shelly1g4-a085e3bcd118/rpc"
+      command_template: >-
+        {% if value == 'ON' %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":true}}{% else %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":false}}{% endif %}
+      state_topic: "shelly1g4-a085e3bcd118/status/switch:0"
+      value_template: "{{ 'ON' if value_json.output == true else 'OFF' if value_json.output == false else '' }}"
+      payload_on: "ON"
+      payload_off: "OFF"
+      state_on: "ON"
+      state_off: "OFF"
+      availability_topic: "shelly1g4-a085e3bcd118/online"
+      payload_available: "true"
+      payload_not_available: "false"
+      qos: 0
+
+    - name: "Sauna bench light"
+      unique_id: "switch_sauna_light_bench_power"
+      command_topic: "shelly1g4-ccba97c8a044/rpc"
+      command_template: >-
+        {% if value == 'ON' %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":true}}{% else %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":false}}{% endif %}
+      state_topic: "shelly1g4-ccba97c8a044/status/switch:0"
+      value_template: "{{ 'ON' if value_json.output == true else 'OFF' if value_json.output == false else '' }}"
+      payload_on: "ON"
+      payload_off: "OFF"
+      state_on: "ON"
+      state_off: "OFF"
+      availability_topic: "shelly1g4-ccba97c8a044/online"
+      payload_available: "true"
+      payload_not_available: "false"
+      qos: 0
+
+    - name: "Sauna wall light"
+      unique_id: "switch_sauna_light_wall_power"
+      command_topic: "shelly1g4-ccba97c89804/rpc"
+      command_template: >-
+        {% if value == 'ON' %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":true}}{% else %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":false}}{% endif %}
+      state_topic: "shelly1g4-ccba97c89804/status/switch:0"
+      value_template: "{{ 'ON' if value_json.output == true else 'OFF' if value_json.output == false else '' }}"
+      payload_on: "ON"
+      payload_off: "OFF"
+      state_on: "ON"
+      state_off: "OFF"
+      availability_topic: "shelly1g4-ccba97c89804/online"
+      payload_available: "true"
+      payload_not_available: "false"
+      qos: 0
+
+    - name: "Back yard lights living room"
+      unique_id: "switch_back_yard_light_living_room_power"
+      command_topic: "shelly1g4-ccba97c8856c/rpc"
+      command_template: >-
+        {% if value == 'ON' %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":true}}{% else %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":false}}{% endif %}
+      state_topic: "shelly1g4-ccba97c8856c/status/switch:0"
+      value_template: "{{ 'ON' if value_json.output == true else 'OFF' if value_json.output == false else '' }}"
+      payload_on: "ON"
+      payload_off: "OFF"
+      state_on: "ON"
+      state_off: "OFF"
+      availability_topic: "shelly1g4-ccba97c8856c/online"
+      payload_available: "true"
+      payload_not_available: "false"
+      qos: 0
+
+    - name: "Back yard lights laundry room"
+      unique_id: "switch_back_yard_light_laundry_room_power"
+      command_topic: "shelly1g4-a085e3c16c94/rpc"
+      command_template: >-
+        {% if value == 'ON' %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":true}}{% else %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":false}}{% endif %}
+      state_topic: "shelly1g4-a085e3c16c94/status/switch:0"
+      value_template: "{{ 'ON' if value_json.output == true else 'OFF' if value_json.output == false else '' }}"
+      payload_on: "ON"
+      payload_off: "OFF"
+      state_on: "ON"
+      state_off: "OFF"
+      availability_topic: "shelly1g4-a085e3c16c94/online"
+      payload_available: "true"
+      payload_not_available: "false"
+      qos: 0
+
+    - name: "Warehouse light ceiling"
+      unique_id: "switch_warehouse_light_ceiling_power"
+      command_topic: "shelly1pmg4-a085e3bbb77c/rpc"
+      command_template: >-
+        {% if value == 'ON' %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":true}}{% else %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":false}}{% endif %}
+      state_topic: "shelly1pmg4-a085e3bbb77c/status/switch:0"
+      value_template: "{{ 'ON' if value_json.output == true else 'OFF' if value_json.output == false else '' }}"
+      payload_on: "ON"
+      payload_off: "OFF"
+      state_on: "ON"
+      state_off: "OFF"
+      availability_topic: "shelly1pmg4-a085e3bbb77c/online"
+      payload_available: "true"
+      payload_not_available: "false"
+      qos: 0
+
+    - name: "Attic light ceiling"
+      unique_id: "switch_attic_light_ceiling_power"
+      command_topic: "shelly1g4-a085e3c197b0/rpc"
+      command_template: >-
+        {% if value == 'ON' %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":true}}{% else %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":false}}{% endif %}
+      state_topic: "shelly1g4-a085e3c197b0/status/switch:0"
+      value_template: "{{ 'ON' if value_json.output == true else 'OFF' if value_json.output == false else '' }}"
+      payload_on: "ON"
+      payload_off: "OFF"
+      state_on: "ON"
+      state_off: "OFF"
+      availability_topic: "shelly1g4-a085e3c197b0/online"
+      payload_available: "true"
+      payload_not_available: "false"
+      qos: 0
+
+    - name: "Technical room light ceiling power"
+      unique_id: "switch_technical_room_light_ceiling_power"
+      command_topic: "shelly1g4-a085e3bd87d0/rpc"
+      command_template: >-
+        {% if value == 'ON' %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":true}}{% else %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":false}}{% endif %}
+      state_topic: "shelly1g4-a085e3bd87d0/status/switch:0"
+      value_template: "{{ 'ON' if value_json.output == true else 'OFF' if value_json.output == false else '' }}"
+      payload_on: "ON"
+      payload_off: "OFF"
+      state_on: "ON"
+      state_off: "OFF"
+      availability_topic: "shelly1g4-a085e3bd87d0/online"
+      payload_available: "true"
+      payload_not_available: "false"
+      qos: 0

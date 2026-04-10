@@ -120,6 +120,14 @@ profiles:
         status_notifications: true
         generic_status_update: true
 
+  fixed_light_switch_as_x:
+    applies_to_control_model:
+      - relay_only
+    notes:
+      - fixed_light
+      - user_facing_light_wrapper
+      - keep_underlying_switch_entity
+
   critical_power:
     applies_to_control_model:
       - critical_power
@@ -133,7 +141,7 @@ profiles:
     safeguards:
       exclude_from_bulk_off: true
       require_explicit_targeting: true
-      
+
   smart_bulb_only:
     applies_to_control_model:
       - smart_bulb_only
@@ -144,59 +152,59 @@ profiles:
 
 devices:
   - room: technical_room
-    area_label: "Technical room"
-    current_user_facing_light: "Technical room"
-    shelly_device: "Technical room light"
-    shelly_ip: "10.107.1.43"
-    tradfri_or_google_light: "Technical room"
+    area_label: "Technical Room"
+    current_user_facing_light: "Technical room light ceiling"
+    shelly_device: "Technical room light ceiling"
+    shelly_ip: "shelly1g4-a085e3bd87d0"
+    tradfri_or_google_light: "Technical room light ceiling"
     control_model: "shelly_plus_smart_bulb"
-    planned_ha_entity: "light.technical_room"
+    planned_ha_entity: "light.technical_room_light_ceiling"
     profile: "smart_bulb_wall_switch"
-    notes: "One Shelly + one IKEA bulb on same light"
+    notes: "Current HA automation active"
 
   - room: hall
     area_label: "Hall"
     current_user_facing_light: "Hall ceiling light"
     shelly_device: "Hall ceiling light"
-    shelly_ip: "10.107.1.124"
-    tradfri_or_google_light: "Hall Light"
+    shelly_ip: "shelly1pmg4-a085e3bd0210"
+    tradfri_or_google_light: "Hall ceiling light"
     control_model: "shelly_plus_smart_bulb"
-    planned_ha_entity: "light.hall"
+    planned_ha_entity: "light.hall_light_ceiling"
     profile: "smart_bulb_wall_switch"
-    notes: ""
+    notes: "Current HA automation active"
 
   - room: laundry_room
-    area_label: "Laundry room"
-    current_user_facing_light: "Laundry room light"
-    shelly_device: "Laundry room light"
-    shelly_ip: "10.107.1.138"
-    tradfri_or_google_light: "Laundry room"
+    area_label: "Laundry Room"
+    current_user_facing_light: "Laundry room ceiling light"
+    shelly_device: "Laundry room light ceiling"
+    shelly_ip: "shelly1g4-a085e3bd8af0"
+    tradfri_or_google_light: "Laundry room light ceiling"
     control_model: "shelly_plus_smart_bulb"
-    planned_ha_entity: "light.laundry_room"
+    planned_ha_entity: "light.laundry_room_light_ceiling"
     profile: "smart_bulb_wall_switch"
-    notes: ""
+    notes: "Current HA automation active"
 
   - room: bathroom
     area_label: "Bathroom"
-    current_user_facing_light: "Bathroom ceiling lights"
-    shelly_device: "Bathroom ceiling lights"
-    shelly_ip: "10.107.1.203"
-    tradfri_or_google_light: "Bathroom Ceiling Lights"
-    control_model: "shelly_plus_smart_bulb"
-    planned_ha_entity: "light.bathroom_ceiling"
-    profile: "smart_bulb_wall_switch"
-    notes: ""
+    current_user_facing_light: "Bathroom ceiling light"
+    shelly_device: "Bathroom ceiling light"
+    shelly_ip: "shelly1g4-ccba97c8cbf8"
+    tradfri_or_google_light: "Bathroom ceiling light"
+    control_model: "relay_only"
+    planned_ha_entity: "light.bathroom_ceiling_light"
+    profile: "relay_only_light"
+    notes: "Fixed Shelly light exposed in HA through user-facing light wrapper"
 
   - room: bathroom
     area_label: "Bathroom"
     current_user_facing_light: "Bathroom mirror light"
     shelly_device: "Bathroom mirror light"
-    shelly_ip: "10.107.1.140"
-    tradfri_or_google_light: "Bathroom Mirror Light"
-    control_model: "shelly_plus_smart_bulb"
-    planned_ha_entity: "light.bathroom_mirror"
-    profile: "smart_bulb_wall_switch"
-    notes: ""
+    shelly_ip: "shelly1g4-a085e3bcd118"
+    tradfri_or_google_light: "Bathroom mirror light"
+    control_model: "relay_only"
+    planned_ha_entity: "light.bathroom_mirror_light"
+    profile: "relay_only_light"
+    notes: "Fixed Shelly light exposed in HA through user-facing light wrapper"
 
   - room: living_room
     area_label: "Living Room"
@@ -216,7 +224,7 @@ devices:
     shelly_ip: "shelly1g4-a085e3bcdf24"
     tradfri_or_google_light: "Living Room Ceiling Spotlight"
     control_model: "shelly_plus_smart_bulb"
-    planned_ha_entity: "light.living_room_spotlight"
+    planned_ha_entity: "light.living_room_light_spotlight"
     profile: "smart_bulb_wall_switch"
     notes: "Active Shelly + smart bulb circuit; detached mode; wall switch controls light through HA automation"
 
@@ -246,21 +254,21 @@ devices:
     area_label: "Hobby Room"
     current_user_facing_light: "Hobby room light"
     shelly_device: "Hobby room light"
-    shelly_ip: "10.107.1.21"
+    shelly_ip: "shelly1g4-ccba97c89350"
     tradfri_or_google_light: "Hobby room light"
     control_model: "shelly_plus_smart_bulb"
-    planned_ha_entity: "light.hobby_room"
+    planned_ha_entity: "light.hobby_room_light_ceiling"
     profile: "smart_bulb_wall_switch"
-    notes: ""
+    notes: "Current HA automation active"
 
   - room: kitchen
     area_label: "Kitchen"
     current_user_facing_light: "Kitchen ceiling lights"
     shelly_device: "Kitchen ceiling lights"
-    shelly_ip: "10.107.1.231"
+    shelly_ip: "shelly1g4-a085e3bd891c"
     tradfri_or_google_light: "Kitchen Ceiling Light"
     control_model: "shelly_plus_smart_bulb"
-    planned_ha_entity: "light.kitchen_ceiling"
+    planned_ha_entity: "light.kitchen_lights"
     profile: "smart_bulb_wall_switch"
     notes: "4 individual TRÅDFRI ceiling bulbs controlled together through HA group"
 
@@ -268,7 +276,7 @@ devices:
     area_label: "Kitchen"
     current_user_facing_light: "Kitchen desk lights"
     shelly_device: "Kitchen desk lights"
-    shelly_ip: "10.107.1.24"
+    shelly_ip: "shelly1pmg4-a085e3bcfb14"
     tradfri_or_google_light: "Kitchen led"
     control_model: "relay_only"
     planned_ha_entity: "light.kitchen_led"
@@ -277,10 +285,10 @@ devices:
 
   - room: kitchen
     area_label: "Kitchen"
-    current_user_facing_light: "Breakfast Cabin Light"
-    shelly_device: "Kitchen breakfast cabinet socket"
-    shelly_ip: "10.107.1.75"
-    tradfri_or_google_light: "Breakfast Cabin Light"
+    current_user_facing_light: "Breakfast cabin light"
+    shelly_device: "Kitchen breakfast cabinet light"
+    shelly_ip: "shelly1g4-ccba97c89b84"
+    tradfri_or_google_light: "Breakfast cabinet"
     control_model: "relay_only"
     planned_ha_entity: "light.breakfast_cabin"
     profile: "relay_only_light"
@@ -290,89 +298,111 @@ devices:
     area_label: "Sauna"
     current_user_facing_light: "Sauna wall light"
     shelly_device: "Sauna wall light"
-    shelly_ip: "10.107.1.130"
-    tradfri_or_google_light: "Sauna Wall Light"
-    control_model: "shelly_plus_smart_bulb"
-    planned_ha_entity: "light.sauna_wall"
-    profile: "smart_bulb_wall_switch"
-    notes: ""
+    shelly_ip: "shelly1g4-ccba97c89804"
+    tradfri_or_google_light: "Sauna wall light"
+    control_model: "relay_only"
+    planned_ha_entity: "light.sauna_wall_light"
+    profile: "relay_only_light"
+    notes: "Fixed Shelly light exposed in HA through user-facing light wrapper"
 
   - room: sauna
     area_label: "Sauna"
-    current_user_facing_light: "Sauna bench lights"
-    shelly_device: "Sauna bench lights"
-    shelly_ip: "10.107.1.196"
-    tradfri_or_google_light: "Sauna Bench Lights"
-    control_model: "shelly_plus_smart_bulb"
-    planned_ha_entity: "light.sauna_bench"
-    profile: "smart_bulb_wall_switch"
-    notes: ""
+    current_user_facing_light: "Sauna bench light"
+    shelly_device: "Sauna bench light"
+    shelly_ip: "shelly1g4-ccba97c8a044"
+    tradfri_or_google_light: "Sauna bench light"
+    control_model: "relay_only"
+    planned_ha_entity: "light.sauna_bench_light"
+    profile: "relay_only_light"
+    notes: "Fixed Shelly light exposed in HA through user-facing light wrapper"
 
   - room: bedroom
     area_label: "Bedroom"
     current_user_facing_light: "Bedroom ceiling lights"
     shelly_device: "Bedroom ceiling lights"
-    shelly_ip: "10.107.1.77"
+    shelly_ip: "shelly1g4-ccba97c888c8"
     tradfri_or_google_light: "Bedroom Lights"
     control_model: "shelly_plus_smart_bulb"
-    planned_ha_entity: "light.bedroom_ceiling"
+    planned_ha_entity: "light.bedroom_lights"
     profile: "smart_bulb_wall_switch"
-    notes: ""
-    
+    notes: "Current HA automation active"
+
   - room: closet
     area_label: "Closet"
     current_user_facing_light: "Walk-in closet light"
     shelly_device: "Walk-in closet light"
-    shelly_ip: "10.107.1.192"
+    shelly_ip: "shelly1g4-ccba97c8a17c"
     tradfri_or_google_light: "Walkin closet"
     control_model: "shelly_plus_smart_bulb"
-    planned_ha_entity: "light.walk_in_closet"
+    planned_ha_entity: "light.closet_light_ceiling"
     profile: "smart_bulb_wall_switch"
     notes: "One Shelly + one IKEA bulb in closet"
-    
+
   - room: wc
     area_label: "WC"
     current_user_facing_light: "WC ceiling light"
     shelly_device: "WC ceiling light"
-    shelly_ip: "10.107.1.184"
-    tradfri_or_google_light: "Wc Ceiling Light"
+    shelly_ip: "shelly1g4-a085e3bd81e4"
+    tradfri_or_google_light: "WC light ceiling"
     control_model: "shelly_plus_smart_bulb"
-    planned_ha_entity: "light.wc"
+    planned_ha_entity: "light.wc_light_ceiling"
     profile: "smart_bulb_wall_switch"
-    notes: ""
+    notes: "Current HA automation active"
 
   - room: front_yard
     area_label: "Front Yard"
     current_user_facing_light: "Front yard lights"
     shelly_device: "Front yard lights"
-    shelly_ip: "10.107.1.78"
+    shelly_ip: "shelly1pmg4-a085e3bbd280"
     tradfri_or_google_light: "Front yard lights"
     control_model: "shelly_plus_smart_bulb"
-    planned_ha_entity: "light.front_yard"
+    planned_ha_entity: "light.front_yard_lights"
     profile: "smart_bulb_wall_switch"
-    notes: ""
+    notes: "Current HA automation active"
 
   - room: backyard
     area_label: "Backyard"
-    current_user_facing_light: "Back yard left light"
-    shelly_device: "Back yard left light"
-    shelly_ip: "10.107.1.90"
-    tradfri_or_google_light: "Back Yard Lights"
+    current_user_facing_light: "Back yard lights living room"
+    shelly_device: "Back yard lights living room"
+    shelly_ip: "shelly1g4-ccba97c8856c"
+    tradfri_or_google_light: "Back yard lights living room"
+    control_model: "relay_only"
+    planned_ha_entity: "light.back_yard_lights_living_room"
+    profile: "relay_only_light"
+    notes: "Mixed circuit; includes a normal yard lamp; detached mode not suitable at the moment"
+
+  - room: backyard
+    area_label: "Backyard"
+    current_user_facing_light: "Back yard lights laundry room"
+    shelly_device: "Back yard lights laundry room"
+    shelly_ip: "shelly1g4-a085e3c16c94"
+    tradfri_or_google_light: "Back yard lights laundry room"
     control_model: "shelly_plus_smart_bulb"
-    planned_ha_entity: "light.back_yard"
+    planned_ha_entity: "light.backyard_light_3"
     profile: "smart_bulb_wall_switch"
-    notes: "Needs grouping confirmation"
+    notes: "Current HA automation target is the renamed backyard TRÅDFRI light"
 
   - room: attic
     area_label: "Attic"
-    current_user_facing_light: "Attic lights"
-    shelly_device: "Attic lights"
-    shelly_ip: "10.107.1.190"
+    current_user_facing_light: "Attic light ceiling"
+    shelly_device: "Attic light ceiling"
+    shelly_ip: "shelly1g4-a085e3c197b0"
     tradfri_or_google_light: "Attic"
-    control_model: "shelly_plus_smart_bulb"
-    planned_ha_entity: "light.attic"
-    profile: "smart_bulb_wall_switch"
-    notes: ""
+    control_model: "relay_only"
+    planned_ha_entity: "light.attic_light_ceiling"
+    profile: "relay_only_light"
+    notes: "Practical exception; Shelly + TRÅDFRI exists underneath, but current user-facing implementation is simplified"
+
+  - room: warehouse
+    area_label: "Warehouse"
+    current_user_facing_light: "Warehouse light ceiling"
+    shelly_device: "Warehouse light ceiling"
+    shelly_ip: "shelly1pmg4-a085e3bbb77c"
+    tradfri_or_google_light: "Warehouse light ceiling"
+    control_model: "relay_only"
+    planned_ha_entity: "light.warehouse_light_ceiling"
+    profile: "relay_only_light"
+    notes: "Fixed Shelly light exposed in HA through user-facing light wrapper"
 
   - room: technical_room
     area_label: "FTTH"

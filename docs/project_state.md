@@ -1,6 +1,6 @@
 # Project State
 
-Last reviewed: 2026-04-09
+Last reviewed: 2026-04-10
 
 ## Purpose
 
@@ -98,7 +98,7 @@ Operational rule:
 - New Shelly entities must be named correctly at creation time to avoid later cleanup work.
 - Avoid temporary names like `*_relay` when the standard target name is already known.
 
-These are defined at and need to be respected always: 
+These are defined at and need to be respected always:
 https://github.com/hheusala-create/homeauto/blob/main/docs/standards/entity_name_mapping.md
 https://github.com/hheusala-create/homeauto/blob/main/docs/standards/entity_naming_standard.md
 
@@ -119,7 +119,6 @@ Operational rule:
 - use final naming immediately instead of temporary relay-style names
 - update `configuration.yaml` and `automations.yaml` together when entity names change
 - for MQTT switches, the visible `name` field must also preserve the light/socket distinction, not only `unique_id`
-
 
 ## ChatGPT code snippet formatting rule for repo guidance
 
@@ -207,12 +206,7 @@ This rule should be treated as locked process guidance for future Shelly rollout
 
 ## Current Shelly migration status
 
-First Shelly MQTT YAML pilot is working.
-
-Pilot device:
-- `Harrastushuone valo`
-- Shelly 1 Gen4
-- Connected to Mosquitto through Home Assistant at `10.107.1.101`
+The MQTT YAML rollout has progressed from the pilot stage to a broader active-lighting baseline.
 
 Confirmed working pattern for Shelly Gen4:
 - command topic: `<device_id>/rpc`
@@ -339,7 +333,7 @@ Living room lighting has now been clarified into active lights and waiting Shell
 
 ### Active now
 
-- `light.living_room_spotlight`
+- `light.living_room_light_spotlight`
   - control model: `shelly_plus_smart_bulb`
   - Shelly device ID: `shelly1g4-a085e3bcdf24`
   - Shelly is configured for detached smart-bulb wall-switch use
@@ -436,33 +430,6 @@ Rationale:
 - Test interaction with Shelly-based always-powered lighting model
 - Decide later whether IKEA stays on DIRIGERA Matter bridge or moves to direct Zigbee in HA
 
-## Locked process rule for future sessions
-
-When repo contents matter, work from the repo or the relevant files.
-Do not recreate architecture, naming, mappings, or standards from memory if the current repo is not available.
-
-## Documents to read first
-
-Start with these when re-entering the project:
-1. `docs/project_state.md`
-2. `docs/architecture/core_principles.md`
-3. `docs/architecture/layers.md`
-4. `docs/architecture/system_architecture.md`
-5. `docs/architecture/remote_access.md`
-6. relevant files under `docs/mapping/` and `docs/standards/`
-
-## Notes
-
-- Secrets such as tokens, private keys, WireGuard client configs, and exported QR/config material must not be committed to git.
-- DuckDNS hostname may be documented.
-- DuckDNS token must be stored outside the repo.
-- Home Assistant backups should be taken before further Shelly migration steps.
-- The GitHub repository is the canonical source of truth for this project.
-- Windows, WSL, Termux, and other local repositories are working copies only.
-- Google Drive and exported files are mirror or access copies only.
-- Changes are not authoritative until they are committed and pushed to GitHub.
-- If any copy conflicts with GitHub, GitHub wins.
-
 ## Current Home Assistant area baseline
 
 Home Assistant Areas have now been created manually in the UI as the current room baseline.
@@ -497,3 +464,102 @@ Important mapping rule:
 - does not rename IKEA / Google Home names
 - does not replace existing mapping tables
 - old names remain preserved through mapping documents and aliases until any later controlled cleanup
+
+## Current fixed-Shelly light exposure pattern
+
+A new practical pattern is now in use for fixed/non-smart Shelly-controlled lights.
+
+Pattern:
+- keep the YAML-managed MQTT relay as the technical source entity
+- expose a user-facing `light.*` entity through Home Assistant `switch_as_x`
+- use the `light.*` wrapper in normal UI / voice-facing use
+- keep the underlying `switch.*` entity as the technical relay layer
+
+Reason:
+- these circuits are real lights from the user perspective
+- this keeps UI and voice use more natural
+- while still preserving the technical relay model underneath
+
+Current examples include:
+- bathroom ceiling light
+- bathroom mirror light
+- sauna bench light
+- sauna wall light
+- warehouse light ceiling
+- back yard lights living room
+- attic light ceiling
+
+Important rule:
+- this does not replace the technical relay model in documentation
+- the relay remains the electrical truth layer
+- the `light.*` wrapper is a user-facing abstraction
+
+## Current backyard split decision
+
+Back yard lighting is now explicitly split into two separately documented circuits:
+
+1. Back yard lights living room
+2. Back yard lights laundry room
+
+Current decisions:
+
+Back yard lights living room:
+- control model: `relay_only`
+- reason: mixed circuit
+- this branch currently includes a normal non-TRÅDFRI lamp in the yard
+- because of that, detached smart-bulb handling is not currently suitable
+- this branch must currently cut power normally
+
+Back yard lights laundry room:
+- control model: `shelly_plus_smart_bulb`
+- current Home Assistant automation target is the currently used backyard light entity
+- current implementation should be documented exactly as implemented in HA
+
+## Current attic exception
+
+Attic is currently treated as a practical exception.
+
+Reality:
+- attic has Shelly + TRÅDFRI behind it
+
+Current decision:
+- the user-facing implementation is intentionally simplified
+- attic is currently exposed and used effectively as a Shelly-only light
+- smart-bulb complexity is intentionally hidden because the space is visited rarely
+- this is considered acceptable for the current phase
+
+## Current cleanup reminders from active HA state
+
+The active HA state shows a few cleanup items that should be tracked:
+
+- remove duplicate `Back yard lights laundry room` MQTT block from configuration
+- review typo / legacy entity remnants such as `light.back_your_lights`
+- review still-generic Matter light names such as `light.light_15` to `light.light_18`
+- normalize any remaining user-facing names that still look duplicated or awkward
+
+## Locked process rule for future sessions
+
+When repo contents matter, work from the repo or the relevant files.
+Do not recreate architecture, naming, mappings, or standards from memory if the current repo is not available.
+
+## Documents to read first
+
+Start with these when re-entering the project:
+1. `docs/project_state.md`
+2. `docs/architecture/core_principles.md`
+3. `docs/architecture/layers.md`
+4. `docs/architecture/system_architecture.md`
+5. `docs/architecture/remote_access.md`
+6. relevant files under `docs/mapping/` and `docs/standards/`
+
+## Notes
+
+- Secrets such as tokens, private keys, WireGuard client configs, and exported QR/config material must not be committed to git.
+- DuckDNS hostname may be documented.
+- DuckDNS token must be stored outside the repo.
+- Home Assistant backups should be taken before further Shelly migration steps.
+- The GitHub repository is the canonical source of truth for this project.
+- Windows, WSL, Termux, and other local repositories are working copies only.
+- Google Drive and exported files are mirror or access copies only.
+- Changes are not authoritative until they are committed and pushed to GitHub.
+- If any copy conflicts with GitHub, GitHub wins.

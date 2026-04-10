@@ -26,7 +26,7 @@ Naming rules:
 | 10.107.1.24 | shelly1pmg4-a085e3bcfb14 | Kitchen desk lights | Kitchen desk lights | Kitchen desk lights | light.kitchen_led | shelly_switch_light | Dedicated socket-fed kitchen LED lighting circuit; Shelly 1PM Gen4; YAML-managed MQTT relay active |
 | 10.107.1.33 |  | Living room ceiling spotlight | Olohuone kattovalo spotti | Living Room Ceiling Spotlight | light.living_room_ceiling_spotlight | shelly_switch_light | |
 | 10.107.1.35 |  | Laundry room wall socket | Kodinhoitohuone seinäpistoke | Laundry room wall socket | switch.laundry_room_wall_socket | shelly_socket | |
-| 10.107.1.43 |  | Technical room light | Technical room | Technical room | light.technical_room_light | shelly_switch_light | Shelly controls technical room light; one IKEA bulb and one Shelly control same light |
+| 10.107.1.43 | shelly1g4-a085e3bd87d0 | Technical room light ceiling | Technical room | Technical room | switch.technical_room_light_ceiling_power | shelly_switch_light | Shelly + TRÅDFRI circuit; YAML-managed MQTT relay active; wall-switch automation active |
 | 10.107.1.48 |  | Laundry room table socket | Kodinhoitohuone pöytäpistoke | Laundry room table socket | switch.laundry_room_table_socket | shelly_socket | Table in laundry room |
 | 10.107.1.52 |  | Office right socket | Työhuone oikea pistorasia | Office right socket | switch.office_right_socket | shelly_socket | |
 | 10.107.1.56 |  | Living room window light | Olohuone ikkunavalo | Living Room Window Light | light.living_room_window_light | shelly_switch_light | |
@@ -34,28 +34,28 @@ Naming rules:
 | 10.107.1.72 |  | TV electronics | Televisio jne | Television etc | switch.tv_electronics | shelly_socket | TV / electronics power |
 | 10.107.1.75 | shelly1g4-ccba97c89b84 | Kitchen breakfast cabinet light | Aamiaiskaappi | Breakfast cabinet | light.breakfast_cabin | shelly_switch_light | Dedicated socket-fed breakfast cabinet LED lighting circuit; YAML-managed MQTT relay active |
 | 10.107.1.77 | shelly1g4-ccba97c888c8 | Bedroom ceiling lights | Makuuhuone kattovalot | Bedroom Lights | light.bedroom_ceiling_lights | shelly_switch_light | |
-| 10.107.1.78 |  | Front yard lights | Etupiha valot | Front yard lights | light.front_yard_lights | shelly_switch_light | |
+| 10.107.1.78 | shelly1pmg4-a085e3bbd280 | Front yard lights | Etupiha valot | Front yard lights | switch.front_yard_light_power | shelly_switch_light | Shelly + TRÅDFRI circuit; YAML-managed MQTT relay active; wall-switch automation active |
 | 10.107.1.86 |  | Living room ceiling light | Olohuone kattovalo | Living Room Ceiling Light | light.living_room_ceiling_light | shelly_switch_light | |
-| 10.107.1.90 |  | Back yard left light | Takapihan valo vasen | Back Yard Lights | light.back_yard_left_light | shelly_switch_light | |
+| 10.107.1.90 |  | Back yard left light | Takapihan valo vasen | Back Yard Lights | light.back_yard_left_light | shelly_switch_light | Legacy inventory row; newer backyard split documented separately below |
 | 10.107.1.98 |  | Laundry room lower cabinet socket | Kodinhoitohuone alakaappi | Laundry room lower cabinet socket | switch.laundry_room_lower_cabinet_socket | shelly_socket | |
 | 10.107.1.118 |  | Corridor office socket | Käytävä työhuone pistorasia | Corridor office socket | switch.corridor_office_socket | shelly_socket | Socket near office/corridor area |
-| 10.107.1.124 |  | Hall ceiling light | Eteinen kattovalo | Hall ceiling light | light.hall_ceiling_light | shelly_switch_light | |
-| 10.107.1.130 |  | Sauna wall light | Sauna seinävalo | Sauna Wall Light | light.sauna_wall_light | shelly_switch_light | |
+| 10.107.1.124 | shelly1pmg4-a085e3bd0210 | Hall ceiling light | Eteinen kattovalo | Hall ceiling light | switch.hall_light_ceiling_power | shelly_switch_light | Shelly + TRÅDFRI circuit; YAML-managed MQTT relay active; wall-switch automation active |
+| 10.107.1.130 | shelly1g4-ccba97c89804 | Sauna wall light | Sauna seinävalo | Sauna Wall Light | switch.sauna_light_wall_power | shelly_switch_light | Fixed light; exposed in HA also through user-facing light wrapper |
 | 10.107.1.137 |  | Office door socket | Työhuone Ovi pistorasia | Office door socket | switch.office_door_socket | shelly_socket | |
-| 10.107.1.138 |  | Laundry room light | Kodinhoitohuone valo | Laundry room light | light.laundry_room_light | shelly_switch_light | |
-| 10.107.1.140 |  | Bathroom mirror light | Kylpyhuone peilivalo | Bathroom Mirror Light | light.bathroom_mirror_light | shelly_switch_light | |
-| 10.107.1.143 |  | Office ceiling light | Työhuone kattovalo | Office Ceiling Light | light.office_ceiling_light | shelly_switch_light | |
+| 10.107.1.138 | shelly1g4-a085e3bd8af0 | Laundry room ceiling light | Kodinhoitohuone valo | Laundry room light | switch.laundry_room_light_ceiling_power | shelly_switch_light | Shelly + TRÅDFRI circuit; YAML-managed MQTT relay active; wall-switch automation active |
+| 10.107.1.140 | shelly1g4-a085e3bcd118 | Bathroom mirror light | Kylpyhuone peilivalo | Bathroom Mirror Light | switch.bathroom_light_mirror_power | shelly_switch_light | Fixed light; exposed in HA also through user-facing light wrapper |
+| 10.107.1.143 | shelly1g4-ccba97c8968c | Office ceiling light | Työhuone kattovalo | Office Ceiling Light | switch.office_light_ceiling_power | shelly_switch_light | Shelly + TRÅDFRI circuit; YAML-managed MQTT relay active; wall-switch automation active |
 | 10.107.1.164 |  | Bedroom 2 socket | Makuuhuone 2 pistorasia | Bedroom 2 socket | switch.bedroom_2_socket | shelly_socket | |
 | 10.107.1.168 |  | Terrace light | Terassivalo | Terrace light | light.terrace_light | shelly_switch_light | |
 | 10.107.1.179 |  | Front yard outdoor socket | Etupiha pistorasia | Front yard outdoor socket | switch.front_yard_outdoor_socket | shelly_socket | Outside socket at front of house |
 | 10.107.1.180 |  | Kitchen counter socket | Keittiö työpöytä pistorasia | Kitchen counter socket | switch.kitchen_counter_socket | shelly_socket | |
-| 10.107.1.184 |  | WC ceiling light | Wc kattovalo | WC Ceiling Light | light.wc_ceiling_light | shelly_switch_light | |
-| 10.107.1.190 |  | Attic lights | Ullakkovalot | Attic lights | light.attic_lights | shelly_switch_light | |
+| 10.107.1.184 | shelly1g4-a085e3bd81e4 | WC ceiling light | Wc kattovalo | WC Ceiling Light | switch.wc_light_ceiling_power | shelly_switch_light | Shelly + TRÅDFRI circuit; YAML-managed MQTT relay active; wall-switch automation active |
+| 10.107.1.190 | shelly1g4-a085e3c197b0 | Attic light ceiling | Ullakkovalot | Attic lights | switch.attic_light_ceiling_power | shelly_switch_light | Practical exception: Shelly + TRÅDFRI exists underneath, but user-facing implementation is intentionally simplified to Shelly-only style; exposed in HA through light wrapper |
 | 10.107.1.191 |  | Bedroom door socket | Makuuhuone Ovi pistorasia | Bedroom door socket | switch.bedroom_door_socket | shelly_socket | |
 | 10.107.1.192 | shelly1g4-ccba97c8a17c | Walk-in closet light | Walkin closet | Walkin closet | light.walk_in_closet | shelly_switch_light | Confirmed Shelly + one IKEA bulb in closet |
 | 10.107.1.195 |  | Laundry room backyard door socket | Kodinhoitohuone ulko-oven pistorasia | Laundry room backyard door socket | switch.laundry_room_backyard_door_socket | shelly_socket | Socket next to backyard/outside door |
-| 10.107.1.196 |  | Sauna bench lights | Sauna laudevalot | Sauna Bench Lights | light.sauna_bench_lights | shelly_switch_light | |
-| 10.107.1.203 |  | Bathroom ceiling lights | Kylpyhuone kattovalo | Bathroom Ceiling Lights | light.bathroom_ceiling_lights | shelly_switch_light | |
+| 10.107.1.196 | shelly1g4-ccba97c8a044 | Sauna bench light | Sauna laudevalot | Sauna Bench Lights | switch.sauna_light_bench_power | shelly_switch_light | Fixed light; exposed in HA also through user-facing light wrapper |
+| 10.107.1.203 | shelly1g4-ccba97c8cbf8 | Bathroom ceiling light | Kylpyhuone kattovalo | Bathroom Ceiling Lights | switch.bathroom_light_ceiling_power | shelly_switch_light | Fixed light; exposed in HA also through user-facing light wrapper |
 | 10.107.1.204 |  | Bathroom cabinet socket | Kylpyhuone kaappipistoke | Bathroom cabinet socket | switch.bathroom_cabinet_socket | shelly_socket | |
 | 10.107.1.207 |  | Bathroom counter socket | Kylpyhuone pöytäpistoke | Bathroom counter socket | switch.bathroom_counter_socket | shelly_socket | |
 | 10.107.1.221 |  | Network core power | Ftth | FTTH | switch.network_core_power | shelly_power_critical | Critical connectivity device; router + fiber chain behind this |
@@ -65,11 +65,13 @@ Naming rules:
 | 10.107.1.228 |  | Corridor lights | Käytävä valot | Corridor lights | light.corridor_lights | shelly_switch_light | |
 | 10.107.1.231 | shelly1g4-a085e3bd891c | Kitchen ceiling lights | Keittiö kattovalot | Kitchen Ceiling Light | light.kitchen_ceiling_lights | shelly_switch_light | |
 | 10.107.1.232 |  | Hobby room socket | Harrastushuone pistorasia | Hobby room socket | switch.hobby_room_socket | shelly_socket | |
-| 10.107.1.251 |  | Storage light | Varasto valo | Storage light | light.storage_light | shelly_switch_light | |
+| 10.107.1.251 | shelly1pmg4-a085e3bbb77c | Warehouse light ceiling | Varasto valo | Storage light | switch.warehouse_light_ceiling_power | shelly_switch_light | Fixed light; exposed in HA also through user-facing light wrapper |
 | - | - | Living room wall light | - | Living room wall light | light.living_room_wall | smart_bulb_only | TRÅDFRI bulb in socket; no Shelly and no wall switch |
 | - | shelly1g4-a085e3bcdf24 | Living room spotlight | Living room ceiling spotlight | Living Room Ceiling Spotlight | light.living_room_spotlight | shelly_switch_light | Active Shelly + smart bulb circuit; detached mode; wall switch controls light through HA automation |
 | - | shelly1g4-a085e3c16eec | Living room window light | Olohuone ikkunavalo | Living Room Window Light | light.living_room_window | shelly_switch_light | Shelly present in MQTT; relay_only for now; no final lamp decision yet |
 | - | shelly1g4-ccba97c89790 | Living room ceiling light | Olohuone kattovalo | Living Room Ceiling Light | light.living_room_ceiling | shelly_switch_light | Shelly present in MQTT; relay_only for now; no final lamp decision yet |
+| - | shelly1g4-ccba97c8856c | Back yard lights living room | - | Back yard lights living room | switch.back_yard_light_living_room_power | shelly_switch_light | Relay-only mixed circuit; includes normal non-TRÅDFRI lamp; must currently cut power normally; exposed in HA also through user-facing light wrapper |
+| - | shelly1g4-a085e3c16c94 | Back yard lights laundry room | - | Back yard lights laundry room | switch.back_yard_light_laundry_room_power | shelly_switch_light | Shelly + TRÅDFRI circuit; current HA automation targets `light.backyard_light_3` |
 
 ---
 
@@ -84,8 +86,11 @@ Laundry room has:
 `10.107.1.195` is the socket right next to the backyard/outside door.
 
 ### Technical room
-`10.107.1.43` is the Shelly for the technical room light.
-There is one IKEA Tradfri bulb and one Shelly controlling the same light.
+The earlier technical room inventory row used older incomplete metadata.
+The currently active Shelly mapping in Home Assistant uses:
+- MQTT device ID: `shelly1g4-a085e3bd87d0`
+- technical relay entity: `switch.technical_room_light_ceiling_power`
+- wall-switch automation active
 
 ### FTTH
 `10.107.1.221` is the critical FTTH Shelly.
@@ -213,7 +218,6 @@ Therefore:
 
 ---
 
-
 ## Naming policy during migration
 
 - Shelly device names are NOT changed during MQTT rollout
@@ -239,3 +243,20 @@ Do not switch these MQTT relay entities to a `true/false` state-mapping model.
 Important distinction:
 - YAML-managed MQTT relay entities use `ON/OFF`
 - Shelly input automations may still use `trigger.payload_json.state == true/false`
+
+### Fixed-light wrapper pattern now in active use
+
+Some fixed Shelly-controlled lights are now exposed in Home Assistant through a `switch_as_x` light wrapper.
+
+Meaning:
+- technical relay remains the MQTT `switch.*` entity
+- user-facing everyday control uses `light.*`
+
+Current examples:
+- bathroom ceiling light
+- bathroom mirror light
+- sauna bench light
+- sauna wall light
+- warehouse light ceiling
+- back yard lights living room
+- attic light ceiling
