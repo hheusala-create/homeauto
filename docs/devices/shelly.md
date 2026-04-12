@@ -47,20 +47,15 @@ Naming rules:
 | 10.107.1.143 | shelly1g4-ccba97c8968c | Office ceiling light | Työhuone kattovalo | Office Ceiling Light | switch.office_light_ceiling_power | shelly_switch_light | Shelly + TRÅDFRI circuit; YAML-managed MQTT relay active; wall-switch automation active |
 | 10.107.1.164 |  | Bedroom 2 socket | Makuuhuone 2 pistorasia | Bedroom 2 socket | switch.bedroom_2_socket | shelly_socket | |
 | 10.107.1.168 |  | Terrace light | Terassivalo | Terrace light | light.terrace_light | shelly_switch_light | |
-| 10.107.1.179 |  | Front yard outdoor socket | Etupiha pistorasia | Front yard outdoor socket | switch.front_yard_outdoor_socket | shelly_socket | Outside socket at front of house |
-| 10.107.1.180 |  | Kitchen counter socket | Keittiö työpöytä pistorasia | Kitchen counter socket | switch.kitchen_counter_socket | shelly_socket | |
-| 10.107.1.184 | shelly1g4-a085e3bd81e4 | WC ceiling light | Wc kattovalo | WC Ceiling Light | switch.wc_light_ceiling_power | shelly_switch_light | Shelly + TRÅDFRI circuit; YAML-managed MQTT relay active; wall-switch automation active |
-| 10.107.1.190 | shelly1g4-a085e3c197b0 | Attic light ceiling | Ullakkovalot | Attic lights | switch.attic_light_ceiling_power | shelly_switch_light | Practical exception: Shelly + TRÅDFRI exists underneath, but user-facing implementation is intentionally simplified to Shelly-only style; exposed in HA through light wrapper |
-| 10.107.1.191 |  | Bedroom door socket | Makuuhuone Ovi pistorasia | Bedroom door socket | switch.bedroom_door_socket | shelly_socket | |
+| 10.107.1.179 |  | Front yard outdoor socket | Etupiha pistorasia | Front yard outdoor socket | switch.front_yard_outdoor_socket | shelly_socket | Outside socket at front of house ||
+| 10.107.1.190 | shelly1g4-a085e3c197b0 | Attic light ceiling | Ullakkovalot | Attic lights | switch.attic_light_ceiling_power | shelly_switch_light | Practical exception: Shelly + TRÅDFRI exists underneath, but user-facing implementation is intentionally simplified to Shelly-only style; exposed in HA through light wrapper | |
 | 10.107.1.192 | shelly1g4-ccba97c8a17c | Walk-in closet light | Walkin closet | Walkin closet | light.walk_in_closet | shelly_switch_light | Confirmed Shelly + one IKEA bulb in closet |
 | 10.107.1.195 |  | Laundry room backyard door socket | Kodinhoitohuone ulko-oven pistorasia | Laundry room backyard door socket | switch.laundry_room_backyard_door_socket | shelly_socket | Socket next to backyard/outside door |
 | 10.107.1.196 | shelly1g4-ccba97c8a044 | Sauna bench light | Sauna laudevalot | Sauna Bench Lights | switch.sauna_light_bench_power | shelly_switch_light | Fixed light; exposed in HA also through user-facing light wrapper |
-| 10.107.1.203 | shelly1g4-ccba97c8cbf8 | Bathroom ceiling light | Kylpyhuone kattovalo | Bathroom Ceiling Lights | switch.bathroom_light_ceiling_power | shelly_switch_light | Fixed light; exposed in HA also through user-facing light wrapper |
-| 10.107.1.204 |  | Bathroom cabinet socket | Kylpyhuone kaappipistoke | Bathroom cabinet socket | switch.bathroom_cabinet_socket | shelly_socket | |
+| 10.107.1.203 | shelly1g4-ccba97c8cbf8 | Bathroom ceiling light | Kylpyhuone kattovalo | Bathroom Ceiling Lights | switch.bathroom_light_ceiling_power | shelly_switch_light | Fixed light; exposed in HA also through user-facing light wrapper | |
 | 10.107.1.207 |  | Bathroom counter socket | Kylpyhuone pöytäpistoke | Bathroom counter socket | switch.bathroom_counter_socket | shelly_socket | |
 | 10.107.1.221 |  | Network core power | Ftth | FTTH | switch.network_core_power | shelly_power_critical | Critical connectivity device; router + fiber chain behind this |
 | 10.107.1.222 |  | Bedroom left sockets | Makuuhuone vasemmat pistorasiat | Bedroom left sockets | switch.bedroom_left_sockets | shelly_socket | |
-| 10.107.1.223 |  | Unresolved real Shelly device | Unknown | Unknown | unresolved.10_107_1_223 | unresolved_real_device | Real device from verified 45-device scan; still needs identification |
 | 10.107.1.227 |  | Bedroom right bed socket | Makuuhuone sänky oikea | Bedroom right bed socket | switch.bedroom_right_bed_socket | shelly_socket | |
 | 10.107.1.228 |  | Corridor lights | Käytävä valot | Corridor lights | light.corridor_lights | shelly_switch_light | |
 | 10.107.1.231 | shelly1g4-a085e3bd891c | Kitchen ceiling lights | Keittiö kattovalot | Kitchen Ceiling Light | light.kitchen_ceiling_lights | shelly_switch_light | |
@@ -71,9 +66,90 @@ Naming rules:
 | - | shelly1g4-a085e3c16eec | Living room window light | Olohuone ikkunavalo | Living Room Window Light | light.living_room_window | shelly_switch_light | Shelly present in MQTT; relay_only for now; no final lamp decision yet |
 | - | shelly1g4-ccba97c89790 | Living room ceiling light | Olohuone kattovalo | Living Room Ceiling Light | light.living_room_ceiling | shelly_switch_light | Shelly present in MQTT; relay_only for now; no final lamp decision yet |
 | - | shelly1g4-ccba97c8856c | Back yard lights living room | - | Back yard lights living room | switch.back_yard_light_living_room_power | shelly_switch_light | Relay-only mixed circuit; includes normal non-TRÅDFRI lamp; must currently cut power normally; exposed in HA also through user-facing light wrapper |
-| - | shelly1g4-a085e3c16c94 | Back yard lights laundry room | - | Back yard lights laundry room | switch.back_yard_light_laundry_room_power | shelly_switch_light | Shelly + TRÅDFRI circuit; current HA automation targets `light.backyard_light_3` |
+| - | shelly1g4-a085e3c16c94 | Back yard lights laundry room | - | Back yard lights laundry room | switch.back_yard_light_laundry_room_power | shelly_switch_light | Shelly + TRÅDFRI circuit; current HA automation targets `light.backyard_light_3` | | 10.107.1.181 | shelly1pmg4-a085e3bc8c14 | Kitchen counter socket | Keittiö työpöytä pistorasia | Kitchen counter socket | switch.kitchen_counter_socket | shelly_socket | Current IP corrected from latest full scan; older documented IP was 10.107.1.180 |
+| 10.107.1.185 | shelly1g4-a085e3bd81e4 | WC ceiling light | Wc kattovalo | WC Ceiling Light | switch.wc_light_ceiling_power | shelly_switch_light | Shelly + TRÅDFRI circuit; YAML-managed MQTT relay active; wall-switch automation active; current IP corrected from latest full scan |
+| 10.107.1.192 | shelly1g4-a085e3c18bb4 | Bedroom door socket | Makuuhuone Ovi pistorasia | Bedroom door socket | switch.bedroom_door_socket | shelly_socket | Current IP corrected from latest full scan; older documented IP was 10.107.1.191 |
+| 10.107.1.203 | shelly1g4-a085e3bcd294 | Bathroom cabinet socket | Kylpyhuone kaappipistoke | Bathroom cabinet socket | switch.bathroom_cabinet_socket | shelly_socket | Current IP corrected from latest full scan; older documented IP was 10.107.1.204 |
+| 10.107.1.224 | shelly1g4-a085e3bcd2a8 | Unresolved real Shelly device | Unknown | Unknown | unresolved.10_107_1_224 | unresolved_real_device | Real device from verified full scan; current IP corrected from older unresolved placeholder 10.107.1.223 |
 
 ---
+
+## Recent inventory corrections and rollout notes
+
+### Latest confirmed full-scan identity rule
+
+Recent rollout work confirmed that Shelly inventory matching must prefer:
+
+1. `mqtt_device_id` / Shelly device ID
+2. IP address only as secondary mutable data
+
+Reason:
+- several Shelly devices were confirmed to have changed IP addresses
+- device ID stayed stable and is the correct primary identity key for matching inventory, MQTT topics, and rollout targets
+
+### Recent confirmed IP corrections
+
+The following inventory corrections were confirmed from the latest full scan:
+
+- WC ceiling light
+  - device ID: `shelly1g4-a085e3bd81e4`
+  - current IP: `10.107.1.185`
+  - older documented IP was outdated
+
+- Kitchen counter socket
+  - device ID: `shelly1pmg4-a085e3bc8c14`
+  - current IP: `10.107.1.181`
+  - older documented IP was `10.107.1.180`
+
+- Bedroom door socket
+  - device ID: `shelly1g4-a085e3c18bb4`
+  - current IP: `10.107.1.192`
+  - older documented IP was `10.107.1.191`
+
+- Bathroom cabinet socket
+  - device ID: `shelly1g4-a085e3bcd294`
+  - current IP: `10.107.1.203`
+  - older documented IP was `10.107.1.204`
+
+- Previously unresolved real Shelly device
+  - current IP: `10.107.1.224`
+  - device ID: `shelly1g4-a085e3bcd2a8`
+  - older unresolved placeholder IP was `10.107.1.223`
+
+### Recent bulk MQTT rollout rule confirmation
+
+During recent Shelly socket rollout work, the practical safe pattern was confirmed as:
+
+1. apply MQTT settings
+2. reboot Shelly
+3. verify after reboot
+
+Important rule:
+- do not combine firmware update into the same bulk rollout script
+- one tested firmware update stalled during update and required manual reboot recovery
+- therefore bulk rollout should use MQTT configuration + reboot only
+
+### Critical exclusions during bulk rollout
+
+The following Shelly devices must stay excluded from bulk MQTT actions unless handled deliberately:
+
+- `10.107.1.221`
+  - device ID: `shelly1pmg4-a085e3bdd5f4`
+  - role: network core power
+  - reason: critical infrastructure
+
+- `10.107.1.232`
+  - device ID: `shelly1pmg4-a085e3bc5718`
+  - role: hobby room socket
+  - reason at time of rollout: actively powering the Home Assistant server path
+
+### Recent non-critical socket rollout target set
+
+A recent non-critical rollout set was prepared and validated from full-scan data using device ID matching and latest IP confirmation.
+
+This confirmed that recent Shelly rollout work is no longer only about light circuits:
+- socket/power Shelly inventory is now part of the active rollout baseline
+- future Shelly documentation must keep light-power circuits and socket circuits clearly separated
 
 ## Notes
 

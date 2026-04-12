@@ -1,0 +1,69 @@
+henkka@Henkkaduuni:~/projects/homeauto/scripts/shelly$ python3 shelly_inventory.py
+Enter subnet (e.g. 10.107.1.0/24): 10.107.1.0/24
+Scanning 254 IPs...
+
+10.107.1.21 | S1G4 | shelly1g4-ccba97c89350 | Gen4 | gen4_rpc
+Checked 20/254
+10.107.1.23 | S1PMG4 | shelly1pmg4-a085e3bbbb8c | Gen4 | gen4_rpc
+10.107.1.24 | S1PMG4 | shelly1pmg4-a085e3bcfb14 | Gen4 | gen4_rpc
+10.107.1.33 | S1G4 | shelly1g4-a085e3bcdf24 | Gen4 | gen4_rpc
+10.107.1.35 | S1PMG4 | shelly1pmg4-a085e3bc76f8 | Gen4 | gen4_rpc
+Checked 40/254
+10.107.1.43 | S1G4 | shelly1g4-a085e3bd87d0 | Gen4 | gen4_rpc
+10.107.1.48 | S1PMG4 | shelly1pmg4-a085e3bcfb2c | Gen4 | gen4_rpc
+10.107.1.52 | S1PMG4 | shelly1pmg4-a085e3bcfb30 | Gen4 | gen4_rpc
+10.107.1.56 | S1G4 | shelly1g4-a085e3c16eec | Gen4 | gen4_rpc
+Checked 60/254
+10.107.1.70 | S1PMG4 | shelly1pmg4-a085e3bbbd40 | Gen4 | gen4_rpc
+10.107.1.72 | S1PMG4 | shelly1pmg4-a085e3bcfafc | Gen4 | gen4_rpc
+10.107.1.75 | S1G4ZB | shelly1g4-ccba97c89b84 | Gen4 | gen4_rpc
+10.107.1.77 | S1G4 | shelly1g4-ccba97c888c8 | Gen4 | gen4_rpc
+10.107.1.78 | S1PMG4 | shelly1pmg4-a085e3bbd280 | Gen4 | gen4_rpc
+Checked 80/254
+10.107.1.86 | S1G4 | shelly1g4-ccba97c89790 | Gen4 | gen4_rpc
+10.107.1.90 | S1G4 | shelly1g4-a085e3c16c94 | Gen4 | gen4_rpc
+10.107.1.98 | S1PMG4 | shelly1pmg4-a085e3bd8f10 | Gen4 | gen4_rpc
+Checked 100/254
+10.107.1.118 | S1G4 | shelly1g4-a085e3bd7ee0 | Gen4 | gen4_rpc
+Checked 120/254
+10.107.1.124 | S1PMG4 | shelly1pmg4-a085e3bd0210 | Gen4 | gen4_rpc
+10.107.1.130 | S1G4 | shelly1g4-ccba97c89804 | Gen4 | gen4_rpc
+10.107.1.137 | S1PMG4 | shelly1pmg4-a085e3bddb24 | Gen4 | gen4_rpc
+10.107.1.138 | S1G4 | shelly1g4-a085e3bd8af0 | Gen4 | gen4_rpc
+10.107.1.140 | S1G4 | shelly1g4-a085e3bcd118 | Gen4 | gen4_rpc
+10.107.1.143 | S1G4 | shelly1g4-ccba97c8968c | Gen4 | gen4_rpc
+Checked 160/254
+10.107.1.164 | S1G4 | shelly1g4-a085e3bd81d0 | Gen4 | gen4_rpc
+10.107.1.169 | S1G4 | shelly1g4-ccba97c8856c | Gen4 | gen4_rpc
+10.107.1.179 | S1PMG4 | shelly1pmg4-a085e3bbe1a4 | Gen4 | gen4_rpc
+10.107.1.181 | S1PMG4 | shelly1pmg4-a085e3bc8c14 | Gen4 | gen4_rpc
+Checked 180/254
+10.107.1.185 | S1G4 | shelly1g4-a085e3bd81e4 | Gen4 | gen4_rpc
+10.107.1.190 | S1G4 | shelly1g4-a085e3c197b0 | Gen4 | gen4_rpc
+10.107.1.191 | S1G4 | shelly1g4-ccba97c8a17c | Gen4 | gen4_rpc
+10.107.1.192 | S1G4 | shelly1g4-a085e3c18bb4 | Gen4 | gen4_rpc
+10.107.1.195 | S1G4 | shelly1g4-a085e3c1913c | Gen4 | gen4_rpc
+10.107.1.196 | S1G4 | shelly1g4-ccba97c8a044 | Gen4 | gen4_rpc
+10.107.1.203 | S1G4 | shelly1g4-a085e3bcd294 | Gen4 | gen4_rpc
+10.107.1.204 | S1G4 | shelly1g4-ccba97c8cbf8 | Gen4 | gen4_rpc
+10.107.1.207 | S1G4 | shelly1g4-a085e3c17150 | Gen4 | gen4_rpc
+10.107.1.221 | S1PMG4 | shelly1pmg4-a085e3bdd5f4 | Gen4 | gen4_rpc
+10.107.1.222 | S1PMG4 | shelly1pmg4-a085e3bc7444 | Gen4 | gen4_rpc
+Checked 220/254
+10.107.1.224 | S1G4 | shelly1g4-a085e3bcd2a8 | Gen4 | gen4_rpc
+10.107.1.227 | S1PMG4 | shelly1pmg4-a085e3bdd904 | Gen4 | gen4_rpc
+10.107.1.228 | S1PMG4 | shelly1pmg4-a085e3bc7c48 | Gen4 | gen4_rpc
+10.107.1.231 | S1G4 | shelly1g4-a085e3bd891c | Gen4 | gen4_rpc
+10.107.1.232 | S1PMG4 | shelly1pmg4-a085e3bc5718 | Gen4 | gen4_rpc
+Checked 240/254
+10.107.1.251 | S1PMG4 | shelly1pmg4-a085e3bbb77c | Gen4 | gen4_rpc
+Traceback (most recent call last):
+  File "/home/henkka/projects/homeauto/scripts/shelly/shelly_inventory.py", line 223, in <module>
+    main()
+  File "/home/henkka/projects/homeauto/scripts/shelly/shelly_inventory.py", line 219, in main
+    save_results(results)
+  File "/home/henkka/projects/homeauto/scripts/shelly/shelly_inventory.py", line 191, in save_results
+    with open(json_file, "w", encoding="utf-8") as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'data/raw/shelly_scan_20260410_043432.json'
+henkka@Henkkaduuni:~/projects/homeauto/scripts/shelly$

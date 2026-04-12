@@ -563,3 +563,88 @@ Start with these when re-entering the project:
 - Google Drive and exported files are mirror or access copies only.
 - Changes are not authoritative until they are committed and pushed to GitHub.
 - If any copy conflicts with GitHub, GitHub wins.
+
+## Recent Shelly socket rollout and inventory confirmation
+
+Recent work has extended the Shelly rollout beyond the earlier lighting-focused baseline.
+
+### What was done
+
+- Shelly Gen4 MQTT rollout was expanded toward non-critical socket/power circuits in addition to light-power circuits.
+- The active Home Assistant YAML baseline already contains a broad MQTT-managed Shelly switch set in `home_assistant/configuration.yaml`.
+- Active MQTT wall-switch automations remain in `home_assistant/automations.yaml` for Shelly + smart-bulb and selected grouped-light circuits.
+
+### Current operational rollout rule
+
+- Bulk MQTT enablement must exclude critical infrastructure devices.
+- Bulk MQTT enablement must also exclude any Shelly currently powering the active Home Assistant server or other critical runtime dependency.
+- Practical reboot rule confirmed during rollout:
+  - after applying MQTT settings to Shelly Gen4 devices, a reboot is required for MQTT operation to come up reliably
+- Firmware update must not be bundled into the same bulk rollout script.
+- A tested update attempt stalled during device update, so the safe bulk pattern is:
+  1. apply MQTT settings
+  2. reboot device
+  3. verify operation after reboot
+
+### Inventory confirmation from latest full Shelly scan
+
+A new full-house Shelly scan was used to confirm:
+- current reachable Shelly Gen4 devices
+- model family per device (`S1G4` vs `S1PMG4`)
+- MQTT device IDs / device prefixes
+- several current IP addresses that had drifted from older documentation
+
+Confirmed practical rule:
+- `device_id` is the stable key identifier for Shelly inventory work
+- IP address may change and must therefore be treated as mutable inventory data
+- inventory matching should prefer `device_id` first and IP second
+
+### Important recent corrections
+
+Recent scan and rollout work confirmed or highlighted at least these points:
+
+- WC Shelly confirmed as:
+  - model family: `S1G4`
+  - device ID: `shelly1g4-a085e3bd81e4`
+  - current IP observed in latest scan: `10.107.1.185`
+- Critical network-power Shelly remains:
+  - device ID: `shelly1pmg4-a085e3bdd5f4`
+  - IP: `10.107.1.221`
+  - must remain excluded from bulk actions
+- One previously unresolved Shelly entry needs inventory correction from the older unresolved IP-based placeholder:
+  - older unresolved placeholder: `10.107.1.223`
+  - newer scan indicates current unresolved device at: `10.107.1.224`
+  - device ID: `shelly1g4-a085e3bcd2a8`
+  
+### Copy-paste rule for markdown table row updates
+
+When giving repository updates for markdown tables, provide each table row in its own separate copy-paste block only when existing rows need to be replaced in different places of a long table.
+
+Rule scope:
+- this rule applies only to markdown table rows
+- use separate copy-paste blocks when replacing existing markdown table rows that belong in different places
+- if multiple new markdown table rows are added into the same place, they may be given together in one block
+- do not apply this rule to CSV content
+- CSV content should be given as one complete copy-paste block when the user needs the whole file or a full CSV section
+
+### Documentation implication
+
+The repo should now be updated so that:
+- `docs/devices/shelly.md` reflects latest confirmed device IDs and current IP corrections
+- the new `docs/devices/device_registry.csv` becomes the centralized all-device master inventory
+- `shelly.md` remains the detailed Shelly-specific reference
+- device-level matching and future rollout work use `device_id` as the primary identity key
+
+### Shelly inventory identity rule
+
+For Shelly devices, the primary identity key is the Shelly `device_id` / MQTT prefix.
+
+Rule:
+- use `device_id` as the main identity key in inventory, mapping, and rollout work
+- treat IP address as mutable supporting data only
+- IP may still be stored in inventory as the latest known address
+- do not rely on IP as the primary identifier when matching Shelly devices across scans, YAML, or documentation
+
+Reason:
+- IP addresses can change over time
+- `device_id` remains stable and is also the key used in MQTT topics and rollout logic
