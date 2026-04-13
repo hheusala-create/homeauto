@@ -394,3 +394,391 @@ mqtt:
       payload_available: "true"
       payload_not_available: "false"
       qos: 0
+
+    - name: "Corridor socket vacuum power"
+      unique_id: "switch.corridor_socket_vacuum_power"
+      icon: "mdi:power-socket-eu"
+      command_topic: "shelly1pmg4-a085e3bbbb8c/rpc"
+      command_template: >-
+        {% if value == 'ON' %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":true}}{% else %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":false}}{% endif %}
+      state_topic: "shelly1pmg4-a085e3bbbb8c/status/switch:0"
+      value_template: "{{ 'ON' if value_json.output == true else 'OFF' if value_json.output == false else '' }}"
+      payload_on: "ON"
+      payload_off: "OFF"
+      state_on: "ON"
+      state_off: "OFF"
+      availability_topic: "shelly1pmg4-a085e3bbbb8c/online"
+      payload_available: "true"
+      payload_not_available: "false"
+      qos: 0
+
+    - name: "Laundry room socket wall power"
+      unique_id: "switch.laundry_room_socket_wall_power"
+      icon: "mdi:power-socket-eu"
+      command_topic: "shelly1pmg4-a085e3bc76f8/rpc"
+      command_template: >-
+        {% if value == 'ON' %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":true}}{% else %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":false}}{% endif %}
+      state_topic: "shelly1pmg4-a085e3bc76f8/status/switch:0"
+      value_template: "{{ 'ON' if value_json.output == true else 'OFF' if value_json.output == false else '' }}"
+      payload_on: "ON"
+      payload_off: "OFF"
+      state_on: "ON"
+      state_off: "OFF"
+      availability_topic: "shelly1pmg4-a085e3bc76f8/online"
+      payload_available: "true"
+      payload_not_available: "false"
+      qos: 0
+
+    - name: "Laundry room socket table power"
+      unique_id: "switch.laundry_room_socket_table_power"
+      icon: "mdi:power-socket-eu"
+      command_topic: "shelly1pmg4-a085e3bcfb2c/rpc"
+      command_template: >-
+        {% if value == 'ON' %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":true}}{% else %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":false}}{% endif %}
+      state_topic: "shelly1pmg4-a085e3bcfb2c/status/switch:0"
+      value_template: "{{ 'ON' if value_json.output == true else 'OFF' if value_json.output == false else '' }}"
+      payload_on: "ON"
+      payload_off: "OFF"
+      state_on: "ON"
+      state_off: "OFF"
+      availability_topic: "shelly1pmg4-a085e3bcfb2c/online"
+      payload_available: "true"
+      payload_not_available: "false"
+      qos: 0
+
+    - name: "Office socket right power"
+      unique_id: "switch.office_socket_right_power"
+      icon: "mdi:power-socket-eu"
+      command_topic: "shelly1pmg4-a085e3bcfb30/rpc"
+      command_template: >-
+        {% if value == 'ON' %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":true}}{% else %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":false}}{% endif %}
+      state_topic: "shelly1pmg4-a085e3bcfb30/status/switch:0"
+      value_template: "{{ 'ON' if value_json.output == true else 'OFF' if value_json.output == false else '' }}"
+      payload_on: "ON"
+      payload_off: "OFF"
+      state_on: "ON"
+      state_off: "OFF"
+      availability_topic: "shelly1pmg4-a085e3bcfb30/online"
+      payload_available: "true"
+      payload_not_available: "false"
+      qos: 0
+
+    - name: "Living room socket main power"
+      unique_id: "switch.living_room_socket_main_power"
+      icon: "mdi:power-socket-eu"
+      command_topic: "shelly1pmg4-a085e3bbbd40/rpc"
+      command_template: >-
+        {% if value == 'ON' %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":true}}{% else %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":false}}{% endif %}
+      state_topic: "shelly1pmg4-a085e3bbbd40/status/switch:0"
+      value_template: "{{ 'ON' if value_json.output == true else 'OFF' if value_json.output == false else '' }}"
+      payload_on: "ON"
+      payload_off: "OFF"
+      state_on: "ON"
+      state_off: "OFF"
+      availability_topic: "shelly1pmg4-a085e3bbbd40/online"
+      payload_available: "true"
+      payload_not_available: "false"
+      qos: 0
+
+    - name: "Living room socket TV electronics power"
+      unique_id: "switch.living_room_socket_tv_electronics_power"
+      icon: "mdi:power-socket-eu"
+      command_topic: "shelly1pmg4-a085e3bcfafc/rpc"
+      command_template: >-
+        {% if value == 'ON' %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":true}}{% else %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":false}}{% endif %}
+      state_topic: "shelly1pmg4-a085e3bcfafc/status/switch:0"
+      value_template: "{{ 'ON' if value_json.output == true else 'OFF' if value_json.output == false else '' }}"
+      payload_on: "ON"
+      payload_off: "OFF"
+      state_on: "ON"
+      state_off: "OFF"
+      availability_topic: "shelly1pmg4-a085e3bcfafc/online"
+      payload_available: "true"
+      payload_not_available: "false"
+      qos: 0
+
+    - name: "Laundry room socket lower cabinet power"
+      unique_id: "switch.laundry_room_socket_lower_cabinet_power"
+      icon: "mdi:power-socket-eu"
+      command_topic: "shelly1pmg4-a085e3bd8f10/rpc"
+      command_template: >-
+        {% if value == 'ON' %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":true}}{% else %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":false}}{% endif %}
+      state_topic: "shelly1pmg4-a085e3bd8f10/status/switch:0"
+      value_template: "{{ 'ON' if value_json.output == true else 'OFF' if value_json.output == false else '' }}"
+      payload_on: "ON"
+      payload_off: "OFF"
+      state_on: "ON"
+      state_off: "OFF"
+      availability_topic: "shelly1pmg4-a085e3bd8f10/online"
+      payload_available: "true"
+      payload_not_available: "false"
+      qos: 0
+
+    - name: "Corridor socket office power"
+      unique_id: "switch.corridor_socket_office_power"
+      icon: "mdi:power-socket-eu"
+      command_topic: "shelly1g4-a085e3bd7ee0/rpc"
+      command_template: >-
+        {% if value == 'ON' %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":true}}{% else %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":false}}{% endif %}
+      state_topic: "shelly1g4-a085e3bd7ee0/status/switch:0"
+      value_template: "{{ 'ON' if value_json.output == true else 'OFF' if value_json.output == false else '' }}"
+      payload_on: "ON"
+      payload_off: "OFF"
+      state_on: "ON"
+      state_off: "OFF"
+      availability_topic: "shelly1g4-a085e3bd7ee0/online"
+      payload_available: "true"
+      payload_not_available: "false"
+      qos: 0
+
+    - name: "Office socket door power"
+      unique_id: "switch.office_socket_door_power"
+      icon: "mdi:power-socket-eu"
+      command_topic: "shelly1pmg4-a085e3bddb24/rpc"
+      command_template: >-
+        {% if value == 'ON' %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":true}}{% else %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":false}}{% endif %}
+      state_topic: "shelly1pmg4-a085e3bddb24/status/switch:0"
+      value_template: "{{ 'ON' if value_json.output == true else 'OFF' if value_json.output == false else '' }}"
+      payload_on: "ON"
+      payload_off: "OFF"
+      state_on: "ON"
+      state_off: "OFF"
+      availability_topic: "shelly1pmg4-a085e3bddb24/online"
+      payload_available: "true"
+      payload_not_available: "false"
+      qos: 0
+
+    - name: "Bedroom socket 2 power"
+      unique_id: "switch.bedroom_socket_2_power"
+      icon: "mdi:power-socket-eu"
+      command_topic: "shelly1g4-a085e3bd81d0/rpc"
+      command_template: >-
+        {% if value == 'ON' %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":true}}{% else %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":false}}{% endif %}
+      state_topic: "shelly1g4-a085e3bd81d0/status/switch:0"
+      value_template: "{{ 'ON' if value_json.output == true else 'OFF' if value_json.output == false else '' }}"
+      payload_on: "ON"
+      payload_off: "OFF"
+      state_on: "ON"
+      state_off: "OFF"
+      availability_topic: "shelly1g4-a085e3bd81d0/online"
+      payload_available: "true"
+      payload_not_available: "false"
+      qos: 0
+
+    - name: "Front yard socket outdoor power"
+      unique_id: "switch.front_yard_socket_outdoor_power"
+      icon: "mdi:power-socket-eu"
+      command_topic: "shelly1pmg4-a085e3bbe1a4/rpc"
+      command_template: >-
+        {% if value == 'ON' %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":true}}{% else %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":false}}{% endif %}
+      state_topic: "shelly1pmg4-a085e3bbe1a4/status/switch:0"
+      value_template: "{{ 'ON' if value_json.output == true else 'OFF' if value_json.output == false else '' }}"
+      payload_on: "ON"
+      payload_off: "OFF"
+      state_on: "ON"
+      state_off: "OFF"
+      availability_topic: "shelly1pmg4-a085e3bbe1a4/online"
+      payload_available: "true"
+      payload_not_available: "false"
+      qos: 0
+
+    - name: "Kitchen socket counter power"
+      unique_id: "switch.kitchen_socket_counter_power"
+      icon: "mdi:power-socket-eu"
+      command_topic: "shelly1pmg4-a085e3bc8c14/rpc"
+      command_template: >-
+        {% if value == 'ON' %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":true}}{% else %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":false}}{% endif %}
+      state_topic: "shelly1pmg4-a085e3bc8c14/status/switch:0"
+      value_template: "{{ 'ON' if value_json.output == true else 'OFF' if value_json.output == false else '' }}"
+      payload_on: "ON"
+      payload_off: "OFF"
+      state_on: "ON"
+      state_off: "OFF"
+      availability_topic: "shelly1pmg4-a085e3bc8c14/online"
+      payload_available: "true"
+      payload_not_available: "false"
+      qos: 0
+
+    - name: "Bedroom socket door power"
+      unique_id: "switch.bedroom_socket_door_power"
+      icon: "mdi:power-socket-eu"
+      command_topic: "shelly1g4-a085e3c18bb4/rpc"
+      command_template: >-
+        {% if value == 'ON' %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":true}}{% else %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":false}}{% endif %}
+      state_topic: "shelly1g4-a085e3c18bb4/status/switch:0"
+      value_template: "{{ 'ON' if value_json.output == true else 'OFF' if value_json.output == false else '' }}"
+      payload_on: "ON"
+      payload_off: "OFF"
+      state_on: "ON"
+      state_off: "OFF"
+      availability_topic: "shelly1g4-a085e3c18bb4/online"
+      payload_available: "true"
+      payload_not_available: "false"
+      qos: 0
+
+    - name: "Laundry room socket backyard door power"
+      unique_id: "switch.laundry_room_socket_backyard_door_power"
+      icon: "mdi:power-socket-eu"
+      command_topic: "shelly1g4-a085e3c1913c/rpc"
+      command_template: >-
+        {% if value == 'ON' %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":true}}{% else %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":false}}{% endif %}
+      state_topic: "shelly1g4-a085e3c1913c/status/switch:0"
+      value_template: "{{ 'ON' if value_json.output == true else 'OFF' if value_json.output == false else '' }}"
+      payload_on: "ON"
+      payload_off: "OFF"
+      state_on: "ON"
+      state_off: "OFF"
+      availability_topic: "shelly1g4-a085e3c1913c/online"
+      payload_available: "true"
+      payload_not_available: "false"
+      qos: 0
+
+    - name: "Bathroom socket cabinet power"
+      unique_id: "switch.bathroom_socket_cabinet_power"
+      icon: "mdi:power-socket-eu"
+      command_topic: "shelly1g4-a085e3bcd294/rpc"
+      command_template: >-
+        {% if value == 'ON' %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":true}}{% else %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":false}}{% endif %}
+      state_topic: "shelly1g4-a085e3bcd294/status/switch:0"
+      value_template: "{{ 'ON' if value_json.output == true else 'OFF' if value_json.output == false else '' }}"
+      payload_on: "ON"
+      payload_off: "OFF"
+      state_on: "ON"
+      state_off: "OFF"
+      availability_topic: "shelly1g4-a085e3bcd294/online"
+      payload_available: "true"
+      payload_not_available: "false"
+      qos: 0
+
+    - name: "Bathroom socket counter power"
+      unique_id: "switch.bathroom_socket_counter_power"
+      icon: "mdi:power-socket-eu"
+      command_topic: "shelly1g4-a085e3c17150/rpc"
+      command_template: >-
+        {% if value == 'ON' %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":true}}{% else %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":false}}{% endif %}
+      state_topic: "shelly1g4-a085e3c17150/status/switch:0"
+      value_template: "{{ 'ON' if value_json.output == true else 'OFF' if value_json.output == false else '' }}"
+      payload_on: "ON"
+      payload_off: "OFF"
+      state_on: "ON"
+      state_off: "OFF"
+      availability_topic: "shelly1g4-a085e3c17150/online"
+      payload_available: "true"
+      payload_not_available: "false"
+      qos: 0
+
+    - name: "Network core power"
+      unique_id: "switch.network_core_power"
+      icon: "mdi:power-socket-eu"
+      command_topic: "shelly1pmg4-a085e3bdd5f4/rpc"
+      command_template: >-
+        {% if value == 'ON' %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":true}}{% else %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":false}}{% endif %}
+      state_topic: "shelly1pmg4-a085e3bdd5f4/status/switch:0"
+      value_template: "{{ 'ON' if value_json.output == true else 'OFF' if value_json.output == false else '' }}"
+      payload_on: "ON"
+      payload_off: "OFF"
+      state_on: "ON"
+      state_off: "OFF"
+      availability_topic: "shelly1pmg4-a085e3bdd5f4/online"
+      payload_available: "true"
+      payload_not_available: "false"
+      qos: 0
+
+    - name: "Bedroom socket left power"
+      unique_id: "switch.bedroom_socket_left_power"
+      icon: "mdi:power-socket-eu"
+      command_topic: "shelly1pmg4-a085e3bc7444/rpc"
+      command_template: >-
+        {% if value == 'ON' %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":true}}{% else %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":false}}{% endif %}
+      state_topic: "shelly1pmg4-a085e3bc7444/status/switch:0"
+      value_template: "{{ 'ON' if value_json.output == true else 'OFF' if value_json.output == false else '' }}"
+      payload_on: "ON"
+      payload_off: "OFF"
+      state_on: "ON"
+      state_off: "OFF"
+      availability_topic: "shelly1pmg4-a085e3bc7444/online"
+      payload_available: "true"
+      payload_not_available: "false"
+      qos: 0
+
+    - name: "Bedroom socket right bed power"
+      unique_id: "switch.bedroom_socket_right_bed_power"
+      icon: "mdi:power-socket-eu"
+      command_topic: "shelly1pmg4-a085e3bdd904/rpc"
+      command_template: >-
+        {% if value == 'ON' %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":true}}{% else %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":false}}{% endif %}
+      state_topic: "shelly1pmg4-a085e3bdd904/status/switch:0"
+      value_template: "{{ 'ON' if value_json.output == true else 'OFF' if value_json.output == false else '' }}"
+      payload_on: "ON"
+      payload_off: "OFF"
+      state_on: "ON"
+      state_off: "OFF"
+      availability_topic: "shelly1pmg4-a085e3bdd904/online"
+      payload_available: "true"
+      payload_not_available: "false"
+      qos: 0
+
+    - name: "Hobby room socket main power"
+      unique_id: "switch.hobby_room_socket_main_power"
+      icon: "mdi:power-socket-eu"
+      command_topic: "shelly1pmg4-a085e3bc5718/rpc"
+      command_template: >-
+        {% if value == 'ON' %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":true}}{% else %}{"id":1,"src":"ha","method":"Switch.Set","params":{"id":0,"on":false}}{% endif %}
+      state_topic: "shelly1pmg4-a085e3bc5718/status/switch:0"
+      value_template: "{{ 'ON' if value_json.output == true else 'OFF' if value_json.output == false else '' }}"
+      payload_on: "ON"
+      payload_off: "OFF"
+      state_on: "ON"
+      state_off: "OFF"
+      availability_topic: "shelly1pmg4-a085e3bc5718/online"
+      payload_available: "true"
+      payload_not_available: "false"
+      qos: 0
+
+template:
+  - sensor:
+      - name: "Electricity previous rounded"
+        unique_id: "sensor_electricity_previous_rounded"
+        unit_of_measurement: "€"
+        state: "{{ states('sensor.nord_pool_fi_previous_price') | float(0) | round(2) }}"
+
+      - name: "Electricity current rounded"
+        unique_id: "sensor_electricity_current_rounded"
+        unit_of_measurement: "€"
+        state: "{{ states('sensor.nord_pool_fi_current_price') | float(0) | round(2) }}"
+
+      - name: "Electricity next rounded"
+        unique_id: "sensor_electricity_next_rounded"
+        unit_of_measurement: "€"
+        state: "{{ states('sensor.nord_pool_fi_next_price') | float(0) | round(2) }}"
+
+      - name: "Electricity lowest rounded"
+        unique_id: "sensor_electricity_lowest_rounded"
+        unit_of_measurement: "€"
+        state: "{{ states('sensor.nord_pool_fi_lowest_price') | float(0) | round(2) }}"
+
+      - name: "Electricity highest rounded"
+        unique_id: "sensor_electricity_highest_rounded"
+        unit_of_measurement: "€"
+        state: "{{ states('sensor.nord_pool_fi_highest_price') | float(0) | round(2) }}"
+
+      - name: "Electricity lowest time"
+        unique_id: "sensor_electricity_lowest_time"
+        state: "{{ as_datetime(state_attr('sensor.nord_pool_fi_lowest_price', 'start')).astimezone(now().tzinfo).strftime('%H:%M') if state_attr('sensor.nord_pool_fi_lowest_price', 'start') else '—' }}"
+
+      - name: "Electricity highest time"
+        unique_id: "sensor_electricity_highest_time"
+        state: "{{ as_datetime(state_attr('sensor.nord_pool_fi_highest_price', 'start')).astimezone(now().tzinfo).strftime('%H:%M') if state_attr('sensor.nord_pool_fi_highest_price', 'start') else '—' }}"
+
+  - sensor:
+      - name: "Electricity price level"
+        unique_id: "sensor_electricity_price_level"
+        state: >
+          {% set p = states('sensor.nord_pool_fi_current_price') | float(0) %}
+          {% if p < 0.05 %}
+            Halpaa
+          {% elif p >= 0.16 %}
+            Kallista
+          {% else %}
+            Normaali
+          {% endif %}
