@@ -648,3 +648,26 @@ Rule:
 Reason:
 - IP addresses can change over time
 - `device_id` remains stable and is also the key used in MQTT topics and rollout logic
+
+### Shelly inventory identity rule
+
+Tässä on lyhyt katsaus siihen, mitä teimme ja miten järjestelmä on nyt konfiguroitu:
+
+Malli: Valittiin gemini-flash-latest. Tämä ratkaisi "404 Not Found" ja "Model no longer available" -virheet, joita nimenomaiset 1.5- ja 2.0-versiot antoivat.
+
+Lämpötila (Temperature): Asetettu 0.7. Tämä pitää vastaukset johdonmukaisina mutta luonnollisina.
+
+Järjestelmäkehote (System Prompt): Lisätty tiukka ohjeistus siitä, että jokaisen laiteohjauksen jälkeen mallin on annettava suomenkielinen tekstivahvistus. Tämä poisti "Unable to get response" -ongelman.
+
+
+Puheohjauksen testaus:
+Voit nyt käyttää komentoja kuten:
+
+"Laita chorusliiga päälle"
+
+"Sammuta keittiön valot"
+
+Järjestelmä suorittaa komennon ja vastaa nyt äänellä (TTS), koska Gemini palauttaa sille vaaditun tekstivastauksen.
+
+
+**uusi rivi testi - voi poistaa**
