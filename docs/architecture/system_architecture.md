@@ -478,3 +478,42 @@ Current operational priority:
 3. confirm room placement and naming for non-light devices
 4. separate critical and security-sensitive controls from everyday views
 5. move toward a unified Home Assistant-centered logical model without breaking existing working vendor setups
+
+# Documentation: Home Assistant Voice Control Setup
+
+## 1. System Architecture & Operation
+The current voice control system is built on a modular pipeline called **"Gemini"**, which orchestrates the communication between the user's voice and the smart home hardware.
+
+* **Speech-to-Text (STT):** Uses **Google AI STT** (Finnish) to transcribe voice commands into text.
+* **Conversation Agent:** Powered by the **Google AI Conversation** integration.
+    * **Model:** Configured to use `gemini-flash-latest`. This alias ensures the system always points to a valid and stable version of the Flash model provided by the API.
+    * **Temperature:** Set to **0.7**. This provides a balance between deterministic device control and flexible natural language understanding.
+    * **System Instructions (The Prompt):** The agent is explicitly instructed to:
+        1. Prioritize tool usage for device control.
+        2. **Always** return a short text confirmation (e.g., "Tehty") immediately after a successful device operation.
+        3. Respond only in Finnish and avoid any Markdown formatting.
+* **Text-to-Speech (TTS):** Uses the **Google Translate TTS** integration (Finnish). This takes the text response from Gemini and converts it back to audio to be played on the local speaker.
+
+---
+
+## 2. Documented Issues and Resolutions
+
+During the implementation, several critical technical hurdles were identified and resolved to stabilize the system.
+
+### I. The "Unable to Get Response" Error
+* **Problem:** Commands would trigger the device (e.g., light on), but the voice assistant would report an error instead of speaking.
+* **Cause:** The Gemini model would execute the tool call but fail to generate a text-based confirmation. Without a text response, the TTS engine had nothing to process, causing the Assist pipeline to report a failure.
+* **Resolution:** Implemented a strict **System Prompt** that forces the model to generate a verbal confirmation ("Tehty") after every action.
+
+### II. Model Availability & 404 Errors
+* **Problem:** Attempting to use specific model versions like `gemini-1.5-flash` or `gemini-2.0-flash` resulted in **404 NOT_FOUND** or "Model no longer available" errors.
+* **Cause:** Rapid changes in Google's API availability and how the integration handles versioned aliases. Certain models were removed or the endpoints were changed by the provider.
+* **Resolution:** Switched to the **`gemini-flash-latest`** alias. This redirect ensures the API calls are routed to a functioning and available model version, bypassing the 404 errors.
+
+### III. Interaction Stability
+* **Problem:** Randomness in responses or failure to follow the control logic.
+* **Resolution:** Locked the **Temperature to 0.7**. This ensures that the model remains focused on the instructions provided in the System Prompt, making the interaction predictable and reliable for daily home automation use.
+
+---
+
+**Status:** The system is currently stable. Commands are transcribed correctly, Gemini executes the actions, and the user receives a verbal confirmation in Finnish.

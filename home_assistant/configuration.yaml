@@ -782,3 +782,5 @@ template:
           {% else %}
             Normaali
           {% endif %}
+
+wake_on_lan:

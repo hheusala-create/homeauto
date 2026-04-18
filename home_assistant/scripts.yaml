@@ -1,0 +1,17 @@
+living_room_tv_on:
+  alias: "Living room TV on"
+  sequence:
+    - action: wake_on_lan.send_magic_packet
+      data:
+        mac: "7C:64:6C:36:42:74"
+        broadcast_address: "10.107.1.141"
+        broadcast_port: 9
+
+living_room_tv_yle_areena:
+  alias: "Living room TV Yle Areena"
+  sequence:
+    - action: media_player.select_source
+      target:
+        entity_id: media_player.lg_webos_tv_oled65c24la_2
+      data:
+        source: "Yle Areena"
